@@ -4,3 +4,10 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Learn programming with Rust as a first language"
+
+[rust]
+edition = "2021"
+
+[output.html]
+mathjax-support = true
+curly-quotes = true

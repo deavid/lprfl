@@ -1,0 +1,5 @@
+# Introduction
+
+```rust
+panic!("test");
+```
