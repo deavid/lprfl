@@ -1073,8 +1073,9 @@ code several times.</p>
 anywhere as long as it is not inside the main. </p>
 <p>Placing it before or after the main is fine, the order doesn’t matter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="returning-values-from-functions"><a class="header" href="#returning-values-from-functions">Returning values from functions</a></h1>
-<p>It is also possible to use a function to calculate a certain value. For example, we can calculate the number PI:</p>
-<pre><pre class="playground"><code class="language-rust edition2021"> fn calculate_pi() -&gt; f64 {
+<p>It is also possible to use a function to calculate a certain value. 
+For example, we can calculate the number PI (\(\pi\)):</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn calculate_pi() -&gt; f64 {
    // https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
    // pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ...
    let mut pi_4 = 1.0;
@@ -1087,20 +1088,29 @@ anywhere as long as it is not inside the main. </p>
        divisor += 2.0;
    }
    return pi_4 * 4.0;
- }
- fn main() {
+}
+fn main() {
    let pi = calculate_pi();
    println!(&quot;pi: {}&quot;, pi);
- }
+}
 </code></pre></pre>
-<p>Again, this program might be a bit too much, but the important thing is in the first line:</p>
+<blockquote>
+<p>Note that it’s quite hard to understand how these formulas actually compute PI.
+You’re not alone, and this is not the purpose of this exercise. We’re only
+focusing on a function <strong>that returns PI</strong>, and we don’t care on how it’s done.</p>
+</blockquote>
+<p>Again, this program might be a bit too much, 
+but the important thing is in the first line:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span> fn calculate_pi() -&gt; f64 {
 <span class="boring">}
 </span></code></pre></pre>
-<p>The arrow symbol (-&gt;) indicates that this function returns a value. “f64” is which kind of value we want to return, which for this case is a floating point number (one with decimal places). If we wanted to return an integer we would have used “i64”.</p>
+<p>The arrow symbol <code>-&gt;</code> indicates that this function returns a value. 
+<code>f64</code> is which kind of value we want to return, which for this case is a 
+floating point number (a number with decimal places). 
+If we wanted to return an integer we would have used <code>i64</code>.</p>
 <p>The last line of the function specifies the actual value to be returned:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1108,15 +1118,23 @@ anywhere as long as it is not inside the main. </p>
 </span>   return pi_4 * 4.0;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Since this fraction series calculates PI divided by four, we need to multiply it by four to get PI, and the return keyword is what signals Rust that it should exit the function at that point (it marks the end of it) and return the value on the right.</p>
-<p>It is worth noting that while the “return” keyword is in most other programming languages as well, Rust specifically has another way of writing this:</p>
+<p>Since this fraction series calculates \(\pi\) divided by four, we need to 
+multiply it by four to get PI, and the return keyword is what signals Rust that 
+it should exit the function at that point (it marks the end of it) and return
+the value on the right.</p>
+<p>It is worth noting that while the <code>return</code> keyword is in most other programming 
+languages as well, Rust specifically has another way of writing this:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>   pi_4 * 4.0
 <span class="boring">}
 </span></code></pre></pre>
-<p>Just removing the return keyword and also removing the semicolon signals Rust that this is the output of that block. It behaves similar but not identical to return. For simplicity sake we’ll keep using return for now which could be simpler to read and understand. However, this form is actually preferred in Rust code. We will learn it in depth later on.</p>
+<p>Just removing the return keyword and also removing the semicolon signals Rust 
+that this is the output of that block. It behaves similar but not identical to 
+return. For simplicity’s sake we’ll keep using return for now which could be 
+simpler to read and understand. However, this form is actually preferred in 
+Rust code. We will learn it in depth later on.</p>
 <p>The next thing we should focus on is how this function is called:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1124,30 +1142,52 @@ anywhere as long as it is not inside the main. </p>
 </span>  let pi = calculate_pi();
 <span class="boring">}
 </span></code></pre></pre>
-<p>Notice how it is used like it was a value. Rust will call the function, get the output and replace here the function by the output value. Then it will be stored in the variable “pi”.</p>
-<p>Everything else in this program is something that we already saw before. Let me go over a few things that might seem new:</p>
+<p>Notice how it is used like it was a value. Rust will call the function, get the 
+resulting number and replace here the function by the output value. 
+Then it will be stored in the variable <code>pi</code>.</p>
+<p>Everything else in this program is something that we already saw before. 
+Let me go over a few things that might seem new:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>  let mut pi_4 = 1.0;
-   let mut divisor = 3.0;
-   let steps = 20_000_000;
-   for _ in 0..steps {
+  let mut divisor = 3.0;
+  let steps = 20_000_000;
+  for _ in 0..steps {
 <span class="boring">}
 </span></code></pre></pre>
-<p>We are using “let mut” here to be able to change the values of pi_4 and divisor inside the function. Without that, Rust will not let us change the variable contents.</p>
-<p>Another thing that might seem strange is the number 20_000_000. This is just 20 million, but the underscores are placed to make it easier to read. They have no meaning to Rust.</p>
-<p>In the for loop, you’ll notice that it says “0..steps”; so this basically makes the for count up to “steps”. There’s nothing special with this.</p>
-<p>Finally, the for has as a variable an underscore “_”. This is because this variable is not used. We only need N steps, but we use “divisor” to keep track of the position. Rust will emit warnings for unused variables. To avoid this, we use an underscore to signal Rust we don’t need this value.</p>
-<p>The result of the program is:
-pi: 3.1415926785904635</p>
-<p>It’s quite close to the real thing. Of course, if you increment the number of steps it will get closer, but the program will take a bit to run. For those cases we can make our Rust program faster by adding the “–release” flag to cargo run:</p>
+<p>We are using <code>let mut</code> here to be able to change the values of <code>pi_4</code> and 
+<code>divisor</code> inside the function. Without that, Rust will not let us change 
+the variable contents.</p>
+<p>Another thing that might seem strange is the number <code>20_000_000</code>. 
+This is just 20 million, but the underscores are placed to make it easier to read. 
+They have no meaning to Rust.</p>
+<p>In the for loop, you’ll notice that it says <code>0..steps</code>; so this basically makes 
+the for count up to <code>steps</code>. There’s nothing special with this.</p>
+<p>Finally, the for has as a variable underscore <code>_</code>. 
+This is because this variable is not used. We only need N steps, but we use 
+<code>divisor</code> to keep track of the position. Rust will emit warnings for unused 
+variables. To avoid this, we use an underscore to signal Rust we don’t need 
+this value.</p>
+<p>The result of the program is:</p>
+<pre><code class="language-console">pi: 3.1415926785904635
+</code></pre>
+<p>It’s quite close to the real thing. Of course, if you increment the number of 
+steps it will get closer, but the program will take a bit to run. 
+For those cases we can make our Rust program faster by adding 
+the <code>--release</code> flag to cargo run:</p>
 <pre><code> $ cargo run --release
    Compiling learnrust v0.1.0 (/home/deavid/git/rust/learnrust)
     Finished release [optimized] target(s) in 1.00s
      Running `target/release/learnrust`
   pi: 3.1415926785904635
 </code></pre>
+<blockquote>
+<p>Programs are usually built in “debug” mode, which compiles faster, but the 
+program runs slower. This is the preferred mode for working with our program.
+But when distributing our application, the “release” mode is best, as it will
+make the program perform at its best.</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="function-arguments"><a class="header" href="#function-arguments">Function arguments</a></h1>
 <p>But what if we wanted a configurable number of steps? We can do that!</p>
 <p>Functions can accept data when they’re called, like this:</p>
@@ -1193,7 +1233,8 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
    }
  }
 </code></pre></pre>
-<p>This program now has a loop in main() that will do 10 different calculations of PI at different precision levels.</p>
+<p>This program now has a loop in main() that will do 10 different 
+calculations of PI at different precision levels.</p>
 <p>Here’s the output:</p>
 <pre><code> $ cargo run --release
    Compiling learnrust v0.1.0 (/home/deavid/git/rust/learnrust)
@@ -1209,26 +1250,44 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
  pi: 3.1415926585894076 (100000000 steps)
  pi: 3.1415926540880768 (1000000000 steps)
 </code></pre>
-<p>It’s important to run this with “–release” or it will take a bit too long to compute.</p>
-<p>Also, it’s always mesmerizing to see how more and more digits are getting “stuck in” as the number of steps grows.</p>
-<p>I think this variation should be self explanatory with maybe the exception of this line:</p>
+<p>It’s important to run this with <code>--release</code> or it will take a bit too long to compute.</p>
+<p>Also, it’s always mesmerizing to see how more and more digits 
+are getting <em>“stuck in”</em> as the number of steps grows.</p>
+<p>I think this variation should be self-explanatory with maybe 
+the exception to this line:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>       let steps = i64::pow(10, n);
 <span class="boring">}
 </span></code></pre></pre>
-<p>This computes “steps = 10n”, that is, the power of 10 raised to the “n”. For this we use the function pow that exists inside the “i64” type. The double colon operator “a::b” is used to access the functions inside other libraries (or any content in fact).</p>
+<p>This computes \(steps = 10^n\), that is, the power of 10 raised to the “n”. 
+For this we use the function pow that exists inside the <code>i64</code> type. 
+The double colon operator <code>a::b</code> is used to access the functions inside other 
+libraries (or any content in fact).</p>
 <p>Note that this function pow accepts two numbers as input and returns a number.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
-<p>We have reached a point where I cannot continue to explain much more without giving you a fair bit of theory. Sorry about this, but it’s needed.</p>
-<p>What are data types?</p>
-<p>First of all: what is data? Data is just the technical term for value. The number 5 is a value and is data, and so is 2.41 or the string “Basement”.</p>
-<p>The concept of “data types” just refers to the different kinds of values. You see, 3+5 is 8, but “Base”+“ment” is “Basement”. The sign plus (+) might work differently depending on if it is text or a number.</p>
-<p>Some operators like dividing (/) make sense on numbers (8/2=4) but don’t make any sense on texts (“Base”/“ment” = ????).</p>
-<p>So the primordial thing that puts data types apart is what can be done with the values, what makes sense and what doesn’t; and also what the operations actually mean.</p>
-<p>Because, you know, computers might look like really smart but they’re actually pretty stupid. If you do, “3”+“5” is just “35” and not “8” (because of the quotes, it is treated like text, so it gets concatenated when using the plus sign). They take everything literally, too literally. And we need to tell them what to do, step by step to a level that feels like training a monkey how to make a chocolate brownie.</p>
-<p>There are tons of data types, you can construct your own and you can also use other people’s types. But in general, to start, we have three basic types:</p>
+<p>We have reached a point where I cannot continue to explain much more without 
+giving you a fair bit of theory. Sorry about this, but it’s needed.</p>
+<h2 id="what-are-data-types"><a class="header" href="#what-are-data-types">What are data types?</a></h2>
+<p>First: what is data? Data is just the technical term for value. 
+The number 5 is a value and is data, and so is 2.41 or the string “Basement”.</p>
+<p>The concept of “data types” just refers to the different kinds of values. 
+You see, 3+5 is 8, but “Base”+“ment” is “Basement”. 
+The sign plus (+) might work differently depending on if it is text or a number.</p>
+<p>Some operators like dividing (/) make sense on numbers (8/2=4) but 
+don’t make any sense on texts (“Base”/“ment” = ????).</p>
+<p>So the primordial thing that puts data types apart is what can be done with the 
+values, what makes sense and what doesn’t; 
+and also what the operations actually mean.</p>
+<p>Because, you know, computers might look like really smart, but they’re actually
+pretty stupid. If you do, “3”+“5” is just “35” and not “8” 
+(because of the quotes, it is treated like text, so it gets concatenated when 
+using the plus sign). They take everything literally, too literally. 
+And we need to tell them what to do, step by step to a level that feels like 
+training a monkey how to make a chocolate brownie.</p>
+<p>There are tons of data types, you can construct your own, and you can also use
+other people’s types. But in general, to start, we have three basic types:</p>
 <ul>
 <li>Numbers
 <ul>
@@ -1236,14 +1295,29 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <li>Floating point numbers (or floats) that actually have decimal places.</li>
 </ul>
 </li>
-<li>Texts, generally called “strings” in programming (at some point later I might explain where the name “string” comes from, it’s a bit funny)</li>
-<li>True/False types, called “bools” or “boolean”, used to store the result of comparisons such as “apples &gt; 1”.</li>
+<li>Texts, generally called “strings” in programming 
+(at some point later I might explain where the name “string” comes from, it’s a bit funny)</li>
+<li>True/False types, called “boolean”, used to store the result of comparisons such as “apples &gt; 1”.</li>
 </ul>
-<p>You might be inclined to always use floating point numbers for everything, as they can do much more than regular integers. If they’re better, there’s no point in using the puny integers, right?</p>
-<p>Well, no. Later on I will recommend you to avoid floats like the plague. They have lots of problems that will make your life difficult. But for now if you want to stick with them it’s totally fine. Just write 2.0 instead of 2 for every number and you’re done.</p>
+<p>You might be inclined to always use floating point numbers for everything, as 
+they can do much more than regular integers. If they’re better, there’s no point
+in using the puny integers, right?</p>
+<p>Well, no. Later on I will recommend you to avoid floats like the plague. 
+They have lots of problems that will make your life difficult. But for now if 
+you want to stick with them, it’s totally fine. Just write 2.0 instead of 2 for 
+every number, and you’re done.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-data-types"><a class="header" href="#rust-data-types">Rust data types</a></h1>
-<p>Rust data types are however a bit more nuanced. You see, these values we want to store have to be actually recorded somewhere in your physical computer. And that will be your computer memory (RAM, or DDR if you prefer). The number 4 might not look like much, but Rust has to ask for memory from your computer in order to save the value somewhere, else it would be lost, forgotten and programs won’t run.</p>
-<p>So the question that Rust faces is: how much memory is needed for this variable? A variable can change its value later on, for example that x=4, later on it can be x=99999999. It needs to grab enough memory in order to ensure that all values you might want to put there actually do fit.</p>
+<p>Rust data types are however a bit more nuanced. 
+You see, these values we want to store have to be actually recorded somewhere 
+in your physical computer. And that will be your computer memory 
+(RAM, or DDR if you prefer). 
+The number 4 might not look like much, but Rust has to ask for memory from your 
+computer in order to save the value somewhere, else it would be lost, 
+forgotten and programs won’t run.</p>
+<p>So the question that Rust faces is: how much memory is needed for this variable? 
+A variable can change its value later on, for example that x=4, later on it can 
+be x=99999999. It needs to grab enough memory in order to ensure that all values
+you might want to put there actually do fit.</p>
 <p>This is why integers are split into different sizes:</p>
 <ul>
 <li>i8</li>
@@ -1251,58 +1325,88 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <li>i32</li>
 <li>i64</li>
 </ul>
-<p>Each of those is a valid Rust type for an integer. And yeah, the “i” is short for integer. The number that it follows is the number of bits that Rust will get for them.</p>
-<p>Is 8 bits a lot? Let’s see. A computer might have 4 gigabytes of RAM. Giga just means billion. So that’s 4,000,000,000 bytes. And a byte is just 8 bits.</p>
-<p>So this means that i8 only uses 1 byte of memory. And if a computer has 4,000,000,000 bytes, I can surely assume it can store a whole lot of those and still have plenty of space left. So yeah, it’s very tiny.</p>
-<p>But this affects the range of numbers we can store. It is fine for storing -4, 12 or 81. But 355 is too much for an i8 and the program will fail. If we need to store bigger numbers, we need to use types that use more space.</p>
+<p>Each of those is a valid Rust type for an integer. 
+And yeah, the “i” is short for integer. 
+The number that it follows is the number of bits that Rust will get for them.</p>
+<p>Is 8 bits a lot? Let’s see. A computer might have 4 gigabytes of RAM. 
+Giga just means billion. So that’s 4,000,000,000 bytes. And a byte is just 8 bits.</p>
+<p>So this means that i8 only uses 1 byte of memory. 
+And if a computer has 4,000,000,000 bytes, I can surely assume it can store
+a lot of those and still have plenty of space left. So yeah, it’s very tiny.</p>
+<p>But this affects the range of numbers we can store. It is fine for storing 
+-4, 12 or 81. But 355 is too much for an i8 and the program will fail. 
+If we need to store bigger numbers, we need to use types that use more space.</p>
 <p>For example, i16 can store up to 32,000.</p>
-<p>But you know what? This is too complicated. Why bother? Use i64 and that’s it. Forget about the others for now and just use i64 for everything. Your computer has so much memory that it doesn’t care if a number uses 1 byte or 8.</p>
-<p>An i64 can store any integer number up to roughly 9,000,000,000,000,000,000. Either positive or negative. Unless you want to start counting atoms, I think we have more than enough to work with. So again, let’s use i64 for all our integer numbers and forget about this conversation.</p>
-<p>Rust also has unsigned numbers, which work exactly the same as the regular integers but they can’t store negative numbers, Instead of “i” they go with “u” and work exactly the same:</p>
+<p>But you know what? This is too complicated. Why bother? Use i64 and that’s it. 
+Forget about the others for now and just use i64 for everything. 
+Your computer has so much memory that it doesn’t care if a number uses 1 byte or 8.</p>
+<p>An i64 can store any integer number up to roughly 9,000,000,000,000,000,000. 
+Either positive or negative. Unless you want to start counting atoms, I think we 
+have more than enough to work with. So again, let’s use i64 for all our integer 
+numbers and forget about this conversation.</p>
+<p>Rust also has unsigned numbers, which work exactly the same as the regular 
+integers, but they can’t store negative numbers, Instead of “i” they go with “u” 
+and work exactly the same:</p>
 <ul>
 <li>u8</li>
 <li>u16</li>
 <li>u32</li>
 <li>u64</li>
 </ul>
-<p>Why limit ourselves to only positive? Well, they can hold double the numbers inside. But… why? wasn’t 9,00.. or whatever enough for us…?</p>
+<p>Why limit ourselves to only positive? Well, they can hold double
+the numbers inside. But… why? Wasn’t 9,00… or whatever enough for us…?</p>
 <p>Exactly. It is enough. So again, we won’t be using these. Use i64.</p>
 <p>There are two extra integer types in Rust:</p>
 <ul>
 <li>usize</li>
 <li>isize</li>
 </ul>
-<p>If your computer is a 64bit one, then these are equivalent to u64 and i64. But these have their specific use. We will come back later to the “usize” as it is how computers locate things in memory. Certain things such as locating an item in a list/collection of numbers use “usize”.</p>
-<p>I’m dumping this to you now to give an approximate picture of the data types that Rust has in the hopes that you’ll begin to recognise these later on. I’ll explain this again later on with more detail, so no need to study and memorize these things now.</p>
+<p>If your computer is a 64bit one, then these are equivalent to u64 and i64. 
+But these have their specific use. We will come back later to the “usize” as it 
+is how computers locate things in memory. Certain things such as locating an 
+item in a list/collection of numbers use “usize”.</p>
+<p>I’m dumping this to you now to give an approximate picture of the data types 
+that Rust has in the hopes that you’ll begin to recognize these later on. 
+I’ll explain this again later on with more detail, so no need to study and 
+memorize these things now.</p>
 <p>Floating points, very similarly have two variants for sizes:</p>
 <ul>
 <li>f32</li>
 <li>f64</li>
 </ul>
-<p>“f” for float, and 32 or 64 for the amount of memory that they use. And guess what, we’ll use f64 when we need decimal places and forget about f32.</p>
+<p>“f” for float, and 32 or 64 for the amount of memory that they use. 
+And guess what, we’ll use f64 when we need decimal places and forget about f32.</p>
 <p>Boolean values (bool) only have one type:</p>
 <ul>
 <li>bool</li>
 </ul>
-<p>There isn’t much secret on this type, it is quite like an integer that holds 0 for false and 1 for true. That is all.</p>
-<p>Strings (texts) also come in two variants, but, surprise! it’s not for size!</p>
+<p>There isn’t much secret on this type, it is quite like an integer 
+that holds 0 for false and 1 for true. That is all.</p>
+<p>Strings (texts) also come in two variants, but, surprise! It’s not for size!</p>
 <ul>
 <li>str</li>
 <li>String</li>
 </ul>
-<p>The difference is a bit too nuanced to explain right now, so let’s just say they’re almost the same thing. We will use String for our variables, as it is simpler to use, but in some cases, Rust wants a “str” instead. They can be converted one to another, so it’s not a big deal.</p>
-<p>As you might have noticed, they don’t have any specific size. So, how big can the text be inside?</p>
+<p>The difference is a bit too nuanced to explain right now, so let’s just say 
+they’re almost the same thing. We will use String for our variables, as it is 
+simpler to use, but in some cases, Rust wants a “str” instead. They can be 
+converted one to another, so it’s not a big deal.</p>
+<p>As you might have noticed, they don’t have any specific size. 
+So, how big can the text be inside?</p>
 <p>Short answer: As long as you want.</p>
-<p>They’re dynamic. Rust will request more memory when needed. So as long as your computer has enough memory to store the text, it will work<sup class="footnote-reference"><a href="#note">1</a></sup>. 
-<sup class="footnote-reference"><a href="#note">1</a></sup> Oh crap, I’m sorry, I’m lying way too much… I swear I will fix this mess later on. For now, bear with me, this is the explanation you need</p>
+<p>They’re dynamic. Rust will request more memory when needed. 
+So as long as your computer has enough memory to store the text, it will work<sup class="footnote-reference"><a href="#1">1</a></sup>. </p>
 <p>And those are all types we will be using for a long, long time here. So, to recap:</p>
 <ul>
 <li>Integer numbers (without decimal places): i64</li>
 <li>Floating point numbers (with decimal places): f64</li>
 <li>Strings (text): String (with the first S in uppercase)</li>
-<li>Booleans (true/false): bool</li>
+<li>Boolean (true/false): bool</li>
 <li>Locating values inside a list: usize (we’ll see this later on)</li>
 </ul>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Oh crap, I’m sorry, I’m lying way too much… I swear I will fix this mess later on. For now, bear with me, this is the explanation you need</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="back-to-declaring-variables-with-type"><a class="header" href="#back-to-declaring-variables-with-type">Back to declaring variables… with type</a></h1>
 <p>Now that we have a rough idea on types, we can do more things with the “let” keyword.</p>
 <p>For example, we can tell Rust to use an i64 for our number:</p>
@@ -1312,7 +1416,9 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 </span>   let x: i64 = 2;
 <span class="boring">}
 </span></code></pre></pre>
-<p>That will force the selection of this type. But wait… if we didn’t specify a type, and Rust needs one to know how much memory to use… how did Rust make the previous examples work?</p>
+<p>That will force the selection of this type. But wait… 
+if we didn’t specify a type, and Rust needs one to know how much memory to use… 
+how did Rust make the previous examples work?</p>
 <p>As a reminder, we did:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">   fn main() {
       let x;
@@ -1320,15 +1426,32 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
       println!(&quot;{}&quot;, x);
    }
 </code></pre></pre>
-<p>And we did not specify a type here. In fact, this could be i8, i16, i32, i64 or even u8, u16, etc. All these will work.</p>
+<p>And we did not specify a type here. 
+In fact, this could be i8, i16, i32, i64 or even u8, u16, etc. 
+All these will work.</p>
 <p>Which one did select Rust and why?</p>
-<p>Did we care which one to use when writing this? no. And neither does Rust.</p>
-<p>Rust will do something similar to what I’m telling you to do. i64 is a perfectly fine type for most uses, so just go with that. Rust is probably doing the same thing here: It seems you want a number; does i64 work? ok, so that one then; that looks good<sup class="footnote-reference"><a href="#note">1</a></sup>.
-<sup class="footnote-reference"><a href="#note">1</a></sup> Note here that Rust might guess differently and prefer an i32 over an i64 “because it’s smaller and it still works”. As we didn’t care about which type, it’s pointless to try to know what Rust exactly does. If we want to be sure it’s an i64, we just write it down</p>
-<p>Rust does a lot of guesswork to select the type, and most of the time we don’t need to care about this. In a few particular times it might be confused with too many options that are too different, and might complain. In such cases, we need to help it by defining the type. Aside from that we’ll avoid setting the types and let Rust do its magic.</p>
+<p>Did we care which one to use when writing this? No. And neither does Rust.</p>
+<p>Rust will do something similar to what I’m telling you to do. <code>i64</code> is a 
+perfectly fine type for most uses, so just go with that. Rust is probably doing 
+the same thing here: It seems you want a number; does i64 work?
+Ok, so that one then; that looks good<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<p>Rust does a lot of guesswork to select the type, and most of the time we don’t 
+need to care about this. In a few particular times it might be confused with too 
+many options that are too different, and might complain. In such cases, we need
+to help it by defining the type. Aside from that we’ll avoid setting the types
+and let Rust do its magic.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Note here that Rust might guess differently and prefer an i32 over an i64 
+“because it’s smaller, and it still works”. As we didn’t care about which type, 
+it’s pointless to try to know what Rust exactly does. 
+If we want to be sure it’s an i64, we just write it down.</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="converting-types-with-explicit-conversions"><a class="header" href="#converting-types-with-explicit-conversions">Converting types with explicit conversions</a></h1>
-<p>As you can imagine, it is pretty common having a mix of types. With so many data types it is easy to end up having an operation that needs to mix them in some way, and Rust does not allow that.</p>
-<p>We will avoid the majority of those problems by using as few types as possible, just i64 and f64. But it will happen at some point.</p>
+<p>As you can imagine, it is pretty common having a mix of types. With so many data 
+types it is easy to end up having an operation that needs to mix them in some
+way, and Rust does not allow that.</p>
+<p>We will avoid the majority of those problems by using as few types as 
+possible, just i64 and f64. But it will happen at some point.</p>
 <p>For example, consider a simplistic example:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1338,8 +1461,11 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
    let total_weight: f64 = apples * apple_weight;
 <span class="boring">}
 </span></code></pre></pre>
-<p>In this case we could define “apples” to be a float and it will work, but this could appear in a different way where this is not so simple, and we need “apples” to be an integer regardless.</p>
-<p>To make this work we can simply convert “apples” variable in the spot, right where we need it:</p>
+<p>In this case we could define <code>apples</code> to be a float, and it will work,
+but this could appear differently where this is not so simple, 
+and we need “apples” to be an integer regardless.</p>
+<p>To make this work we can simply convert “apples” variable in the spot, 
+right where we need it:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1348,38 +1474,86 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
    let total_weight: f64 = apples as f64 * apple_weight;
 <span class="boring">}
 </span></code></pre></pre>
-<p>By adding “as f64” we’re making what is called an “explicit conversion”. Rust will convert the integer into a floating point on the spot and will use that on the calculation of total_weight.</p>
-<p>The variable “apples” is still an integer after that line. If we keep using it as a float we would need to keep converting every time. So if it is needed in all places as a float, maybe it is better to just make it a float from the start.</p>
-<p>Explicit conversions have their limitations though. It works only between some types that are easy for Rust to convert. You can’t use it to convert to or from strings (there are other conversion types for that), or between string types.</p>
-<p>Doing the reverse, converting a float into an integer, will drop any decimal places. So “2.99999 as i64” is just 2. It will not round the number to 3. There are other ways for rounding numbers.</p>
-<p>The reason why explicit conversion works for so few cases and its behavior. These conversions are usually supported by your CPU and are really fast. Rounding numbers or converting an integer into a string will take several iterations in your CPU to complete. Those are also very fast, just not as fast as the explicit conversion. Rust is trying to signal you where your program might be consuming more resources, which is helpful, but we don’t need to be obsessed with speed. Rust is very fast, and so is your computer (even if old).</p>
+<p>By adding <code>as f64</code> we’re making what is called an <em>“explicit conversion”</em>. 
+Rust will convert the integer into a floating point on the spot 
+and will use that on the calculation of total_weight.</p>
+<p>The variable <code>apples</code> is still an integer after that line. If we keep using 
+it as a float we would need to keep converting every time. 
+So if it is needed in all places as a float, 
+maybe it is better to just make it a float from the start.</p>
+<p>Explicit conversions have their limitations though. 
+It works only between some types that are easy for Rust to convert. 
+You can’t use it to convert to or from strings 
+(there are other conversion types for that), or between string types.</p>
+<p>Doing the reverse, converting a float into an integer, 
+will drop any decimal places. So <code>2.99999 as i64</code> is just <code>2</code>. 
+It <strong>will not round the number</strong> to 3. 
+There are other ways for rounding numbers.</p>
+<p>The reason why explicit conversion works for so few cases and its behavior:
+These conversions are usually supported by your CPU and are really fast. 
+Rounding numbers or converting an integer into a string will take several 
+iterations in your CPU to complete. Those are also very fast, 
+just not as fast as the explicit conversion. Rust is trying to signal you where 
+your program might be consuming more resources, which is helpful, 
+but we don’t need to be obsessed with speed. 
+Rust is very fast, and so is your computer (even if old).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-tiny-bit-on-strings"><a class="header" href="#a-tiny-bit-on-strings">A tiny bit on strings</a></h1>
-<p>Storing and manipulating texts in a program is a bit harder to explain than numbers. This is because a computer does not work with text, but with numbers.</p>
-<p>Surely you have heard that in a computer everything are ones and zeros (the binary system). These can be combined to create big numbers, and with some tricks the CPU can also work natively with floating point in order to have decimal places.</p>
-<p>But text is not a number, which means that Rust needs a bit of work behind the scenes to make these work.</p>
-<p>As a basic introduction, a text is nothing more than a sequence of letters. The text “ABC” might be a string, but it also is a sequence of three letters: ‘A’, ‘B’ and ‘C’.</p>
+<p>Storing and manipulating texts in a program is a bit harder to explain than numbers. 
+This is because a computer does not work with text, but with numbers.</p>
+<p>Surely you have heard that in a computer everything
+are ones and zeros (the binary system). 
+These can be combined to create big numbers, and with some tricks the CPU can 
+also work natively with floating point in order to have decimal places.</p>
+<p>But text is not a number, which means that Rust needs a bit of work behind the 
+scenes to make these work.</p>
+<p>As a basic introduction, a text is nothing more than a sequence of letters. 
+The text <code>ABC</code> might be a string, but it also is a sequence of
+three letters: <code>A</code>, <code>B</code> and <code>C</code>.</p>
 <p>Each letter is a character. If we assign each possible character a number, we can in fact store text using numbers:</p>
 <ul>
-<li>‘A’ -&gt; 65</li>
-<li>‘B’ -&gt; 66</li>
-<li>‘C’ -&gt; 67</li>
+<li><code>A</code> → 65</li>
+<li><code>B</code> → 66</li>
+<li><code>C</code> → 67</li>
 <li>…</li>
 </ul>
-<p>This is totally arbitrary, but there’s a standard called “ASCII” that defines a table of conversions from letters to numbers. If all programs use the same table, then we can save those numbers into a file, and get the correct texts back when another program reads the same file.</p>
+<p>This is totally arbitrary, but there’s a standard called <em>“ASCII”</em> that defines
+a table of conversions from letters to numbers. If all programs use the same 
+table<sup class="footnote-reference"><a href="#1">1</a></sup>, then we can save those numbers into a file, and get the correct texts
+back when another program reads the same file. </p>
 <p>So a string is just a list of numbers that it is conveniently interpreted as text.</p>
-<p>Instead of the ASCII table Rust by default uses UTF8 for strings. I won’t go into much detail here, but the world has different languages with different characters. Think about Chinese, Japanese, and Russian. The ASCII table is not good for those. UTF8 is still compatible with ASCII but it allows for a character to span multiple number entries (bytes), so we can have in the same format any kind of writing language.</p>
+<p>Instead of the ASCII table Rust by default uses UTF8 for strings. I won’t go 
+into much detail here, but the world has different languages with 
+different characters. Think about Chinese, Japanese, and Russian. The ASCII 
+table is not good for those. UTF8 is still compatible with ASCII, 
+but it allows for a character to span multiple number entries (bytes), so we 
+can have in the same format any kind of writing language.</p>
 <p>To keep things simple, just assume it is ASCII for now. We’ll cover UTF later on.</p>
 <p>Why are texts called “strings”?
 https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-a-string
 (To be completed later)</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Actually they don’t, and that’s why we have so many problems with tildes,
+foreign characters, and the reason why UTF exists.</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="simple-explanation-on-str-vs-string"><a class="header" href="#simple-explanation-on-str-vs-string">Simple explanation on &amp;str vs String</a></h1>
-<p>We will use these soon, so they need a bit of an introduction. They both store a sequence of characters.</p>
-<p>It all boils down to what I commented early on. Rust (and the computer itself) needs to know how big a variable is. But a string can change in size very abruptly.</p>
-<p>Because of this, Rust cannot know the size of most strings until the program is actually executed. This poses a problem, because without a rigid size in memory we cannot have variables that contain text. At most, we can have a variable that stores a single character, but this isn’t very useful.</p>
-<p>So what do we do? Well, instead of having the text itself in a variable we store where the string is and its length. This is the type “&amp;str”.</p>
-<p>While this is the fastest way for the computer to do this, and convenient for some parts of the program, it’s certainly very hard to manipulate. It’s nearly impossible to change the contents of a “&amp;str” variable.</p>
-<p>It’s because of that inconvenience that String exists. The String type encapsulates and automates string changes.</p>
-<p>So, in general, when a text never changes, &amp;str is just fine. But if we want to store the user’s input, String might be better.</p>
+<p>We will use these soon, so they need a bit of an introduction. 
+They both store a sequence of characters.</p>
+<p>It all boils down to what I commented early on. Rust (and the computer itself) 
+needs to know how big a variable is. 
+But a string can change in size very abruptly.</p>
+<p>Because of this, Rust cannot know the size of most strings until the program is 
+actually executed. This poses a problem, because without a rigid size in memory
+we cannot have variables that contain text. At most, we can have a variable 
+that stores a single character, but this isn’t very useful.</p>
+<p>So what do we do? Well, instead of having the text itself in a variable 
+we store where the string is and its length. This is the type <code>&amp;str</code>.</p>
+<p>While this is the fastest way for the computer to do this, and convenient for 
+some parts of the program, it’s certainly very hard to manipulate. It’s nearly 
+impossible to change the contents of a <code>&amp;str</code> variable.</p>
+<p>It’s because of that inconvenience that String exists. The String type 
+encapsulates and automates string changes.</p>
+<p>So, in general, when a text never changes, <code>&amp;str</code> is just fine. But if we want 
+to store the user’s input, String might be better.</p>
 <p>In Rust these two are very easy to convert from one to another:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"> fn main() {
    let s1 = &quot;This is a &amp;str&quot;;
@@ -1388,16 +1562,28 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
    let s2a = s2.as_str(); // This converts String to &amp;str.
  }
 </code></pre></pre>
-<p>We’ll go on more details later on, but for now we will basically use whatever type Rust is happier with. Depending on what we’re doing we will probably need one or the other and convert accordingly.</p>
+<p>We’ll go on more details later on, but for now we will basically use whatever 
+type Rust is happier with. Depending on what we’re doing we will probably need 
+one or the other and convert accordingly.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="having-fun-with-libraries"><a class="header" href="#having-fun-with-libraries">Having fun with libraries</a></h1>
-<p>Doing everything by ourselves might be rewarding, but it is also tiring. It takes a lot of effort and knowledge to code a proper program that is really useful. But I like a saying that goes: “Don’t reinvent the wheel”</p>
-<p>If you need something, it is highly probable that someone else did it already and shared it for free. Seriously. Most of the time it is just a problem of not googling enough, or using the right keywords.</p>
-<p>People share their functions and modules as libraries called “crates” in a site called crates.io.</p>
-<p>As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#note">1</a></sup>. They will allow you to create interesting programs easily, giving you a good sense of progress.
-<sup class="footnote-reference"><a href="#note">1</a></sup> Of course, don’t go crazy and import the whole site. It’s not a race to see who imports more crates. Also, as you gain more experience you should be able to keep the number of imported libraries low.</p>
+<p>Doing everything by ourselves might be rewarding, but it is also tiring. 
+It takes a lot of effort and knowledge to code a proper program that is really
+useful. But I like a saying that goes: <em>“Don’t reinvent the wheel”</em></p>
+<p>If you need something, it is highly probable that someone else did it already 
+and shared it for free. Seriously. Most of the time it is just a problem of not 
+googling enough, or using the right keywords.</p>
+<p>People share their functions and modules as libraries called “crates” in a site
+called <a href="https://crates.io">https://crates.io</a>.</p>
+<p>As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#1">1</a></sup>. 
+They will allow you to create interesting programs easily, giving you a good 
+sense of progress.</p>
 <p>The first library I want you to try is “rand”: https://crates.io/crates/rand</p>
-<p>This crate as the name suggests creates random numbers. We need to install it in our project, and for that, notice that on the right side of the website there are Install instructions and Documentation:</p>
-<p>So we will follow the install instructions. We need to open our “Cargo.toml” file first. This file was created when we did “cargo new”.</p>
+<p>This crate as the name suggests creates random numbers. We need to install it in
+our project, and for that, notice that on the right side of the website there
+are Install instructions and Documentation:</p>
+<p>So we will follow the installation instructions. 
+We need to open our <code>Cargo.toml</code> file first. 
+This file was created when we did <code>cargo new</code>.</p>
 <pre><code class="language-toml"> [package]
  name = &quot;learnrust&quot;
  version = &quot;0.1.0&quot;
@@ -1409,7 +1595,7 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
  rand = &quot;0.8.4&quot;   # Add dependencies here
 </code></pre>
 <p>We add the new crate to this file by inserting the line <code>rand = &quot;0.8.4&quot;</code> as the instructions say just below the <code>[dependencies]</code>.</p>
-<p>If we execute now “cargo run” we get something different already:</p>
+<p>If we execute now <code>cargo run</code> we get something different already:</p>
 <pre><code> $ cargo run
    Compiling cfg-if v1.0.0
    Compiling ppv-lite86 v0.2.15
@@ -1423,15 +1609,20 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
      Running `target/debug/learnrust`
  Hello world
 </code></pre>
-<p>Cargo noticed that we have added a new dependency, so it downloaded the required libraries and compiled them too! A lot of work that didn’t require almost any manual action from our side.</p>
-<p>The program however still does the same thing. Just installing a library is not going to make our program generate random numbers.</p>
-<p>The simplest way to start with it is to use rand::random():</p>
-<pre><pre class="playground"><code class="language-rust edition2021"> fn main() {
+<p>Cargo noticed that we have added a new dependency, so it downloaded the 
+required libraries and compiled them too! A lot of work that didn’t require 
+almost any manual action from our side.</p>
+<p>The program however still does the same thing. Just installing a library is not
+going to make our program generate random numbers.</p>
+<p>The simplest way to start with it is to use <code>rand::random()</code>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    let randnum: i64 = rand::random();
    println!(&quot;Hello world: {}&quot;, randnum);
- }
+}
 </code></pre></pre>
-<p>We need to define the type of randnum this time. The reason is that this library detects where we want to save it and creates a random number as big as possible that does fit.</p>
+<p>We need to define the type of <code>randnum</code> this time. The reason is that this 
+library detects where we want to save it and creates a random number as big as
+possible that does fit.</p>
 <p>The result is:</p>
 <pre><code> deavid@debian:~/git/rust/learnrust$ cargo run
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
@@ -1450,8 +1641,9 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
      Running `target/debug/learnrust`
  Hello world: -8688429354790802443
 </code></pre>
-<p>As we can see it creates very big numbers, both positive and negative. A different random number is generated in each run.</p>
-<p>We could make the number positive and smaller by choosing “u8” instead of “i64”:</p>
+<p>As we can see it creates very big numbers, both positive and negative. 
+A different random number is generated in each run.</p>
+<p>We could make the number non-negative and smaller by choosing <code>u8</code> instead of <code>i64</code>:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1464,20 +1656,27 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
  Hello world: 99
  Hello world: 221
 </code></pre>
-<p>Because u8 is unsigned and can hold numbers between 0 and 255 (2⁸-1), this is the range that we get.</p>
+<p>Because u8 is unsigned and can hold numbers between 0 and 255 \((2^8-1)\), this is the range that we get.</p>
 <p>We can instead ask this library for a specific range:</p>
-<pre><pre class="playground"><code class="language-rust edition2021"> use rand::Rng;
+<pre><pre class="playground"><code class="language-rust edition2021">use rand::Rng;
 
-
- fn main() {
+fn main() {
    let mut rng = rand::thread_rng();
    let randnum: i64 = rng.gen_range(1..=100);
    println!(&quot;Hello world: {}&quot;, randnum);
- }
+}
 </code></pre></pre>
-<p>In this case we need to create a random number generator object (rng). This will be holding the internal state of the random generator. It needs to be mutable because the state changes as each number is generated, so the numbers aren’t repeated every time.</p>
-<p>The gen_range(1..=100) specifies which range of numbers to retrieve, like in a for loop, but in this case we only get a single number, randomly.</p>
-<p>The “use rand::Rng” on the top is needed to access the gen_range method. This is what Rust calls a Trait. We will go over these later on.</p>
+<p>In this case we need to create a random number generator object <code>rng</code>. 
+This will be holding the internal state of the random generator. 
+It needs to be mutable because the state changes as each number is generated, 
+so the numbers aren’t repeated every time.</p>
+<p>The <code>gen_range(1..=100)</code> specifies which range of numbers to retrieve, like in 
+a for loop, but in this case we only get a single number, randomly.</p>
+<p>The <code>use rand::Rng</code> on the top is needed to access the <code>gen_range</code> method. 
+This is what Rust calls a Trait. We will go over these later on.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Of course, don’t go crazy and import the whole site. It’s not a race to see who imports more crates. Also, as you gain more experience you should be able to keep the number of imported libraries low.</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="to-do-pieces-that-need-more-work"><a class="header" href="#to-do-pieces-that-need-more-work">To-do: pieces that need more work</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h1>
 <p>So we talked earlier about Rust data types and we’re just using a few. Why do they exist? Let’s put them together here:</p>

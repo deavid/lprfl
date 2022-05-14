@@ -199,7 +199,8 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
    }
  }
 </code></pre></pre>
-<p>This program now has a loop in main() that will do 10 different calculations of PI at different precision levels.</p>
+<p>This program now has a loop in main() that will do 10 different 
+calculations of PI at different precision levels.</p>
 <p>Here’s the output:</p>
 <pre><code> $ cargo run --release
    Compiling learnrust v0.1.0 (/home/deavid/git/rust/learnrust)
@@ -215,16 +216,21 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
  pi: 3.1415926585894076 (100000000 steps)
  pi: 3.1415926540880768 (1000000000 steps)
 </code></pre>
-<p>It’s important to run this with “–release” or it will take a bit too long to compute.</p>
-<p>Also, it’s always mesmerizing to see how more and more digits are getting “stuck in” as the number of steps grows.</p>
-<p>I think this variation should be self explanatory with maybe the exception of this line:</p>
+<p>It’s important to run this with <code>--release</code> or it will take a bit too long to compute.</p>
+<p>Also, it’s always mesmerizing to see how more and more digits 
+are getting <em>“stuck in”</em> as the number of steps grows.</p>
+<p>I think this variation should be self-explanatory with maybe 
+the exception to this line:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>       let steps = i64::pow(10, n);
 <span class="boring">}
 </span></code></pre></pre>
-<p>This computes “steps = 10n”, that is, the power of 10 raised to the “n”. For this we use the function pow that exists inside the “i64” type. The double colon operator “a::b” is used to access the functions inside other libraries (or any content in fact).</p>
+<p>This computes \(steps = 10^n\), that is, the power of 10 raised to the “n”. 
+For this we use the function pow that exists inside the <code>i64</code> type. 
+The double colon operator <code>a::b</code> is used to access the functions inside other 
+libraries (or any content in fact).</p>
 <p>Note that this function pow accepts two numbers as input and returns a number.</p>
 
                 </main>

@@ -155,8 +155,17 @@
             <div id="content" class="content">
                 <main>
                     <h1 id="rust-data-types"><a class="header" href="#rust-data-types">Rust data types</a></h1>
-<p>Rust data types are however a bit more nuanced. You see, these values we want to store have to be actually recorded somewhere in your physical computer. And that will be your computer memory (RAM, or DDR if you prefer). The number 4 might not look like much, but Rust has to ask for memory from your computer in order to save the value somewhere, else it would be lost, forgotten and programs won’t run.</p>
-<p>So the question that Rust faces is: how much memory is needed for this variable? A variable can change its value later on, for example that x=4, later on it can be x=99999999. It needs to grab enough memory in order to ensure that all values you might want to put there actually do fit.</p>
+<p>Rust data types are however a bit more nuanced. 
+You see, these values we want to store have to be actually recorded somewhere 
+in your physical computer. And that will be your computer memory 
+(RAM, or DDR if you prefer). 
+The number 4 might not look like much, but Rust has to ask for memory from your 
+computer in order to save the value somewhere, else it would be lost, 
+forgotten and programs won’t run.</p>
+<p>So the question that Rust faces is: how much memory is needed for this variable? 
+A variable can change its value later on, for example that x=4, later on it can 
+be x=99999999. It needs to grab enough memory in order to ensure that all values
+you might want to put there actually do fit.</p>
 <p>This is why integers are split into different sizes:</p>
 <ul>
 <li>i8</li>
@@ -164,58 +173,88 @@
 <li>i32</li>
 <li>i64</li>
 </ul>
-<p>Each of those is a valid Rust type for an integer. And yeah, the “i” is short for integer. The number that it follows is the number of bits that Rust will get for them.</p>
-<p>Is 8 bits a lot? Let’s see. A computer might have 4 gigabytes of RAM. Giga just means billion. So that’s 4,000,000,000 bytes. And a byte is just 8 bits.</p>
-<p>So this means that i8 only uses 1 byte of memory. And if a computer has 4,000,000,000 bytes, I can surely assume it can store a whole lot of those and still have plenty of space left. So yeah, it’s very tiny.</p>
-<p>But this affects the range of numbers we can store. It is fine for storing -4, 12 or 81. But 355 is too much for an i8 and the program will fail. If we need to store bigger numbers, we need to use types that use more space.</p>
+<p>Each of those is a valid Rust type for an integer. 
+And yeah, the “i” is short for integer. 
+The number that it follows is the number of bits that Rust will get for them.</p>
+<p>Is 8 bits a lot? Let’s see. A computer might have 4 gigabytes of RAM. 
+Giga just means billion. So that’s 4,000,000,000 bytes. And a byte is just 8 bits.</p>
+<p>So this means that i8 only uses 1 byte of memory. 
+And if a computer has 4,000,000,000 bytes, I can surely assume it can store
+a lot of those and still have plenty of space left. So yeah, it’s very tiny.</p>
+<p>But this affects the range of numbers we can store. It is fine for storing 
+-4, 12 or 81. But 355 is too much for an i8 and the program will fail. 
+If we need to store bigger numbers, we need to use types that use more space.</p>
 <p>For example, i16 can store up to 32,000.</p>
-<p>But you know what? This is too complicated. Why bother? Use i64 and that’s it. Forget about the others for now and just use i64 for everything. Your computer has so much memory that it doesn’t care if a number uses 1 byte or 8.</p>
-<p>An i64 can store any integer number up to roughly 9,000,000,000,000,000,000. Either positive or negative. Unless you want to start counting atoms, I think we have more than enough to work with. So again, let’s use i64 for all our integer numbers and forget about this conversation.</p>
-<p>Rust also has unsigned numbers, which work exactly the same as the regular integers but they can’t store negative numbers, Instead of “i” they go with “u” and work exactly the same:</p>
+<p>But you know what? This is too complicated. Why bother? Use i64 and that’s it. 
+Forget about the others for now and just use i64 for everything. 
+Your computer has so much memory that it doesn’t care if a number uses 1 byte or 8.</p>
+<p>An i64 can store any integer number up to roughly 9,000,000,000,000,000,000. 
+Either positive or negative. Unless you want to start counting atoms, I think we 
+have more than enough to work with. So again, let’s use i64 for all our integer 
+numbers and forget about this conversation.</p>
+<p>Rust also has unsigned numbers, which work exactly the same as the regular 
+integers, but they can’t store negative numbers, Instead of “i” they go with “u” 
+and work exactly the same:</p>
 <ul>
 <li>u8</li>
 <li>u16</li>
 <li>u32</li>
 <li>u64</li>
 </ul>
-<p>Why limit ourselves to only positive? Well, they can hold double the numbers inside. But… why? wasn’t 9,00.. or whatever enough for us…?</p>
+<p>Why limit ourselves to only positive? Well, they can hold double
+the numbers inside. But… why? Wasn’t 9,00… or whatever enough for us…?</p>
 <p>Exactly. It is enough. So again, we won’t be using these. Use i64.</p>
 <p>There are two extra integer types in Rust:</p>
 <ul>
 <li>usize</li>
 <li>isize</li>
 </ul>
-<p>If your computer is a 64bit one, then these are equivalent to u64 and i64. But these have their specific use. We will come back later to the “usize” as it is how computers locate things in memory. Certain things such as locating an item in a list/collection of numbers use “usize”.</p>
-<p>I’m dumping this to you now to give an approximate picture of the data types that Rust has in the hopes that you’ll begin to recognise these later on. I’ll explain this again later on with more detail, so no need to study and memorize these things now.</p>
+<p>If your computer is a 64bit one, then these are equivalent to u64 and i64. 
+But these have their specific use. We will come back later to the “usize” as it 
+is how computers locate things in memory. Certain things such as locating an 
+item in a list/collection of numbers use “usize”.</p>
+<p>I’m dumping this to you now to give an approximate picture of the data types 
+that Rust has in the hopes that you’ll begin to recognize these later on. 
+I’ll explain this again later on with more detail, so no need to study and 
+memorize these things now.</p>
 <p>Floating points, very similarly have two variants for sizes:</p>
 <ul>
 <li>f32</li>
 <li>f64</li>
 </ul>
-<p>“f” for float, and 32 or 64 for the amount of memory that they use. And guess what, we’ll use f64 when we need decimal places and forget about f32.</p>
+<p>“f” for float, and 32 or 64 for the amount of memory that they use. 
+And guess what, we’ll use f64 when we need decimal places and forget about f32.</p>
 <p>Boolean values (bool) only have one type:</p>
 <ul>
 <li>bool</li>
 </ul>
-<p>There isn’t much secret on this type, it is quite like an integer that holds 0 for false and 1 for true. That is all.</p>
-<p>Strings (texts) also come in two variants, but, surprise! it’s not for size!</p>
+<p>There isn’t much secret on this type, it is quite like an integer 
+that holds 0 for false and 1 for true. That is all.</p>
+<p>Strings (texts) also come in two variants, but, surprise! It’s not for size!</p>
 <ul>
 <li>str</li>
 <li>String</li>
 </ul>
-<p>The difference is a bit too nuanced to explain right now, so let’s just say they’re almost the same thing. We will use String for our variables, as it is simpler to use, but in some cases, Rust wants a “str” instead. They can be converted one to another, so it’s not a big deal.</p>
-<p>As you might have noticed, they don’t have any specific size. So, how big can the text be inside?</p>
+<p>The difference is a bit too nuanced to explain right now, so let’s just say 
+they’re almost the same thing. We will use String for our variables, as it is 
+simpler to use, but in some cases, Rust wants a “str” instead. They can be 
+converted one to another, so it’s not a big deal.</p>
+<p>As you might have noticed, they don’t have any specific size. 
+So, how big can the text be inside?</p>
 <p>Short answer: As long as you want.</p>
-<p>They’re dynamic. Rust will request more memory when needed. So as long as your computer has enough memory to store the text, it will work<sup class="footnote-reference"><a href="#note">1</a></sup>. 
-<sup class="footnote-reference"><a href="#note">1</a></sup> Oh crap, I’m sorry, I’m lying way too much… I swear I will fix this mess later on. For now, bear with me, this is the explanation you need</p>
+<p>They’re dynamic. Rust will request more memory when needed. 
+So as long as your computer has enough memory to store the text, it will work<sup class="footnote-reference"><a href="#1">1</a></sup>. </p>
 <p>And those are all types we will be using for a long, long time here. So, to recap:</p>
 <ul>
 <li>Integer numbers (without decimal places): i64</li>
 <li>Floating point numbers (with decimal places): f64</li>
 <li>Strings (text): String (with the first S in uppercase)</li>
-<li>Booleans (true/false): bool</li>
+<li>Boolean (true/false): bool</li>
 <li>Locating values inside a list: usize (we’ll see this later on)</li>
 </ul>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Oh crap, I’m sorry, I’m lying way too much… I swear I will fix this mess later on. For now, bear with me, this is the explanation you need</p>
+</div>
 
                 </main>
 

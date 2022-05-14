@@ -4,3 +4,7 @@ swiss-army
 PyPy
 VSCode
 zzping
+usize
+isize
+bool
+&str

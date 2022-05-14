@@ -155,13 +155,24 @@
             <div id="content" class="content">
                 <main>
                     <h1 id="simple-explanation-on-str-vs-string"><a class="header" href="#simple-explanation-on-str-vs-string">Simple explanation on &amp;str vs String</a></h1>
-<p>We will use these soon, so they need a bit of an introduction. They both store a sequence of characters.</p>
-<p>It all boils down to what I commented early on. Rust (and the computer itself) needs to know how big a variable is. But a string can change in size very abruptly.</p>
-<p>Because of this, Rust cannot know the size of most strings until the program is actually executed. This poses a problem, because without a rigid size in memory we cannot have variables that contain text. At most, we can have a variable that stores a single character, but this isn’t very useful.</p>
-<p>So what do we do? Well, instead of having the text itself in a variable we store where the string is and its length. This is the type “&amp;str”.</p>
-<p>While this is the fastest way for the computer to do this, and convenient for some parts of the program, it’s certainly very hard to manipulate. It’s nearly impossible to change the contents of a “&amp;str” variable.</p>
-<p>It’s because of that inconvenience that String exists. The String type encapsulates and automates string changes.</p>
-<p>So, in general, when a text never changes, &amp;str is just fine. But if we want to store the user’s input, String might be better.</p>
+<p>We will use these soon, so they need a bit of an introduction. 
+They both store a sequence of characters.</p>
+<p>It all boils down to what I commented early on. Rust (and the computer itself) 
+needs to know how big a variable is. 
+But a string can change in size very abruptly.</p>
+<p>Because of this, Rust cannot know the size of most strings until the program is 
+actually executed. This poses a problem, because without a rigid size in memory
+we cannot have variables that contain text. At most, we can have a variable 
+that stores a single character, but this isn’t very useful.</p>
+<p>So what do we do? Well, instead of having the text itself in a variable 
+we store where the string is and its length. This is the type <code>&amp;str</code>.</p>
+<p>While this is the fastest way for the computer to do this, and convenient for 
+some parts of the program, it’s certainly very hard to manipulate. It’s nearly 
+impossible to change the contents of a <code>&amp;str</code> variable.</p>
+<p>It’s because of that inconvenience that String exists. The String type 
+encapsulates and automates string changes.</p>
+<p>So, in general, when a text never changes, <code>&amp;str</code> is just fine. But if we want 
+to store the user’s input, String might be better.</p>
 <p>In Rust these two are very easy to convert from one to another:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"> fn main() {
    let s1 = &quot;This is a &amp;str&quot;;
@@ -170,7 +181,9 @@
    let s2a = s2.as_str(); // This converts String to &amp;str.
  }
 </code></pre></pre>
-<p>We’ll go on more details later on, but for now we will basically use whatever type Rust is happier with. Depending on what we’re doing we will probably need one or the other and convert accordingly.</p>
+<p>We’ll go on more details later on, but for now we will basically use whatever 
+type Rust is happier with. Depending on what we’re doing we will probably need 
+one or the other and convert accordingly.</p>
 
                 </main>
 

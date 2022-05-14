@@ -52,7 +52,8 @@ fn calculate_pi(steps: i64) -> f64 {
  }
 ```
 
-This program now has a loop in main() that will do 10 different calculations of PI at different precision levels.
+This program now has a loop in main() that will do 10 different 
+calculations of PI at different precision levels.
 
 Here's the output:
 
@@ -72,16 +73,21 @@ Here's the output:
  pi: 3.1415926540880768 (1000000000 steps)
 ```
 
-It's important to run this with "--release" or it will take a bit too long to compute.
+It's important to run this with `--release` or it will take a bit too long to compute.
 
-Also, it's always mesmerizing to see how more and more digits are getting "stuck in" as the number of steps grows.
+Also, it's always mesmerizing to see how more and more digits 
+are getting *"stuck in"* as the number of steps grows.
 
-I think this variation should be self explanatory with maybe the exception of this line:
+I think this variation should be self-explanatory with maybe 
+the exception to this line:
 
 ```rust
        let steps = i64::pow(10, n);
 ```
 
-This computes "steps = 10n", that is, the power of 10 raised to the "n". For this we use the function pow that exists inside the "i64" type. The double colon operator "a::b" is used to access the functions inside other libraries (or any content in fact).
+This computes \\(steps = 10^n\\), that is, the power of 10 raised to the "n". 
+For this we use the function pow that exists inside the `i64` type. 
+The double colon operator `a::b` is used to access the functions inside other 
+libraries (or any content in fact).
 
 Note that this function pow accepts two numbers as input and returns a number.

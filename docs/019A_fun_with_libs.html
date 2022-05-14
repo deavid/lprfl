@@ -155,14 +155,24 @@
             <div id="content" class="content">
                 <main>
                     <h1 id="having-fun-with-libraries"><a class="header" href="#having-fun-with-libraries">Having fun with libraries</a></h1>
-<p>Doing everything by ourselves might be rewarding, but it is also tiring. It takes a lot of effort and knowledge to code a proper program that is really useful. But I like a saying that goes: “Don’t reinvent the wheel”</p>
-<p>If you need something, it is highly probable that someone else did it already and shared it for free. Seriously. Most of the time it is just a problem of not googling enough, or using the right keywords.</p>
-<p>People share their functions and modules as libraries called “crates” in a site called crates.io.</p>
-<p>As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#note">1</a></sup>. They will allow you to create interesting programs easily, giving you a good sense of progress.
-<sup class="footnote-reference"><a href="#note">1</a></sup> Of course, don’t go crazy and import the whole site. It’s not a race to see who imports more crates. Also, as you gain more experience you should be able to keep the number of imported libraries low.</p>
+<p>Doing everything by ourselves might be rewarding, but it is also tiring. 
+It takes a lot of effort and knowledge to code a proper program that is really
+useful. But I like a saying that goes: <em>“Don’t reinvent the wheel”</em></p>
+<p>If you need something, it is highly probable that someone else did it already 
+and shared it for free. Seriously. Most of the time it is just a problem of not 
+googling enough, or using the right keywords.</p>
+<p>People share their functions and modules as libraries called “crates” in a site
+called <a href="https://crates.io">https://crates.io</a>.</p>
+<p>As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#1">1</a></sup>. 
+They will allow you to create interesting programs easily, giving you a good 
+sense of progress.</p>
 <p>The first library I want you to try is “rand”: https://crates.io/crates/rand</p>
-<p>This crate as the name suggests creates random numbers. We need to install it in our project, and for that, notice that on the right side of the website there are Install instructions and Documentation:</p>
-<p>So we will follow the install instructions. We need to open our “Cargo.toml” file first. This file was created when we did “cargo new”.</p>
+<p>This crate as the name suggests creates random numbers. We need to install it in
+our project, and for that, notice that on the right side of the website there
+are Install instructions and Documentation:</p>
+<p>So we will follow the installation instructions. 
+We need to open our <code>Cargo.toml</code> file first. 
+This file was created when we did <code>cargo new</code>.</p>
 <pre><code class="language-toml"> [package]
  name = &quot;learnrust&quot;
  version = &quot;0.1.0&quot;
@@ -174,7 +184,7 @@
  rand = &quot;0.8.4&quot;   # Add dependencies here
 </code></pre>
 <p>We add the new crate to this file by inserting the line <code>rand = &quot;0.8.4&quot;</code> as the instructions say just below the <code>[dependencies]</code>.</p>
-<p>If we execute now “cargo run” we get something different already:</p>
+<p>If we execute now <code>cargo run</code> we get something different already:</p>
 <pre><code> $ cargo run
    Compiling cfg-if v1.0.0
    Compiling ppv-lite86 v0.2.15
@@ -188,15 +198,20 @@
      Running `target/debug/learnrust`
  Hello world
 </code></pre>
-<p>Cargo noticed that we have added a new dependency, so it downloaded the required libraries and compiled them too! A lot of work that didn’t require almost any manual action from our side.</p>
-<p>The program however still does the same thing. Just installing a library is not going to make our program generate random numbers.</p>
-<p>The simplest way to start with it is to use rand::random():</p>
-<pre><pre class="playground"><code class="language-rust edition2021"> fn main() {
+<p>Cargo noticed that we have added a new dependency, so it downloaded the 
+required libraries and compiled them too! A lot of work that didn’t require 
+almost any manual action from our side.</p>
+<p>The program however still does the same thing. Just installing a library is not
+going to make our program generate random numbers.</p>
+<p>The simplest way to start with it is to use <code>rand::random()</code>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    let randnum: i64 = rand::random();
    println!(&quot;Hello world: {}&quot;, randnum);
- }
+}
 </code></pre></pre>
-<p>We need to define the type of randnum this time. The reason is that this library detects where we want to save it and creates a random number as big as possible that does fit.</p>
+<p>We need to define the type of <code>randnum</code> this time. The reason is that this 
+library detects where we want to save it and creates a random number as big as
+possible that does fit.</p>
 <p>The result is:</p>
 <pre><code> deavid@debian:~/git/rust/learnrust$ cargo run
     Finished dev [unoptimized + debuginfo] target(s) in 0.00s
@@ -215,8 +230,9 @@
      Running `target/debug/learnrust`
  Hello world: -8688429354790802443
 </code></pre>
-<p>As we can see it creates very big numbers, both positive and negative. A different random number is generated in each run.</p>
-<p>We could make the number positive and smaller by choosing “u8” instead of “i64”:</p>
+<p>As we can see it creates very big numbers, both positive and negative. 
+A different random number is generated in each run.</p>
+<p>We could make the number non-negative and smaller by choosing <code>u8</code> instead of <code>i64</code>:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -229,20 +245,27 @@
  Hello world: 99
  Hello world: 221
 </code></pre>
-<p>Because u8 is unsigned and can hold numbers between 0 and 255 (2⁸-1), this is the range that we get.</p>
+<p>Because u8 is unsigned and can hold numbers between 0 and 255 \((2^8-1)\), this is the range that we get.</p>
 <p>We can instead ask this library for a specific range:</p>
-<pre><pre class="playground"><code class="language-rust edition2021"> use rand::Rng;
+<pre><pre class="playground"><code class="language-rust edition2021">use rand::Rng;
 
-
- fn main() {
+fn main() {
    let mut rng = rand::thread_rng();
    let randnum: i64 = rng.gen_range(1..=100);
    println!(&quot;Hello world: {}&quot;, randnum);
- }
+}
 </code></pre></pre>
-<p>In this case we need to create a random number generator object (rng). This will be holding the internal state of the random generator. It needs to be mutable because the state changes as each number is generated, so the numbers aren’t repeated every time.</p>
-<p>The gen_range(1..=100) specifies which range of numbers to retrieve, like in a for loop, but in this case we only get a single number, randomly.</p>
-<p>The “use rand::Rng” on the top is needed to access the gen_range method. This is what Rust calls a Trait. We will go over these later on.</p>
+<p>In this case we need to create a random number generator object <code>rng</code>. 
+This will be holding the internal state of the random generator. 
+It needs to be mutable because the state changes as each number is generated, 
+so the numbers aren’t repeated every time.</p>
+<p>The <code>gen_range(1..=100)</code> specifies which range of numbers to retrieve, like in 
+a for loop, but in this case we only get a single number, randomly.</p>
+<p>The <code>use rand::Rng</code> on the top is needed to access the <code>gen_range</code> method. 
+This is what Rust calls a Trait. We will go over these later on.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Of course, don’t go crazy and import the whole site. It’s not a race to see who imports more crates. Also, as you gain more experience you should be able to keep the number of imported libraries low.</p>
+</div>
 
                 </main>
 
