@@ -1,47 +1,59 @@
 # Variables are like little boxes that store things inside
 
-Printing some texts gets boring very fast. A computer does calculations for us, that's what makes them useful. 
+Printing some texts gets boring very fast. A computer does calculations 
+for us, that's what makes them useful. 
 
-It is possible to do simple calculations and print them, but this doesn't have much mystery either:
+It is possible to do simple calculations and print them, but this 
+doesn't have much mystery either:
 
 ```rust
  println!("{}", (2 * (1 + 5) + 3 / 7) / 2);
 ```
 
-This will print 6, because it works with integers (whole numbers). Just like a regular calculator but without decimal points.
+This will print 6, because it works with integers (whole numbers). 
+Just like a regular calculator but without decimal points.
 
-To get a decimal value just use all numbers as decimals, even if it's "2.0":
+To get a decimal value just use all numbers as decimals, even if it's `2.0`:
 
 ```rust
 println!("{}", (2.0 * (1.0 + 5.0) + 3.0 / 7.0) / 2.0);
 ```
 
-This prints 6.214285714285714, just like a calculator with probably more digits.
+This prints `6.214285714285714`, just like a calculator with probably more digits.
 
-You'll notice that Rust will error out if you mix numbers without decimals with numbers that do have decimals. We'll go into more detail on this soon. For now, just remember that if you want decimal points, they need to be in all numbers.
+You'll notice that Rust will error out if you mix numbers without decimals with 
+numbers that do have decimals. We'll go into more detail on this soon. 
+For now, just remember that if you want decimal points, they need to be in all numbers.
 
 Again, this gets boring very easily. We need to spice it up with... variables!
 
-If you did maths at school before you probably remember equations. For example:
+If you did math school before you probably remember equations. For example:
 
-    1+x=2x+5
+\\[ 1+x = 2x+5 \\]    
 
-These have an incognita that is "x" that must be resolved for. In this case it would be x=-4.
+These have an *unknown* that is \\(x\\) that must be resolved for. In this case it would be \\(x=-4\\).
 
-(If you hate maths and equations, do not worry. This is just to anchor into something you know. In coding we don't do equations. Math is done by the computer itself.)
+> If you hate math and equations, do not worry. 
+> This is just to anchor into something you know. In coding we don't do equations. 
+> Math is done by the computer itself.
 
-So do we agree that "x" is "something" whose value is -4, right?
+So do we agree that \\(x\\) is "something" whose value is \\(-4\\), right?
 
 Ok, hold on to that idea. That is the same for variables. What is not the same is:
 * We don't have equations. We have instructions. Instructions do things like a command<!--- Program? Maybe someone has difficulty with the term command --> does something in the terminal.
-* We don't have incognitas, and "x" in this example is an incognita. We have variables. An incognita is something that we don't know (yet), while a variable is something that always has a value and we know it.
-In Rust we would do instead:
+* We don't have *unknowns*, and \\(x\\) in this example is an *unknown*. 
+  In programming, we have variables. An *unknown* is something that we don't know (yet), while 
+  a **variable** is something that **always has a value, and we know it**.
+
+In Rust, we would do instead:
 
 ```rust
 x = -4;
 ```
 
-Here "x" is the variable. It can be any name: "a", "j" or even a word "animals". Heck, even several words together: "number_of_legs_in_a_dog". (If you're a cat person, feel free to set "number_of_legs_in_a_cat" instead)
+Here `x` is the variable. It can be any name: `a`, `j` or even a word `animals`. 
+Heck, even several words together: "number_of_legs_in_a_dog". 
+(If you're a cat person, feel free to set "number_of_legs_in_a_cat" instead)
 
  number_of_legs_in_a_cat = 4;
 

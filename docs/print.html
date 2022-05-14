@@ -387,14 +387,28 @@ VSCode will format by default when you save, so it will always look nice and tid
 <!-- user might need to enable format on save; also other configs to tune would be helpful like auto save -->
 <p>Open a new terminal inside VS Code. Go to <code>Terminal</code> ⇒ <code>New Terminal</code>:</p>
 <p><img src="./img/vscode_new_terminal.png" alt="New Terminal" /></p>
-<p>This opens a terminal on the project folder, so you can now type there “cargo run” to run the program inside this terminal panel.</p>
-<p>As you can see we can do the same things as with an external terminal. As this is more convenient, we’ll use this from now on. There’s no difference to an external one, so if you prefer to have a separate terminal program running, it’s totally fine.</p>
+<p>This opens a terminal on the project folder, so you can now type there 
+<code>cargo run</code> to run the program inside this terminal panel.</p>
+<p>As you can see we can do the same things as with an external terminal. 
+As this is more convenient, we’ll use this from now on. There’s no difference to
+an external one, so if you prefer to have a separate terminal program 
+running, it’s totally fine.</p>
 <p>You can try to print different texts or more lines. For example:</p>
-<p>This is not very useful, but it’s important to play around and get familiar with what we learn.</p>
-<p>Programs are executed one line at a time. Rust will read the first line, execute the command, then go to the next line and do the same. Until it reaches the end of the program and then the program just ends.</p>
+<p><img src="./img/vscode_program_run.png" alt="Program run" /></p>
+<p>This is not very useful, but it’s important to play around and get familiar 
+with what we learn.</p>
+<p>Programs are executed one line at a time. 
+Rust will read the first line, execute the command, then go to the next line 
+and do the same. 
+Until it reaches the end of the program and then the program just ends.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="its-like-cooking-recipes-seriously"><a class="header" href="#its-like-cooking-recipes-seriously">It’s like cooking recipes, seriously</a></h1>
-<p>You may not be into cooking, and that’s fine. But probably you know what a cooking recipe is: nothing more than a set of steps (instructions) that if followed produce the desired result: delicious food.</p>
-<p>A program works in the same way. It has a set of instructions that should be followed step by step to produce the desired result. </p>
+<p>You may not be into cooking, and that’s fine. 
+But probably you know what a cooking recipe is: 
+nothing more than a set of steps (instructions) that if followed 
+produce the desired result: delicious food.</p>
+<p>A program works in the same way. 
+It has a set of instructions that should be followed step by step to produce 
+the desired result. </p>
 <p>There are stupid simple cooking recipes, for example to prepare frozen pizza:</p>
 <ul>
 <li>Preheat the oven to 180ºC for 10 minutes</li>
@@ -405,54 +419,76 @@ VSCode will format by default when you save, so it will always look nice and tid
 </ul>
 <p>And there are simple computer programs as well:</p>
 <ul>
-<li>Print one line on the console that says “Hello world!”</li>
+<li>Print one line on the console that says <code>Hello world!</code></li>
 <li>end the program.</li>
 </ul>
-<p>But a common problem in cooking recipes is that they prepare a specific amount of food. If you want more or less, you have to tweak “the program” to roughly make more or less food to meet your requirements.</p>
-<p>In programs, we have inputs (or arguments), where we can add a value and the program will take it into account for the calculation. In recipes, this is like having a number of “people to serve” and having some formula to scale up the ingredients to get the right amount of food.</p>
-<p>We also have conditions, which work like those recipe steps that say “cook until brown”.</p>
+<p>But a common problem in cooking recipes is that they prepare a specific 
+amount of food. If you want more or less, you have to tweak <em>“the program”</em> to 
+roughly make more or less food to meet your requirements.</p>
+<p>In programs, we have inputs (or arguments), where we can add a value and the 
+program will take it into account for the calculation. In recipes, this is like 
+having a number of “people to serve” and having some formula to scale up the 
+ingredients to get the right amount of food.</p>
+<p>We also have conditions, which work like those recipe 
+steps that say “cook until brown”.</p>
 <p>There are loops, which allow us to say “do this 10 times”.</p>
-<p>There are functions, which in recipes appears when a meal is very complicated and for a particular step says “to do the base of the cake, refer to this other recipe”. It avoids repeating ourselves every time that a set of steps are reused across recipes.</p>
-<p>Of course programs can do things really complicated that are quite far from recipes, but if you’re starting to learn, this comparison will serve you to get a better grasp on how this all works.</p>
+<p>There are functions, which in recipes appears when a meal is very complicated 
+and for a particular step says “to do the base of the cake, refer to this other recipe”. 
+It avoids repeating ourselves every time that a set of steps are reused across recipes.</p>
+<p>Of course programs can do things really complicated that are quite far from recipes, 
+but if you’re starting to learn, this comparison will serve you to get a 
+better grasp on how this all works.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables-are-like-little-boxes-that-store-things-inside"><a class="header" href="#variables-are-like-little-boxes-that-store-things-inside">Variables are like little boxes that store things inside</a></h1>
-<p>Printing some texts gets boring very fast. A computer does calculations for us, that’s what makes them useful. </p>
-<p>It is possible to do simple calculations and print them, but this doesn’t have much mystery either:</p>
+<p>Printing some texts gets boring very fast. A computer does calculations 
+for us, that’s what makes them useful. </p>
+<p>It is possible to do simple calculations and print them, but this 
+doesn’t have much mystery either:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span> println!(&quot;{}&quot;, (2 * (1 + 5) + 3 / 7) / 2);
 <span class="boring">}
 </span></code></pre></pre>
-<p>This will print 6, because it works with integers (whole numbers). Just like a regular calculator but without decimal points.</p>
-<p>To get a decimal value just use all numbers as decimals, even if it’s “2.0”:</p>
+<p>This will print 6, because it works with integers (whole numbers). 
+Just like a regular calculator but without decimal points.</p>
+<p>To get a decimal value just use all numbers as decimals, even if it’s <code>2.0</code>:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>println!(&quot;{}&quot;, (2.0 * (1.0 + 5.0) + 3.0 / 7.0) / 2.0);
 <span class="boring">}
 </span></code></pre></pre>
-<p>This prints 6.214285714285714, just like a calculator with probably more digits.</p>
-<p>You’ll notice that Rust will error out if you mix numbers without decimals with numbers that do have decimals. We’ll go into more detail on this soon. For now, just remember that if you want decimal points, they need to be in all numbers.</p>
+<p>This prints <code>6.214285714285714</code>, just like a calculator with probably more digits.</p>
+<p>You’ll notice that Rust will error out if you mix numbers without decimals with 
+numbers that do have decimals. We’ll go into more detail on this soon. 
+For now, just remember that if you want decimal points, they need to be in all numbers.</p>
 <p>Again, this gets boring very easily. We need to spice it up with… variables!</p>
-<p>If you did maths at school before you probably remember equations. For example:</p>
-<pre><code>1+x=2x+5
-</code></pre>
-<p>These have an incognita that is “x” that must be resolved for. In this case it would be x=-4.</p>
-<p>(If you hate maths and equations, do not worry. This is just to anchor into something you know. In coding we don’t do equations. Math is done by the computer itself.)</p>
-<p>So do we agree that “x” is “something” whose value is -4, right?</p>
+<p>If you did math school before you probably remember equations. For example:</p>
+<p>\[ 1+x = 2x+5 \]</p>
+<p>These have an <em>unknown</em> that is \(x\) that must be resolved for. In this case it would be \(x=-4\).</p>
+<blockquote>
+<p>If you hate math and equations, do not worry. 
+This is just to anchor into something you know. In coding we don’t do equations. 
+Math is done by the computer itself.</p>
+</blockquote>
+<p>So do we agree that \(x\) is “something” whose value is \(-4\), right?</p>
 <p>Ok, hold on to that idea. That is the same for variables. What is not the same is:</p>
 <ul>
 <li>We don’t have equations. We have instructions. Instructions do things like a command<!--- Program? Maybe someone has difficulty with the term command --> does something in the terminal.</li>
-<li>We don’t have incognitas, and “x” in this example is an incognita. We have variables. An incognita is something that we don’t know (yet), while a variable is something that always has a value and we know it.
-In Rust we would do instead:</li>
+<li>We don’t have <em>unknowns</em>, and \(x\) in this example is an <em>unknown</em>. 
+In programming, we have variables. An <em>unknown</em> is something that we don’t know (yet), while 
+a <strong>variable</strong> is something that <strong>always has a value, and we know it</strong>.</li>
 </ul>
+<p>In Rust, we would do instead:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>x = -4;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Here “x” is the variable. It can be any name: “a”, “j” or even a word “animals”. Heck, even several words together: “number_of_legs_in_a_dog”. (If you’re a cat person, feel free to set “number_of_legs_in_a_cat” instead)</p>
+<p>Here <code>x</code> is the variable. It can be any name: <code>a</code>, <code>j</code> or even a word <code>animals</code>. 
+Heck, even several words together: “number_of_legs_in_a_dog”. 
+(If you’re a cat person, feel free to set “number_of_legs_in_a_cat” instead)</p>
 <p>number_of_legs_in_a_cat = 4;</p>
 <p>I did it for you. You can thank me later.</p>
 <p>The equals part is an operation, it means “to store”. It actually saves the value on the right (number 4) into the name of the left.</p>

@@ -44,14 +44,23 @@ Open a new terminal inside VS Code. Go to `Terminal` ⇒ `New Terminal`:
   
 ![New Terminal](./img/vscode_new_terminal.png)
 
-This opens a terminal on the project folder, so you can now type there "cargo run" to run the program inside this terminal panel.
+This opens a terminal on the project folder, so you can now type there 
+`cargo run` to run the program inside this terminal panel.
   
 
-As you can see we can do the same things as with an external terminal. As this is more convenient, we'll use this from now on. There's no difference to an external one, so if you prefer to have a separate terminal program running, it's totally fine.
+As you can see we can do the same things as with an external terminal. 
+As this is more convenient, we'll use this from now on. There's no difference to
+an external one, so if you prefer to have a separate terminal program 
+running, it's totally fine.
 
 You can try to print different texts or more lines. For example:
-  
 
-This is not very useful, but it's important to play around and get familiar with what we learn.
+![Program run](./img/vscode_program_run.png)
 
-Programs are executed one line at a time. Rust will read the first line, execute the command, then go to the next line and do the same. Until it reaches the end of the program and then the program just ends.
+This is not very useful, but it's important to play around and get familiar 
+with what we learn.
+
+Programs are executed one line at a time. 
+Rust will read the first line, execute the command, then go to the next line 
+and do the same. 
+Until it reaches the end of the program and then the program just ends.
