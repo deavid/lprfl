@@ -145,18 +145,36 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="quick-to-the-ide"><a class="header" href="#quick-to-the-ide">Quick, to the IDE!</a></h1>
-<p>Let’s start using that nice VS Code that we installed earlier. Open VS Code, look for the Menu “File” and click “Open Folder…”. Select the “learnrust” folder that cargo created.</p>
-<p>Now, open the src folder using the left panel and you’ll see the main.rs. Double click on it.</p>
+<p>Let’s start using that nice VS Code that we installed earlier. </p>
+<p>Open VS Code, look for the Menu <code>File</code> and click <code>Open Folder...</code>. </p>
+<p><img src="./img/vscode_open_folder.png" alt="Open Folder" /></p>
+<p>Select the <code>learnrust</code> folder that cargo created.</p>
+<blockquote>
+<p>NOTE: For myself, I find more convenient to open VSCode from the terminal.<br />
+I simply <code>cd learnrust</code> and run <code>code .</code>. VSCode will open the folder.</p>
+</blockquote>
+<p>Now, open the src folder using the left panel, and you’ll see the <code>main.rs</code>. 
+Double-click on it.</p>
 <p>This is what you should see:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    println!(&quot;Hello, world!&quot;);
 }
 </code></pre></pre>
-<p>“fn main()” represents the main program. The brackets next to it (“{” and “}”) define where the program starts and ends. Right now there’s only one line in the program: println!(…).</p>
-<p>“println!(…)” is for printing text on the console/terminal.</p>
-<p>The text between the parentheses is what will be printed. Notice that it’s surrounded by double quotes and these are not printed to the terminal. They’re required.</p>
-<p>This line ends with a semicolon “;” this is what marks the end of the instruction (the command to run). Rust does not care about the different lines, or how they look in your editor. You can put all in one line and still will do the same thing. VSCode will format by default when you save, so it always will look nice and tidy.</p>
-<p>Open a new terminal inside VS Code. Go to Terminal -&gt; New Terminal:</p>
+<p><code>fn main()</code> represents the main program. </p>
+<p>The brackets next to it (<code>{</code> and <code>}</code>) define where the program starts and ends. </p>
+<p>Right now there’s only one line in the program: <code>println!(...)</code></p>
+<p><code>println!(...)</code> is for printing text on the console/terminal.</p>
+<p>The text between the parentheses is what will be printed. 
+Notice that it’s surrounded by double quotes and these are 
+not printed to the terminal. They’re required.</p>
+<p>This line ends with a semicolon <code>;</code> this is what marks the end of the 
+instruction (the command to run). 
+Rust does not care about the different lines, or how they look in your editor. 
+You can put all in one line and still will do the same thing. 
+VSCode will format by default when you save, so it will always look nice and tidy.</p>
+<!-- user might need to enable format on save; also other configs to tune would be helpful like auto save -->
+<p>Open a new terminal inside VS Code. Go to <code>Terminal</code> ⇒ <code>New Terminal</code>:</p>
+<p><img src="./img/vscode_new_terminal.png" alt="New Terminal" /></p>
 <p>This opens a terminal on the project folder, so you can now type there “cargo run” to run the program inside this terminal panel.</p>
 <p>As you can see we can do the same things as with an external terminal. As this is more convenient, we’ll use this from now on. There’s no difference to an external one, so if you prefer to have a separate terminal program running, it’s totally fine.</p>
 <p>You can try to print different texts or more lines. For example:</p>

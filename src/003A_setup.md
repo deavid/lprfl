@@ -11,7 +11,7 @@ Get your browser and go to <https://rustup.rs/>. Follow the instructions there.
 
 (By the way, if you want to be a developer, you also need to make the terminal your friend)
 
-That will be all we need to do. Congrats! you installed Rust in your machine!
+That will be all we need to do. Congrats! You installed Rust in your machine!
 
 > `Chapter 1.1 - Installation` of the Holy Book contains the installation instructions.
 
@@ -35,5 +35,7 @@ it requires a lot of investment that I don't want to commit to.
 
 Now, go to the extensions panel and search for "rust-analyzer" and install it. 
 This is all you need to get the best Rust experience.
+
+![VSCode Extensions](./img/vscode_extensions.png)
 
 (It is really important to have Rust properly installed at this point, or rust-analyzer will fail)

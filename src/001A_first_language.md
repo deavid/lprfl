@@ -9,14 +9,14 @@ As the title suggests, I'm going to recommend Rust. Why? Lots of reasons.
 I believe Rust will be the language of the future, so by the time you learn it 
 hopefully there will be jobs waiting for you.
 
-Rust also will teach you proper coding practices. As it is more strict, it will 
+Rust also will teach you proper coding practices. As it is stricter, it will 
 force you into the right shape and mindset for a programmer, and not someone who 
 stitches things together that delivers delicate programs that break in strange 
 ways just by looking at them.
 
 The Rust community is very friendly. You'll have a lot of people wanting to 
 teach you the language and help you along on this. Python is a bit of 
-hit and miss, some communities might be toxic.
+hit-and-miss, some communities might be toxic.
 
 The documentation is solid, nicely written, and very easy to follow. 
 The reference docs might be a bit complex to understand at first, but 
@@ -50,7 +50,7 @@ years and that will take less and less time as you go.
 ----
 [^1]: As usual, there are several companies trying to make Python faster. Some
 efforts are going through "compiling" typed python code with great speedups. 
-There's also pypy. But the community at this point does not want a "typed Python"
+There's also PyPy. But the community at this point does not want a "typed Python"
 so I don't see the performance being fixed in the near future.
 
 [^2]: I've seen someone write a full Java application for several days, trying

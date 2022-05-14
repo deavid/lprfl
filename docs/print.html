@@ -172,13 +172,13 @@ actually exist, Rust is going to be a bit harder to begin with, with way less jo
 <p>As the title suggests, I’m going to recommend Rust. Why? Lots of reasons. 
 I believe Rust will be the language of the future, so by the time you learn it 
 hopefully there will be jobs waiting for you.</p>
-<p>Rust also will teach you proper coding practices. As it is more strict, it will 
+<p>Rust also will teach you proper coding practices. As it is stricter, it will 
 force you into the right shape and mindset for a programmer, and not someone who 
 stitches things together that delivers delicate programs that break in strange 
 ways just by looking at them.</p>
 <p>The Rust community is very friendly. You’ll have a lot of people wanting to 
 teach you the language and help you along on this. Python is a bit of 
-hit and miss, some communities might be toxic.</p>
+hit-and-miss, some communities might be toxic.</p>
 <p>The documentation is solid, nicely written, and very easy to follow. 
 The reference docs might be a bit complex to understand at first, but 
 after the first month or two it becomes very practical.</p>
@@ -206,7 +206,7 @@ years and that will take less and less time as you go.</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>As usual, there are several companies trying to make Python faster. Some
 efforts are going through “compiling” typed python code with great speedups. 
-There’s also pypy. But the community at this point does not want a “typed Python”
+There’s also PyPy. But the community at this point does not want a “typed Python”
 so I don’t see the performance being fixed in the near future.</p>
 </div>
 <div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
@@ -258,7 +258,7 @@ the term to make it a funny joke.</p>
 </ul>
 <!--- And this is a security risk that some people don't want to take. Add an alternative option. -->
 <p>(By the way, if you want to be a developer, you also need to make the terminal your friend)</p>
-<p>That will be all we need to do. Congrats! you installed Rust in your machine!</p>
+<p>That will be all we need to do. Congrats! You installed Rust in your machine!</p>
 <blockquote>
 <p><code>Chapter 1.1 - Installation</code> of the Holy Book contains the installation instructions.</p>
 </blockquote>
@@ -277,6 +277,7 @@ On the other hand, I almost never use Vim:
 it requires a lot of investment that I don’t want to commit to.</p>
 <p>Now, go to the extensions panel and search for “rust-analyzer” and install it. 
 This is all you need to get the best Rust experience.</p>
+<p><img src="./img/vscode_extensions.png" alt="VSCode Extensions" /></p>
 <p>(It is really important to have Rust properly installed at this point, or rust-analyzer will fail)</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-program"><a class="header" href="#your-first-program">Your first program</a></h1>
 <p>Before doing anything, it is important to have a folder where you put all your programs. 
@@ -356,18 +357,36 @@ If you need to update, just run <code>rustup update</code> and everything will b
 automatically. 
 It’s a good idea to do this once a month or so, but if you don’t do it is also fine.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-to-the-ide"><a class="header" href="#quick-to-the-ide">Quick, to the IDE!</a></h1>
-<p>Let’s start using that nice VS Code that we installed earlier. Open VS Code, look for the Menu “File” and click “Open Folder…”. Select the “learnrust” folder that cargo created.</p>
-<p>Now, open the src folder using the left panel and you’ll see the main.rs. Double click on it.</p>
+<p>Let’s start using that nice VS Code that we installed earlier. </p>
+<p>Open VS Code, look for the Menu <code>File</code> and click <code>Open Folder...</code>. </p>
+<p><img src="./img/vscode_open_folder.png" alt="Open Folder" /></p>
+<p>Select the <code>learnrust</code> folder that cargo created.</p>
+<blockquote>
+<p>NOTE: For myself, I find more convenient to open VSCode from the terminal.<br />
+I simply <code>cd learnrust</code> and run <code>code .</code>. VSCode will open the folder.</p>
+</blockquote>
+<p>Now, open the src folder using the left panel, and you’ll see the <code>main.rs</code>. 
+Double-click on it.</p>
 <p>This is what you should see:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    println!(&quot;Hello, world!&quot;);
 }
 </code></pre></pre>
-<p>“fn main()” represents the main program. The brackets next to it (“{” and “}”) define where the program starts and ends. Right now there’s only one line in the program: println!(…).</p>
-<p>“println!(…)” is for printing text on the console/terminal.</p>
-<p>The text between the parentheses is what will be printed. Notice that it’s surrounded by double quotes and these are not printed to the terminal. They’re required.</p>
-<p>This line ends with a semicolon “;” this is what marks the end of the instruction (the command to run). Rust does not care about the different lines, or how they look in your editor. You can put all in one line and still will do the same thing. VSCode will format by default when you save, so it always will look nice and tidy.</p>
-<p>Open a new terminal inside VS Code. Go to Terminal -&gt; New Terminal:</p>
+<p><code>fn main()</code> represents the main program. </p>
+<p>The brackets next to it (<code>{</code> and <code>}</code>) define where the program starts and ends. </p>
+<p>Right now there’s only one line in the program: <code>println!(...)</code></p>
+<p><code>println!(...)</code> is for printing text on the console/terminal.</p>
+<p>The text between the parentheses is what will be printed. 
+Notice that it’s surrounded by double quotes and these are 
+not printed to the terminal. They’re required.</p>
+<p>This line ends with a semicolon <code>;</code> this is what marks the end of the 
+instruction (the command to run). 
+Rust does not care about the different lines, or how they look in your editor. 
+You can put all in one line and still will do the same thing. 
+VSCode will format by default when you save, so it will always look nice and tidy.</p>
+<!-- user might need to enable format on save; also other configs to tune would be helpful like auto save -->
+<p>Open a new terminal inside VS Code. Go to <code>Terminal</code> ⇒ <code>New Terminal</code>:</p>
+<p><img src="./img/vscode_new_terminal.png" alt="New Terminal" /></p>
 <p>This opens a terminal on the project folder, so you can now type there “cargo run” to run the program inside this terminal panel.</p>
 <p>As you can see we can do the same things as with an external terminal. As this is more convenient, we’ll use this from now on. There’s no difference to an external one, so if you prefer to have a separate terminal program running, it’s totally fine.</p>
 <p>You can try to print different texts or more lines. For example:</p>

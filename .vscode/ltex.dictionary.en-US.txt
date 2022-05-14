@@ -1,3 +1,5 @@
 Necronomicon
 Rustonomicon
 swiss-army
+PyPy
+VSCode
