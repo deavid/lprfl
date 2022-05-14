@@ -33,18 +33,26 @@ fn main() {
  }
 ```
 
-This program does exactly the same thing in just three lines! Amazing, isn't it? Now variables are actually being useful.
+This program does exactly the same thing in just three lines! Amazing, isn't it? 
+Now variables are actually being useful.
 
 The syntax for this is as follows[^1]:
 
-
+```rust
 for variable_name in first_number..=last_number
+```
 
-We are asking the program to have a variable that counts from 1 to 100. The current count number will be stored in the variable "number" (which we can name it as we like).
+We are asking the program to have a variable that counts from 1 to 100. 
+The current count number will be stored in the variable `number` 
+(which we can name it as we like).
 
-The "..=" in between the numbers is used to define a range. The equals on the right means that it includes the right number. There also exists ".." which does not include the last number (i.e. 0..100 counts from 0 to 99).
+The `..=` in between the numbers is used to define a range. 
+The equals on the right means that it includes the right number. 
+There also exists `..` which does not include the last number 
+(i.e. `0..100` counts from 0 to 99).
 
-We can also put a loop inside a loop, so we can count in two directions. This could be useful to describe all positions in a chess board:
+We can also put a loop inside a loop, so we can count in two directions. 
+This could be useful to describe all positions in a chess board:
 
 ```rust
 fn main() {
@@ -56,9 +64,13 @@ fn main() {
  }
 ```
 
-And of course, there's no limit. You could put three or ten loops one inside another. The limit is your imagination here!
+And of course, there's no limit. 
+You could put three or ten loops one inside another. 
+The limit is your imagination here!
 
-In this code, it will first pick a row, then go over all the columns. When all 8 columns are done it will proceed with the next row.
+In this code, it will first pick a row, then go over all the columns. 
+When all 8 columns are done it will proceed with the next row.
 
 ------
-[^1]: As usual, I'm lying, and it's not the real syntax. For loops are way more powerful than this; we'll get to that later.
+[^1]: As usual, I'm lying, and it's not the real syntax. For loops are way more
+powerful than this; we'll get to that later.

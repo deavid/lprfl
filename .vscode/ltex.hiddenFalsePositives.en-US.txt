@@ -1,2 +1,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qu16 is used for storing UTF16 characters, which are 2 byte long.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qu32 can be used to store colors of pixels of an image (Red, Green, Blue and Alpha)\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QYou cannot have an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q without an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QLet's see an example with an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q:\\E$"}

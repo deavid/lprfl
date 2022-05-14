@@ -180,12 +180,24 @@ Copying, pasting and changing all the numbers manually is cumbersome.</p>
    }
  }
 </code></pre></pre>
-<p>This program does exactly the same thing in just three lines! Amazing, isn’t it? Now variables are actually being useful.</p>
+<p>This program does exactly the same thing in just three lines! Amazing, isn’t it? 
+Now variables are actually being useful.</p>
 <p>The syntax for this is as follows<sup class="footnote-reference"><a href="#1">1</a></sup>:</p>
-<p>for variable_name in first_number..=last_number</p>
-<p>We are asking the program to have a variable that counts from 1 to 100. The current count number will be stored in the variable “number” (which we can name it as we like).</p>
-<p>The “..=” in between the numbers is used to define a range. The equals on the right means that it includes the right number. There also exists “..” which does not include the last number (i.e. 0..100 counts from 0 to 99).</p>
-<p>We can also put a loop inside a loop, so we can count in two directions. This could be useful to describe all positions in a chess board:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for variable_name in first_number..=last_number
+<span class="boring">}
+</span></code></pre></pre>
+<p>We are asking the program to have a variable that counts from 1 to 100. 
+The current count number will be stored in the variable <code>number</code> 
+(which we can name it as we like).</p>
+<p>The <code>..=</code> in between the numbers is used to define a range. 
+The equals on the right means that it includes the right number. 
+There also exists <code>..</code> which does not include the last number 
+(i.e. <code>0..100</code> counts from 0 to 99).</p>
+<p>We can also put a loop inside a loop, so we can count in two directions. 
+This could be useful to describe all positions in a chess board:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    for row in 1..=8 {
        for column in 1..=8 {
@@ -194,11 +206,15 @@ Copying, pasting and changing all the numbers manually is cumbersome.</p>
    }
  }
 </code></pre></pre>
-<p>And of course, there’s no limit. You could put three or ten loops one inside another. The limit is your imagination here!</p>
-<p>In this code, it will first pick a row, then go over all the columns. When all 8 columns are done it will proceed with the next row.</p>
+<p>And of course, there’s no limit. 
+You could put three or ten loops one inside another. 
+The limit is your imagination here!</p>
+<p>In this code, it will first pick a row, then go over all the columns. 
+When all 8 columns are done it will proceed with the next row.</p>
 <hr />
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>As usual, I’m lying, and it’s not the real syntax. For loops are way more powerful than this; we’ll get to that later.</p>
+<p>As usual, I’m lying, and it’s not the real syntax. For loops are way more
+powerful than this; we’ll get to that later.</p>
 </div>
 
                 </main>

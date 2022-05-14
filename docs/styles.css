@@ -16,7 +16,7 @@ html {
 
 code {
     font-family: Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
-    box-shadow: 0 0 4px var(--icons);
+    box-shadow: 0 0 4px -1px var(--icons);
     line-height: 1.25;
 }
 

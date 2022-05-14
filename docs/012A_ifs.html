@@ -156,7 +156,10 @@
                 <main>
                     <h1 id="what-if"><a class="header" href="#what-if">What If…?</a></h1>
 <p>… it is raining outside? You should get an umbrella, right?</p>
-<p>This is basically a conditional: If it’s raining, get an umbrella. We have these in Rust and use the keyword “if”. The name may not sound original at all, but helps reading the program as if it were english.</p>
+<p>This is basically a conditional: If it’s raining, get an umbrella. 
+We have these in Rust and use the keyword “if”. 
+The name may not sound original at all, but helps to read the program 
+as if it were English.</p>
 <p>For example:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    let apples = 6;
@@ -165,21 +168,36 @@
    }
  }
 </code></pre></pre>
-<p>This program will print “You have many apples!” only if the “apples” variable is bigger than one.</p>
-<p>Of course, it only changes if you manually go and change the variable value. Don’t go that fast! we’ll see something useful soon.</p>
-<p>The syntax is:
-if condition { … what to do if the condition is true … } else { … what to do if it’s not … }</p>
+<p>This program will print <code>You have many apples!</code> only if the 
+<code>apples</code> variable is bigger than one.</p>
+<p>Of course, it only changes if you manually go and change the variable value. 
+Don’t go that fast! We’ll see something useful soon.</p>
+<p>The syntax is:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if condition { 
+    // ... what to do if the condition is true ... 
+} else { 
+    // ... what to do if it's not ... 
+}
+<span class="boring">}
+</span></code></pre></pre>
 <p>Condition can be anything that is either true or false. Some examples:</p>
 <ul>
-<li>apples == 1 → if “apples” is exactly 1.</li>
-<li>apples != 1 → if it’s not 1. Any other value except one will do.</li>
-<li>apples &gt;= 1 → if it’s greater or equal to 1.</li>
-<li>apples &lt; 1 → if it’s less than 1.</li>
-<li>apples &lt;= 1 → if it’s less than or equal to 1.</li>
+<li><code>apples == 1</code> → if “apples” is exactly 1.</li>
+<li><code>apples != 1</code> → if it’s not 1. Any other value except one will do.</li>
+<li><code>apples &gt;= 1</code> → if it’s greater or equal to 1.</li>
+<li><code>apples &lt; 1</code> → if it’s less than 1.</li>
+<li><code>apples &lt;= 1</code> → if it’s less than or equal to 1.</li>
 </ul>
-<p>Notice how I told you the “if” has an else part, but I did not write it on the above program. That’s because it’s optional. If we only care about the part it’s true, the “else” is not needed.</p>
-<p>However, we cannot do the reverse. You cannot have an “else” without an “if”. If we need to target when the condition is false, we need to reverse the condition so it returns true when we need to.</p>
-<p>Let’s see an example with an “else”:</p>
+<p>Notice how I told you the <code>if</code> has an else part, but I did not 
+write it on the above program. That’s because it’s optional. 
+If we only care about the part it’s true, the <code>else</code> is not needed.</p>
+<p>However, we cannot do the reverse. You cannot have an <code>else</code> without an <code>if</code>. 
+If we need to target when the condition is false, we need to reverse the 
+condition, so it returns true when we need to.</p>
+<p>Let’s see an example with an <code>else</code>:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    let apples = 1;
    if apples &gt; 1 {
@@ -189,7 +207,7 @@ if condition { … what to do if the condition is true … } else { … what to 
    }
  }
 </code></pre></pre>
-<p>Ok, enough of this. It’s too simple I guess and we need to spice it up with…</p>
+<p>Ok, enough of this. I guess it’s too simple, and we need to spice it up with…</p>
 
                 </main>
 

@@ -155,8 +155,15 @@
             <div id="content" class="content">
                 <main>
                     <h1 id="adding-some-comments"><a class="header" href="#adding-some-comments">Adding some comments</a></h1>
-<p>The programs sometimes are hard to understand and it would be nice to leave some notes for the people reading it so they can understand it too. And I bet you that you’ll forget what a program does after 3 months, even if you wrote it yourself. It happens to me too. So it’s good to have some notes on the program so we can understand it later.</p>
-<p>They can also be used to denote that some work is yet missing (we call these TODO) so it serves as a reminder for later on. But we all know that we will never get to do them. That’s how it works in reality, trust me.</p>
+<p>The programs are sometimes hard to understand, and it would be nice to leave
+some notes for the people reading it, so they can understand it too. 
+And I bet you that you’ll forget what a program does after 3 months, 
+even if you wrote it yourself. It happens to me too. 
+So it’s good to have some notes on the program, so we can understand it later.</p>
+<p>They can also be used to denote that some work is yet missing 
+(we call these <code>TODO</code>) so it serves as a reminder for later on. 
+But we all know that we will never get to do them. 
+That’s how it works in reality, trust me.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    // Compute all the cells in a Chess Board:
    for row in 1..=8 {
@@ -167,9 +174,16 @@
    }
  }
 </code></pre></pre>
-<p>Most comments use the double slash (//). When Rust sees this, it ignores any text on the right side of it, so we can use this to add our thoughts on the program.</p>
-<p>However, if you need to comment out a lot of lines, adding “//” to every line can be daunting. VS Code has shortcuts for this (and you can customize them) so it’s easier.</p>
-<p>But Rust also has comment blocks. A comment block starts with “/<em>” and ends with “</em>/”. Everything in the middle is completely ignored even if there are multiple pages.</p>
+<p>Most comments use the double slash <code>//</code>. 
+When Rust sees this, it ignores any text on the right side of it, 
+so we can use this to add our thoughts on the program.</p>
+<p>However, if you need to comment out a lot of lines, 
+adding <code>//</code> to every line can be daunting. 
+VS Code has shortcuts for this (and you can customize them) so it’s easier.</p>
+<!-- Shortcut for VSCode for comments - default and how to customize -->
+<p>But Rust also has comment blocks. 
+A comment block starts with <code>/*</code> and ends with <code>*/</code>. 
+Everything in the middle is completely ignored even if there are multiple pages.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">/*fn main() {
    for row in 1..=8 {
        for column in 1..=8 {

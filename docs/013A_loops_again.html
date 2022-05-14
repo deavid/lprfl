@@ -156,7 +156,7 @@
                 <main>
                     <h1 id="for-loops-again"><a class="header" href="#for-loops-again">For loops again!</a></h1>
 <p>Yay! Wait, I thought you were excited about this.</p>
-<p>Let’s do something useful. This program will graph the function “y = x * x / 20 - 9” in the terminal:</p>
+<p>Let’s do something useful. This program will graph the function \(y = x^2\frac{1}{20} - 9\) in the terminal:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    for y in -10..10 {
        for x in -30..30 {
@@ -169,13 +169,14 @@
        }
        println!();
    }
- }
+}
 </code></pre></pre>
-<p>As you can see, it only uses “for” and “if”. It might look complicated, but with a bit of work you should be able to follow it.</p>
+<p>As you can see, it only uses “for” and “if”. It might look complicated, 
+but with a bit of work you should be able to follow it.</p>
 <p>For the record, this is the output it produces:</p>
-<pre><code> $ cargo run
-    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
-     Running `target/debug/learnrust`
+<pre><code class="language-console">$ cargo run
+Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+    Running `target/debug/learnrust`
                                                             
                                                
                       #########              
@@ -197,29 +198,37 @@
         #####################################
         #####################################
 </code></pre>
-<p>You can change the formula in “let value = x * x / 20 - 9” and it will graph whatever math function you like.</p>
-<p>I know, there’s a lot to unpack here. I’ll go step by step. But first, for the avid readers, yes the function is mirrored upside down. This is because the first line that is drawn first is in math the bottom one, and computers draw top to bottom while in math the Y axis goes from bottom to top.</p>
+<p>You can change the formula in <code>let value = x * x / 20 - 9</code>, and it will graph 
+whatever math function you like.</p>
+<p>I know, there’s a lot to unpack here. I’ll go step by step. 
+But first, for the avid readers, yes the function appears mirrored upside down. 
+This is because the first line that is drawn first is in math the bottom one, 
+and computers draw top to bottom while in math the Y axis goes from bottom to top.</p>
 <p>It can be fixed, but to keep things simple I prefer to keep this bug in.</p>
 <p>Let’s go first on the inner code of the loops:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>           let value = x * x / 20 - 9;
-           if value &gt;= y {
-               print!(&quot; &quot;);
-           } else {
-               print!(&quot;#&quot;);
-           }
+</span>let value = x * x / 20 - 9;
+if value &gt;= y {
+    print!(&quot; &quot;);
+} else {
+    print!(&quot;#&quot;);
+}
 <span class="boring">}
 </span></code></pre></pre>
-<p>This computes x² by doing “x * x”, divides by 20 and then subtracts 9. Rust has a pow() function to do x² instead of x * x, but to keep it simple I avoided it. Anyway, this gets stored into the “value” variable and the “if” compares against “y”.</p>
-<p>So, if it’s less than “y” prints a hash “#”, if not, it prints a space “ “ otherwise.</p>
+<p>This computes \(x²\) by doing <code>x * x</code>, divides by 20 and then subtracts 9. 
+Rust has a pow() function to do \(x²\) instead of <code>x * x</code>, but to keep 
+it simple I avoided it. Anyway, this gets stored into the <code>value</code> 
+variable and the <code>if</code> compares against <code>y</code>.</p>
+<p>So, if it’s less than <code>y</code> prints a hash <code>#</code>, if not, it prints a space <code> </code> otherwise.</p>
 <p>This is meant to fill the shape. Given the math function:</p>
-<pre><code>    y = x² / 20 - 9
-</code></pre>
-<p>It computes which “squares” are below the math function and uses the “#” character to fill the shape.</p>
-<p>Notice how I used “print!” instead of “println!”. The lack of the “ln” (which stands for line) makes that print not open a new line, so it prints to the right, like a typewriter.</p>
-<p>So all that is left is to loop across all “x” and “y” squares:</p>
+<p>\[ y = \frac{x^2}{20} - 9 \]</p>
+<p>It computes which <em>“squares”</em> are below the math function and uses the <code>#</code> character to fill the shape.</p>
+<p>Notice how I used <code>print!</code> instead of <code>println!</code>. The lack of the <code>ln</code> 
+(which stands for line) makes that print not open a new line, 
+so it prints to the right like a typewriter.</p>
+<p>So all that is left is to loop across all <code>x</code> and <code>y</code> squares:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -231,9 +240,13 @@
    }
 <span class="boring">}
 </span></code></pre></pre>
-<p>So using here a nested loop we iterate through negative and positive values for both x and y.</p>
-<p>As “y” is usually the vertical axis, and the terminal prints first left-to-right and then to-to-bottom, we need to first print an entire row; That’s why the “for y” appears first and the “for x” appears next.</p>
-<p>After the “for x” is done, we need to move to the next line, so an empty “println!()” will move the cursor to the next line.</p>
+<p>So using here a nested loop we iterate through negative 
+and positive values for both x and y.</p>
+<p>As <code>y</code> is usually the vertical axis, and the terminal prints first left-to-right
+and then to-to-bottom, we need to first print an entire row; 
+That’s why the <code>for y</code> appears first and the <code>for x</code> appears next.</p>
+<p>After the <code>for x</code> is done, we need to move to the next line, so an 
+empty <code>println!()</code> will move the cursor to the next line.</p>
 
                 </main>
 
