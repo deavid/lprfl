@@ -1,72 +1,9 @@
 # Others, addendums
-Learn programming 
-with Rust as first language
-Author: David Martínez Martí
-Blog: https://deavid.wordpress.com/
 
-Coding can be a daunting task to any beginner. In fact even at seniority levels, it still is for advanced concepts. As you get on your journey of learning how to code you'll begin to find previous hard tasks as easy, and at some point they will become so obvious that it gets hard to imagine how other people don't understand them. But regardless, there will always be daunting tasks waiting for you. Programming is not about the destination, it is about the journey itself.
 
-It's not something that you learn and you're done. There's almost an infinite amount of stuff that can be learned and used, as you gain more expertise, you'll be able to specialize on certain types of programs and make them go the extra mile, which feels very satisfying. This field also keeps constantly evolving, so much that in 10 years the job requirements change drastically and it might be difficult to find a job if we don't keep learning.
 
-If you enjoy learning and trying to do new stuff day by day, then this is for you. It will get easier over time, I promise!
 
-From zero knowledge on programming to being able to apply to any job and hope to succeed, it takes at least 6 months with full day dedication (8 hours a day) if you're a good learner.
-
-To get rid of the "junior" title, another 2-3 years are needed in a job usually. And (real) seniors have at least 8 years of experience. From there, the differences between someone with 8 or 20 years of experience tend to be very dim; it depends more on the people themselves than the experience.
-
-The good news is that with enough dedication you can get yourself employed in record time, which for other careers requires proper study at a university, which takes several years.
-And you'll be able to grow easily on the job. Getting employed is not the destination, but maybe a new beginning. There's always a huge demand on good developers, so if you prove yourself good, even if the company doesn't allow you to grow, there will be several companies wanting your talent and will raise the offer accordingly.
-
-So, before taking this journey ask yourself: Is this the path I want to take?
-If the answer is yes, then do it! commit and push forward to get it.
-
-NOTE: I love oversimplifying a lot!. And I will lie in order to make things look simpler and create simple rules that don't always work. This is done on purpose to make the experience easy to follow and add concepts slowly. I will correct these and get into specifics slowly as I feel the reader got enough knowledge to understand the whole thing. 
-
-Your first programming language
-
-This is a common question everyone asks themselves. In my opinion, Python and Rust are the two best languages to start with. While Python will give you an easier time to begin, and plenty of jobs that actually exist, Rust is going to be a bit harder to begin with, with way less jobs.
-
-As the title suggests, I'm going to recommend Rust. Why? Lots of reasons. I believe Rust will be the language of the future, so by the time you learn it hopefully there will be jobs waiting for you.
-
-Rust also will teach you proper coding practices. As it is more strict, it will force you into the right shape and mindset for a programmer, and not someone who stitches things together that delivers delicate programs that break in strange ways just by looking at them.
-
-The Rust community is very friendly. You'll have a lot of people wanting to teach you the language and help you along on this. Python is a bit of hit and miss, some communities might be toxic.
-
-The documentation is solid, nicely written, and very easy to follow. The reference docs might be a bit complex to understand at first, but after the first month or two it becomes very practical.
-
-Rust has potential to be used for anything. Web, games, embedded devices, operating systems, browsers, you name it. There are still several gaps at the moment of this writing due to the nature of Rust being so new; over time more libraries will be created and mature, so right now there are several types of applications where Rust might not be fit. For now.
-
-Python is very powerful and is able to do most of the applications that you might want to do, and it is very quick to write and get results with it. But it has several downsides (one is performance) that are very unlikely to disappear in the next 10 or 20 years.
-
-In the end, it doesn't matter that much which language you start with. As long as you can learn to code, the language isn't that important. All languages have lots of similarities, so much that when you learn the second one it will take 99% less time than the first.
-
-And you can't count on learning a single language (i.e. Rust) and hope that this would be all. There always are languages that are very good at one thing, and you should learn those too. Because you don't want to spend a week doing something in Rust that takes 1 line of Bash to do, if there's no real reason or benefit for it.
-
-So, no worries, you'll be fine. You'll learn other languages over the course of years and that will take less and less time as you go.
-
-The holy Rust book
-
-You must know that there exists a book called just "The Rust book" or "the book". I will (jokingly & friendly) call it here "The holy rust book". You can check it here:
-https://doc.rust-lang.org/stable/book/
-
-The holy book is the main learning resource for Rust. It is the true starting point for learning the language and contains everything, from beginner to truly advanced. It covers the entire language (except the uses of Unsafe, that are covered in the Necronomicon... I mean, the Rustonomicon)
-
-This guide is not meant to replace the holy book itself, as it is very well written by experts and reviewed by the whole community. 
-
-If that's the case, what's the point of this then? Well, the holy book assumes some knowledge. It will rapidly grow in difficulty and will require several reads for beginners and look in other places as well to fully grasp the concepts.
-
-I will cover a small part of the language; enough to get you started, and at a slow pace enough to follow without external resources (hopefully). I will link from time to time the holy book so you can go there to read if you like, as there's more detail.
-
-I call it "holy" because it's the Rust Bible (in fact some people call it that). If the holy book disagrees with me, the book is right, I'm wrong. Whatever it says, it is right. A lot of people call Rust a cult (seriously) so I pretend to extend and embrace the term to make it a funny joke.
-
-Other Rust books
-
-See https://github.com/sger/RustBooks
-* Rust by Example
-* Easy Rust
-* A Gentle Introduction to Rust
-
-Installing Rust
+# Installing Rust
 
 So you reached this point! I guess we're doing it. Let's stop the chatter and bring in the real stuff. Let's install Rust.
 
@@ -79,9 +16,9 @@ Get your browser and go to https://rustup.rs/. Follow the instructions there.
 
 That will be all we need to do. Congrats! you installed Rust in your machine!
 
-Chapter 1.1 - Installation of the Holy Book contains the installation instructions.
+> Chapter 1.1 - Installation of the Holy Book contains the installation instructions.
 
-Choosing an editor for Rust
+# Choosing an editor for Rust
 
 I'm very opinionated here. Get Visual Studio Code. (not to be confused with MS VisualStudio)
 <!--- Add the de-Microsoftified Port of VS Code to your Guide: https://vscodium.com/ -->

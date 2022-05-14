@@ -1,6 +1,8 @@
 # Summary
 
 [Introduction](README.md)
-- [Chapter 1](./chapter_1.md)
+- [Your first programming language](./001A_first_language.md)
+- [Related books](./002A_books.md)
+
 ----------------
 [Others, addendums](zzz_extras.md)
