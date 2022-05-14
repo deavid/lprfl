@@ -1,8 +1,12 @@
 # Looping' around
 
-I'm sure you feel that variables don't do that much. But that's because the programs we can write up to now are too linear and simple. We need to step up the game with... loops!
+I'm sure you feel that variables don't do that much. 
+But that's because the programs we can write up to now are too linear and simple. 
+We need to step up the game with... loops!
 
-Loops are ways of repeating the same piece of code several times without need of copy pasting. For example, imagine we want to make a simple program that counts from 1 to 100:
+Loops are ways of repeating the same piece of code several times without 
+need of copying and pasting. 
+For example, imagine we want to make a simple program that counts from 1 to 100:
 
 ```rust
 fn main() {
@@ -16,7 +20,8 @@ fn main() {
  }
 ```
 
-As you can imagine, this gets tedious very easily. Copying, pasting and changing all the numbers manually is cumbersome.
+As you can imagine, this gets tedious very easily. 
+Copying, pasting and changing all the numbers manually is cumbersome.
 
 Presenting... the for loop!
 
