@@ -1679,7 +1679,8 @@ This is what Rust calls a Trait. We will go over these later on.</p>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="to-do-pieces-that-need-more-work"><a class="header" href="#to-do-pieces-that-need-more-work">To-do: pieces that need more work</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h1>
-<p>So we talked earlier about Rust data types and we’re just using a few. Why do they exist? Let’s put them together here:</p>
+<p>So we talked earlier about Rust data types, and we’re just using a few. 
+Why do they exist? Let’s put them together here:</p>
 <table><thead><tr><th>Type</th><th>Min</th><th>Max</th><th></th><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
 <tr><td>u8</td><td>0</td><td>255</td><td></td><td>i8</td><td>-128</td><td>127</td></tr>
 <tr><td>u16</td><td>0</td><td>65535</td><td></td><td>i16</td><td>-32768</td><td>32767</td></tr>
@@ -1692,45 +1693,90 @@ This is what Rust calls a Trait. We will go over these later on.</p>
 <li>u16 is used for storing UTF16 characters, which are 2 byte long.</li>
 <li>u32 can be used to store colors of pixels of an image (Red, Green, Blue and Alpha)</li>
 </ul>
-<p>While a single number might be small in comparison to the amount of memory a computer has, some programs are in fact “number crunching programs”, where millions or even billions of numbers need to be processed very fast. When you have so much data, compacting it on the smallest possible representation will save memory and/or disk space.</p>
-<p>That is why, for what we’re doing in this guide we don’t care that much and use i64 for everything. All in all these are toy programs. Our toy programs don’t do much and the difference in memory used is roughly zero.</p>
-<p>In real life, things are different. Say you want to read a JPG photo from your phone camera and do some process on it, like enhancing the photo. A photo can easily be 16 million pixels, and if for each pixel we use a i64 for each color (Red, Green and Blue), we would be wasting a lot of memory.</p>
-<p>A program that plays chess by itself has to consider billions of chess possibilities, in this case it is also important to keep each representation as compact as possible.</p>
-<p>On the other hand, there are also the two float types, f32 and f64. The difference between them is not the maximum or minimum number like integers, but the amount of significant digits they can carry. f32 can record 6 digits correctly (and a few extra ones) while f64 can record more than 12.</p>
+<p>While a single number might be small in comparison to the amount of memory a 
+computer has, some programs are in fact “number crunching programs”, where 
+millions or even billions of numbers need to be processed very fast. When you 
+have so much data, compacting it on the smallest possible representation will 
+save memory and/or disk space.</p>
+<p>That is why, for what we’re doing in this guide we don’t care that much 
+and use i64 for everything. All in all these are toy programs. Our toy 
+programs don’t do much and the difference in memory used is roughly zero.</p>
+<p>In real life, things are different. Say you want to read a JPG photo from 
+your phone camera and do some process on it, like enhancing the photo. A photo 
+can easily be 16 million pixels, and if for each pixel we use an i64 for each 
+color (Red, Green and Blue), we would be wasting a lot of memory.</p>
+<p>A program that plays chess by itself has to consider billions of chess 
+possibilities, in this case it is also important to keep each representation as 
+compact as possible.</p>
+<p>On the other hand, there are also the two float types, f32 and f64. 
+The difference between them is not the maximum or minimum number like integers, 
+but the amount of significant digits they can carry. f32 can record 6 digits 
+correctly (and a few extra ones) while f64 can record more than 12.</p>
 <!-- TODO: in fact, f64 can represent bigger numbers than f32, but not that this does matter here... -->
-<p>Floating point numbers are used specially on scientific problems. Depending on the problem at hand an f64 might be required, while in others f32 might be better as it has enough precision but it is smaller, allowing for much complex simulations.</p>
-<p>Graphics cards use a lot of floating point numbers to draw scenes for a game. If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk</p>
-<p>I hope this helps understanding why these types exist, and why we aren’t using them for now.</p>
+<p>Floating point numbers are used specially on scientific problems. Depending on 
+the problem at hand an f64 might be required, while in others f32 might be better 
+as it has enough precision, but it is smaller, allowing for much complex simulations.</p>
+<p>Graphics cards use a lot of floating point numbers to draw scenes for a game. 
+If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk</p>
+<p>I hope this helps to understand why these types exist, and why we aren’t using them for now.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-bit-more-detailed-explanation-on-functions"><a class="header" href="#a-bit-more-detailed-explanation-on-functions">A bit more detailed explanation on functions</a></h1>
-<p>(….) (roughly explain a type, why the parentheses produce the call of the function, what happens if you forget the parentheses when calling, etc)</p>
+<p>(….) (roughly explain a type, why the parentheses produce the call of the 
+function, what happens if you forget the parentheses when calling, etc.)</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-a-garbage-collector"><a class="header" href="#what-is-a-garbage-collector">What is a Garbage Collector?</a></h1>
 <p>It’s something that Rust doesn’t have. Have a good day!</p>
-<p>Garbage Collector is about memory allocation. In C &amp; C++ memory needs to be manually requested and freed. Because this is very dangerous, most other languages automatically allocate and free.</p>
-<p>Allocating is “easy”, as the first use is allocating. But automatic free is hard, because you need to ensure that no parts of the program can access that variable anymore.</p>
-<p>So a Garbage Collector is a system that can track when variables go out of scope (unreachable) in order to free the memory. There are lots of types of GCs (each language might use a different approach), but they tend to have performance penalties, memory over-consumption and may temporarily halt all threads of the program to do the free.</p>
+<p>Garbage Collector is about memory allocation. In C &amp; C++ memory needs to be 
+manually requested and freed. Because this is very dangerous, most other 
+languages automatically allocate and free.</p>
+<p>Allocating is “easy”, as the first use is allocating. But automatic free is hard, 
+because you need to ensure that no parts of the program can access that variable anymore.</p>
+<p>So a Garbage Collector is a system that can track when variables go out of scope 
+(unreachable) in order to free the memory. There are lots of types of GCs 
+(each language might use a different approach), but they tend to have 
+performance penalties, memory over-consumption and may temporarily halt all 
+threads of the program to do the free.</p>
 <ul>
-<li>In Python, the GC prevents Python from running several threads of python code in parallel. So most python code, even if it uses threads, effectively is single-threaded because of the GC.</li>
-<li>In Java, the GC tends to free memory very late, causing bloat, a lot of memory consumption.</li>
-<li>In Go, the GC causes micro-pauses. All threads suddenly stop for a few milliseconds to clean up.</li>
-<li>In Rust, there’s no GC. Instead the automatic free is computed at compile time (by static analysis). So no bloat, no performance penalty.</li>
-<li>C &amp; C++, there’s no GC, you do it manually, and a mistake causes memory corruption and segfaults.</li>
+<li>In Python, the GC prevents Python from running several threads of python 
+code in parallel. So most python code, even if it uses threads, 
+effectively is single-threaded because of the GC.</li>
+<li>In Java, the GC tends to free memory very late, causing bloat, 
+a lot of memory consumption.</li>
+<li>In Go, the GC causes micro-pauses. All threads suddenly stop for 
+a few milliseconds to clean up.</li>
+<li>In Rust, there’s no GC. Instead, the automatic free is computed at compile 
+time (by static analysis). So no bloat, no performance penalty.</li>
+<li>C &amp; C++, there’s no GC, you do it manually, and a mistake causes memory 
+corruption and segfaults.</li>
 </ul>
-<p>Rust is kind of a compiler assisted C++. Automatic like Python, but if the compiler cannot prove your program is correct (even if the program in fact IS correct), it will reject it and won’t compile. </p>
-<p>So the drawback from Rust approach is the added difficulty of learning Ownership &amp; Borrowing (which I talk about in my blog post)
+<p>Rust is kind of a compiler assisted C++. Automatic like Python, but if the 
+compiler cannot prove your program is correct (even if the program in 
+fact <strong>IS</strong> correct), it will reject it and won’t compile. </p>
+<p>So the drawback from Rust approach is the added difficulty of learning 
+Ownership &amp; Borrowing (which I talk about in my blog post)
 ….</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendices"><a class="header" href="#appendices">Appendices</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-a-license-of-this-book"><a class="header" href="#appendix-a-license-of-this-book">Appendix A. License of this book</a></h1>
-<p>This text is licensed under the Creative Commons license “Attribution 4.0 International (CC BY 4.0)” which can be read here:</p>
+<p>This text is licensed under the Creative Commons license 
+“Attribution 4.0 International (CC BY 4.0)” which can be read here:</p>
 <p>https://creativecommons.org/licenses/by/4.0/</p>
 <p>https://creativecommons.org/licenses/by/4.0/legalcode</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-b-caveats-and-challenges-in-this-book"><a class="header" href="#appendix-b-caveats-and-challenges-in-this-book">Appendix B. Caveats and challenges in this book</a></h1>
-<p>This book is intended to people with no previous experience in coding at all and attempts to teach programming in a very approachable way.</p>
-<p>Because of this, a lot of information is hidden, misrepresented or factually incorrect. It is needed to hide and oversimplify stuff so new learners don’t get overloaded with information. This also helps the reader to create their own programs very early on without needing 
+<p>This book is intended to people with no previous experience in coding at all 
+and attempts to teach programming in a very approachable way.</p>
+<p>Because of this, a lot of information is hidden, misrepresented or 
+factually incorrect. It is needed to hide and oversimplify stuff, so new 
+learners don’t get overloaded with information. This also helps the reader 
+to create their own programs very early on without needing 
 to have a proper understanding, which can come in later on.</p>
-<p>Other books might put a lot of theory in front to give a good understanding of what is coming next, but theory is indeed boring until it’s put into use, so in this book I try to push down the theory as far as possible.</p>
-<p>If this approach is good or bad it’s certainly subjective. But as everyone else goes for a more academic way, and there is almost no one that does something like I do in this book, I think it’s good to add more choices for learning.</p>
+<p>Other books might put a lot of theory in front to give a good understanding 
+of what is coming next, but theory is indeed boring until it’s put into use, 
+so in this book I try to push down the theory as far as possible.</p>
+<p>If this approach is good or bad it’s certainly subjective. But as everyone else 
+goes for a more academic way, and there is almost no one that does something 
+like I do in this book, I think it’s good to add more choices for learning.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-c-exercises-and-solutions"><a class="header" href="#appendix-c-exercises-and-solutions">Appendix C. Exercises and Solutions</a></h1>
-<p>TODO: There should be some exercises for the reader and put the solutions here. Ideally, place the solutions in random order to avoid the reader from inadvertently reading the next solution to their problem. </p>
+<p>TODO: There should be some exercises for the reader and put the solutions here. 
+Ideally, place the solutions in random order to avoid the reader from 
+inadvertently reading the next solution to their problem. </p>
 
                 </main>
 

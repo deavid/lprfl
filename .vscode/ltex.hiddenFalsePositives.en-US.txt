@@ -11,3 +11,5 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Q\"f\" for float, and 32 or 64 for the amount of memory that they use.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstr\nString\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QWe will use String for our variables, as it is simpler to use, but in some cases, Rust wants a \"str\" instead.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qf32 can record 6 digits correctly (and a few extra ones) while f64 can record more than 12.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QDepending on the problem at hand an f64 might be required, while in others f32 might be better as it has enough precision but it is smaller, allowing for much complex simulations.\\E$"}
