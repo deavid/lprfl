@@ -1,7 +1,8 @@
 # Learn programming with Rust as first language
 
-This is a book to learn programming from scratch. Needs to be built.
+This is a book to learn programming from scratch. 
 
+Read the book here: https://deavid.github.io/lprfl/
 
 ## LICENSE
 
