@@ -30,8 +30,8 @@ fn main() {
 
 This program does exactly the same thing in just three lines! Amazing, isn't it? Now variables are actually being useful.
 
-The syntax for this is as follows[^note]:
-[^note] As usual, I'm lying and it's not the real syntax. For loops are way more powerful than this; we'll get to that later.
+The syntax for this is as follows[^1]:
+
 
 for variable_name in first_number..=last_number
 
@@ -54,3 +54,6 @@ fn main() {
 And of course, there's no limit. You could put three or ten loops one inside another. The limit is your imagination here!
 
 In this code, it will first pick a row, then go over all the columns. When all 8 columns are done it will proceed with the next row.
+
+------
+[^1]: As usual, I'm lying, and it's not the real syntax. For loops are way more powerful than this; we'll get to that later.

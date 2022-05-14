@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="styles.css">
 
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -152,7 +153,7 @@
 <li>For Windows, there’s a <code>rust-init.exe</code> that you download and will install everything.</li>
 <li>For Linux (my case), there’s a single command line that you copy and paste into the console.</li>
 </ul>
-<!--- And this is a security risk that some people don't want to take. Add an alternative option. -->
+<!--- TODO: And this is a security risk that some people don't want to take. Add an alternative option. -->
 <p>(By the way, if you want to be a developer, you also need to make the terminal your friend)</p>
 <p>That will be all we need to do. Congrats! You installed Rust in your machine!</p>
 <blockquote>
@@ -161,7 +162,7 @@
 <h2 id="choosing-an-editor-for-rust"><a class="header" href="#choosing-an-editor-for-rust">Choosing an editor for Rust</a></h2>
 <p>I’m very opinionated here. Get Visual Studio Code. 
 (not to be confused with MS Visual Studio)</p>
-<!--- Add the de-Microsoftified Port of VS Code to your Guide: https://vscodium.com/ -->
+<!--- TODO: Add the de-Microsoftified Port of VS Code to your Guide: https://vscodium.com/ -->
 <p>People call it VS Code or just “Code”. 
 It’s open source, supports nearly all languages, and works really, really well.</p>
 <p>From those that code with Rust, they mainly use VS Code or Vim. 
@@ -174,7 +175,9 @@ it requires a lot of investment that I don’t want to commit to.</p>
 <p>Now, go to the extensions panel and search for “rust-analyzer” and install it. 
 This is all you need to get the best Rust experience.</p>
 <p><img src="./img/vscode_extensions.png" alt="VSCode Extensions" /></p>
-<p>(It is really important to have Rust properly installed at this point, or rust-analyzer will fail)</p>
+<blockquote>
+<p>It is really important to have Rust properly installed at this point, or rust-analyzer will fail.</p>
+</blockquote>
 
                     </main>
 

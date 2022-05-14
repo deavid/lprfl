@@ -1,0 +1,45 @@
+#page-wrapper .menu-bar,
+#page-wrapper .menu-bar:visited {
+    color: var(--fg);
+    background-color: var(--sidebar-bg);
+    box-shadow: inset 0px 0px 16px -4px var(--bg);
+    border-radius: 100px;
+}
+
+.sidebar {
+    box-shadow: inset -4px 0px 4px -4px var(--icons);
+}
+
+html {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+code {
+    font-family: Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    box-shadow: 0 0 4px var(--icons);
+    line-height: 1.25;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Open Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1,
+h2 {
+    font-weight: 600;
+}
+
+h3,
+h4 {
+    font-weight: 500;
+}
+
+h5,
+h6 {
+    font-weight: 400;
+}

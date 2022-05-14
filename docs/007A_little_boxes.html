@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="styles.css">
 
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -145,6 +146,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="variables-are-like-little-boxes-that-store-things-inside"><a class="header" href="#variables-are-like-little-boxes-that-store-things-inside">Variables are like little boxes that store things inside</a></h1>
+<!-- TODO: Add incremental typing - use different binaries and files, example1.rs... and run with "cargo run --bin example1"?  -->
+<!-- TODO: Move all comments into TODO -->
+<!-- TODO: Use Rust turtle crate to teach: https://github.com/sunjay/turtle -->
 <p>Printing some texts gets boring very fast. A computer does calculations 
 for us, that’s what makes them useful. </p>
 <p>It is possible to do simple calculations and print them, but this 
@@ -180,33 +184,40 @@ Math is done by the computer itself.</p>
 <p>So do we agree that \(x\) is “something” whose value is \(-4\), right?</p>
 <p>Ok, hold on to that idea. That is the same for variables. What is not the same is:</p>
 <ul>
-<li>We don’t have equations. We have instructions. Instructions do things like a command<!--- Program? Maybe someone has difficulty with the term command --> does something in the terminal.</li>
+<li>We don’t have equations. We have instructions. Instructions do things like a command</li>
+</ul>
+<!-- TODO: Program? Maybe someone has difficulty with the term command --> does something in the terminal.
+<ul>
 <li>We don’t have <em>unknowns</em>, and \(x\) in this example is an <em>unknown</em>. 
 In programming, we have variables. An <em>unknown</em> is something that we don’t know (yet), while 
 a <strong>variable</strong> is something that <strong>always has a value, and we know it</strong>.</li>
 </ul>
 <p>In Rust, we would do instead:</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>x = -4;
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust no_run noplayground">x = -4;
+</code></pre>
 <p>Here <code>x</code> is the variable. It can be any name: <code>a</code>, <code>j</code> or even a word <code>animals</code>. 
 Heck, even several words together: “number_of_legs_in_a_dog”. 
 (If you’re a cat person, feel free to set “number_of_legs_in_a_cat” instead)</p>
-<p>number_of_legs_in_a_cat = 4;</p>
+<pre><code class="language-rust no_run noplayground">number_of_legs_in_a_cat = 4;
+</code></pre>
 <p>I did it for you. You can thank me later.</p>
-<p>The equals part is an operation, it means “to store”. It actually saves the value on the right (number 4) into the name of the left.</p>
-<p>(Variables should be named in snake_case, meaning they should be all lower case, contain only english characters and it should start by letter. Spaces are not valid<sup class="footnote-reference"><a href="#note">1</a></sup>)
-<sup class="footnote-reference"><a href="#note">1</a></sup> Actually it’s more flexible than that, some emojis are also allowed; but for simplicity, let’s use only english alphabet.</p>
+<p>The equals part is an operation, it means “to store”. 
+It actually saves the value on the right (number 4) into the name of the left.</p>
+<blockquote>
+<p>Variables should be named in snake_case, meaning they should be all 
+lower case, contain only English characters, and it should start by letter.
+Spaces are not valid<sup class="footnote-reference"><a href="#1">1</a></sup></p>
+</blockquote>
 <p>So now we do have a name “x” or “number_of_legs_in_a_cat” whose value is 4.</p>
-<p>The semicolon marks the end of the instruction. This serves to tell Rust that this line is something that needs to be executed, and to avoid confusion with the next line. If we forget the semicolon, it will think that two lines are in fact one and will get confused.</p>
-<p>If we translate this line into english it will say:</p>
+<p>The semicolon marks the end of the instruction. This serves to tell Rust that 
+this line is something that needs to be executed, and to avoid confusion with 
+the next line. If we forget the semicolon, it will think that two lines are 
+in fact one and will get confused.</p>
+<p>If we translate this line into English it will say:</p>
 <blockquote>
 <p>Please store the value four into the variable named “number_of_legs_in_a_cat”, end of instruction.</p>
 </blockquote>
-<!-- Like a telegram where it said "stop" -->
+<!-- TODO: Like a telegram where it said "stop" -->
 <p>And from this point, the computer would remember that this name equals to 4, so we could print it later:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -218,11 +229,19 @@ Heck, even several words together: “number_of_legs_in_a_dog”.
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>   println!(&quot;4&quot;);
+</span>println!(&quot;4&quot;);
 <span class="boring">}
 </span></code></pre></pre>
 <p>So, if this is the case, why do we complicate this so much?</p>
-<p>Well, variables will help us do much more complex programs, as they can keep track of what was the user input or other data that we are managing inside. It will make sense soon, so bear with me for now.</p>
+<p>Well, variables will help us do much more complex programs, as they 
+can keep track of what was the user input or other data that 
+we are managing inside. 
+It will make sense soon, so bear with me for now.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Actually it’s more flexible than that, some emojis are also allowed; 
+but for simplicity, let’s use only English alphabet.</p>
+</div>
 
                     </main>
 

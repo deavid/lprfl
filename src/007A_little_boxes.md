@@ -1,5 +1,8 @@
 # Variables are like little boxes that store things inside
 
+<!-- TODO: Add incremental typing - use different binaries and files, example1.rs... and run with "cargo run --bin example1"?  -->
+<!-- TODO: Move all comments into TODO -->
+<!-- TODO: Use Rust turtle crate to teach: https://github.com/sunjay/turtle -->
 Printing some texts gets boring very fast. A computer does calculations 
 for us, that's what makes them useful. 
 
@@ -40,14 +43,15 @@ These have an *unknown* that is \\(x\\) that must be resolved for. In this case 
 So do we agree that \\(x\\) is "something" whose value is \\(-4\\), right?
 
 Ok, hold on to that idea. That is the same for variables. What is not the same is:
-* We don't have equations. We have instructions. Instructions do things like a command<!--- Program? Maybe someone has difficulty with the term command --> does something in the terminal.
+* We don't have equations. We have instructions. Instructions do things like a command
+ <!-- TODO: Program? Maybe someone has difficulty with the term command --> does something in the terminal.
 * We don't have *unknowns*, and \\(x\\) in this example is an *unknown*. 
   In programming, we have variables. An *unknown* is something that we don't know (yet), while 
   a **variable** is something that **always has a value, and we know it**.
 
 In Rust, we would do instead:
 
-```rust
+```rust,no_run,noplayground
 x = -4;
 ```
 
@@ -55,23 +59,30 @@ Here `x` is the variable. It can be any name: `a`, `j` or even a word `animals`.
 Heck, even several words together: "number_of_legs_in_a_dog". 
 (If you're a cat person, feel free to set "number_of_legs_in_a_cat" instead)
 
- number_of_legs_in_a_cat = 4;
+```rust,no_run,noplayground
+number_of_legs_in_a_cat = 4;
+```
 
 I did it for you. You can thank me later.
 
-The equals part is an operation, it means "to store". It actually saves the value on the right (number 4) into the name of the left.
+The equals part is an operation, it means "to store". 
+It actually saves the value on the right (number 4) into the name of the left.
 
-(Variables should be named in snake_case, meaning they should be all lower case, contain only english characters and it should start by letter. Spaces are not valid[^note])
-[^note] Actually it's more flexible than that, some emojis are also allowed; but for simplicity, let's use only english alphabet.
+> Variables should be named in snake_case, meaning they should be all 
+> lower case, contain only English characters, and it should start by letter.
+> Spaces are not valid[^1]
 
 So now we do have a name "x" or "number_of_legs_in_a_cat" whose value is 4.
 
-The semicolon marks the end of the instruction. This serves to tell Rust that this line is something that needs to be executed, and to avoid confusion with the next line. If we forget the semicolon, it will think that two lines are in fact one and will get confused.
+The semicolon marks the end of the instruction. This serves to tell Rust that 
+this line is something that needs to be executed, and to avoid confusion with 
+the next line. If we forget the semicolon, it will think that two lines are 
+in fact one and will get confused.
 
-If we translate this line into english it will say:
+If we translate this line into English it will say:
 >  Please store the value four into the variable named "number_of_legs_in_a_cat", end of instruction.
 
-<!-- Like a telegram where it said "stop" -->
+<!-- TODO: Like a telegram where it said "stop" -->
 
 And from this point, the computer would remember that this name equals to 4, so we could print it later:
 
@@ -83,9 +94,17 @@ println!("{}", number_of_legs_in_a_cat);
 This is actually the same as doing:
 
 ```rust
-   println!("4");
+println!("4");
 ```
 
 So, if this is the case, why do we complicate this so much?
 
-Well, variables will help us do much more complex programs, as they can keep track of what was the user input or other data that we are managing inside. It will make sense soon, so bear with me for now.
+Well, variables will help us do much more complex programs, as they 
+can keep track of what was the user input or other data that 
+we are managing inside. 
+It will make sense soon, so bear with me for now.
+
+----
+
+[^1]: Actually it's more flexible than that, some emojis are also allowed; 
+but for simplicity, let's use only English alphabet.

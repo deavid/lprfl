@@ -14,3 +14,4 @@ build-dir = "docs"
 [output.html]
 mathjax-support = true
 curly-quotes = true
+additional-css = ["styles.css"]

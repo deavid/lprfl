@@ -38,7 +38,7 @@ instruction (the command to run).
 Rust does not care about the different lines, or how they look in your editor. 
 You can put all in one line and still will do the same thing. 
 VSCode will format by default when you save, so it will always look nice and tidy.
-<!-- user might need to enable format on save; also other configs to tune would be helpful like auto save -->
+<!-- TODO: user might need to enable format on save; also other configs to tune would be helpful like auto save -->
 
 Open a new terminal inside VS Code. Go to `Terminal` ⇒ `New Terminal`:
   

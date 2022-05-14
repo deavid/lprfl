@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="styles.css">
 
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -166,8 +167,7 @@
  }
 </code></pre></pre>
 <p>This program does exactly the same thing in just three lines! Amazing, isn’t it? Now variables are actually being useful.</p>
-<p>The syntax for this is as follows<sup class="footnote-reference"><a href="#note">1</a></sup>:
-<sup class="footnote-reference"><a href="#note">1</a></sup> As usual, I’m lying and it’s not the real syntax. For loops are way more powerful than this; we’ll get to that later.</p>
+<p>The syntax for this is as follows<sup class="footnote-reference"><a href="#1">1</a></sup>:</p>
 <p>for variable_name in first_number..=last_number</p>
 <p>We are asking the program to have a variable that counts from 1 to 100. The current count number will be stored in the variable “number” (which we can name it as we like).</p>
 <p>The “..=” in between the numbers is used to define a range. The equals on the right means that it includes the right number. There also exists “..” which does not include the last number (i.e. 0..100 counts from 0 to 99).</p>
@@ -182,6 +182,10 @@
 </code></pre></pre>
 <p>And of course, there’s no limit. You could put three or ten loops one inside another. The limit is your imagination here!</p>
 <p>In this code, it will first pick a row, then go over all the columns. When all 8 columns are done it will proceed with the next row.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>As usual, I’m lying, and it’s not the real syntax. For loops are way more powerful than this; we’ll get to that later.</p>
+</div>
 
                     </main>
 

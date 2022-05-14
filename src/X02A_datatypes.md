@@ -24,7 +24,7 @@ In real life, things are different. Say you want to read a JPG photo from your p
 A program that plays chess by itself has to consider billions of chess possibilities, in this case it is also important to keep each representation as compact as possible.
 
 On the other hand, there are also the two float types, f32 and f64. The difference between them is not the maximum or minimum number like integers, but the amount of significant digits they can carry. f32 can record 6 digits correctly (and a few extra ones) while f64 can record more than 12.
-<!-- in fact, f64 can represent bigger numbers than f32, but not that this does matter here... -->
+<!-- TODO: in fact, f64 can represent bigger numbers than f32, but not that this does matter here... -->
 
 Floating point numbers are used specially on scientific problems. Depending on the problem at hand an f64 might be required, while in others f32 might be better as it has enough precision but it is smaller, allowing for much complex simulations.
 
