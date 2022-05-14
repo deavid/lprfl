@@ -8,6 +8,9 @@ title = "Learn programming with Rust as a first language"
 [rust]
 edition = "2021"
 
+[build]
+build-dir = "docs"
+
 [output.html]
 mathjax-support = true
 curly-quotes = true
