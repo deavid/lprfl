@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="001A_first_language.html"><strong aria-hidden="true">1.</strong> Your first programming language</a></li><li class="chapter-item expanded "><a href="002A_books.html"><strong aria-hidden="true">2.</strong> Related books</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="zzz_extras.html">Others, addendums</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="001A_first_language.html"><strong aria-hidden="true">1.</strong> Your first programming language</a></li><li class="chapter-item expanded "><a href="002A_books.html"><strong aria-hidden="true">2.</strong> Related books</a></li><li class="chapter-item expanded "><a href="003A_setup.html"><strong aria-hidden="true">3.</strong> Setting up the computer</a></li><li class="chapter-item expanded "><a href="004A_first_program.html"><strong aria-hidden="true">4.</strong> Your first program</a></li><li class="chapter-item expanded "><a href="005A_to_the_IDE.html"><strong aria-hidden="true">5.</strong> Quick, to the IDE!</a></li><li class="chapter-item expanded "><a href="006A_recipes.html"><strong aria-hidden="true">6.</strong> It's like cooking recipes, seriously</a></li><li class="chapter-item expanded "><a href="007A_little_boxes.html"><strong aria-hidden="true">7.</strong> Variables are like little boxes that store things inside</a></li><li class="chapter-item expanded "><a href="008A_declaring.html"><strong aria-hidden="true">8.</strong> Declaring variables</a></li><li class="chapter-item expanded "><a href="009A_incrementing.html"><strong aria-hidden="true">9.</strong> Incrementing and decrementing</a></li><li class="chapter-item expanded "><a href="010A_looping.html"><strong aria-hidden="true">10.</strong> Looping' around</a></li><li class="chapter-item expanded "><a href="011A_comments.html"><strong aria-hidden="true">11.</strong> Adding some comments</a></li><li class="chapter-item expanded "><a href="012A_ifs.html"><strong aria-hidden="true">12.</strong> What If...?</a></li><li class="chapter-item expanded "><a href="013A_loops_again.html"><strong aria-hidden="true">13.</strong> For loops again!</a></li><li class="chapter-item expanded "><a href="014A_functions.html"><strong aria-hidden="true">14.</strong> Introducing Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="014B_func_return.html"><strong aria-hidden="true">14.1.</strong> Returning values from functions</a></li><li class="chapter-item expanded "><a href="014C_func_args.html"><strong aria-hidden="true">14.2.</strong> Function arguments</a></li></ol></li><li class="chapter-item expanded "><a href="015A_data_types.html"><strong aria-hidden="true">15.</strong> Data types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="015B_rust_types.html"><strong aria-hidden="true">15.1.</strong> Rust data types</a></li></ol></li><li class="chapter-item expanded "><a href="016A_typedvars.html"><strong aria-hidden="true">16.</strong> Back to declaring variables... with type</a></li><li class="chapter-item expanded "><a href="017A_conversions.html"><strong aria-hidden="true">17.</strong> Converting types with explicit conversions</a></li><li class="chapter-item expanded "><a href="018A_strings_intro.html"><strong aria-hidden="true">18.</strong> A tiny bit on strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="018B_strings_and_str.html"><strong aria-hidden="true">18.1.</strong> Simple explanation on &str vs String</a></li></ol></li><li class="chapter-item expanded "><a href="019A_fun_with_libs.html"><strong aria-hidden="true">19.</strong> Having fun with libraries</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="X01A_TODO.html"><strong aria-hidden="true">20.</strong> To-do: pieces that need more work</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="X02A_datatypes.html"><strong aria-hidden="true">20.1.</strong> What are those other data types for?</a></li><li class="chapter-item expanded "><a href="X03A_funcs_revisited.html"><strong aria-hidden="true">20.2.</strong> A bit more detailed explanation on functions</a></li><li class="chapter-item expanded "><a href="X04A_garbage_collector.html"><strong aria-hidden="true">20.3.</strong> What is a Garbage Collector?</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="Y01A_Appendices.html"><strong aria-hidden="true">21.</strong> Appendices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Y02A_license.html"><strong aria-hidden="true">21.1.</strong> Appendix A. License of this book</a></li><li class="chapter-item expanded "><a href="Y03A_caveats.html"><strong aria-hidden="true">21.2.</strong> Appendix B. Caveats and challenges in this book</a></li><li class="chapter-item expanded "><a href="Y04A_solutions.html"><strong aria-hidden="true">21.3.</strong> Appendix C. Exercises and Solutions</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -248,76 +248,114 @@ the term to make it a funny joke.</p>
 <li>Easy Rust</li>
 <li>A Gentle Introduction to Rust</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="others-addendums"><a class="header" href="#others-addendums">Others, addendums</a></h1>
-<h1 id="installing-rust"><a class="header" href="#installing-rust">Installing Rust</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-up-the-computer"><a class="header" href="#setting-up-the-computer">Setting up the computer</a></h1>
 <p>So you reached this point! I guess we’re doing it. Let’s stop the chatter and bring in the real stuff. Let’s install Rust.</p>
-<p>Get your browser and go to https://rustup.rs/. Follow the instructions there.</p>
+<h2 id="installing-rust"><a class="header" href="#installing-rust">Installing Rust</a></h2>
+<p>Get your browser and go to <a href="https://rustup.rs/">https://rustup.rs/</a>. Follow the instructions there.</p>
 <ul>
-<li>For Windows, there’s a rust-init.exe that you download and will install everything.</li>
+<li>For Windows, there’s a <code>rust-init.exe</code> that you download and will install everything.</li>
 <li>For Linux (my case), there’s a single command line that you copy and paste into the console.</li>
 </ul>
 <!--- And this is a security risk that some people don't want to take. Add an alternative option. -->
 <p>(By the way, if you want to be a developer, you also need to make the terminal your friend)</p>
 <p>That will be all we need to do. Congrats! you installed Rust in your machine!</p>
 <blockquote>
-<p>Chapter 1.1 - Installation of the Holy Book contains the installation instructions.</p>
+<p><code>Chapter 1.1 - Installation</code> of the Holy Book contains the installation instructions.</p>
 </blockquote>
-<h1 id="choosing-an-editor-for-rust"><a class="header" href="#choosing-an-editor-for-rust">Choosing an editor for Rust</a></h1>
-<p>I’m very opinionated here. Get Visual Studio Code. (not to be confused with MS VisualStudio)</p>
+<h2 id="choosing-an-editor-for-rust"><a class="header" href="#choosing-an-editor-for-rust">Choosing an editor for Rust</a></h2>
+<p>I’m very opinionated here. Get Visual Studio Code. 
+(not to be confused with MS Visual Studio)</p>
 <!--- Add the de-Microsoftified Port of VS Code to your Guide: https://vscodium.com/ -->
-<p>People call it VS Code or just “Code”. It’s open source, supports nearly all languages, and works really, really well.</p>
-<p>From those that code with Rust, they mainly use VS Code or Vim. And I’m not going to recommend Vim to anyone. It is an excellent program, but geared towards very senior people. So VS Code it is.</p>
-<p>I have more than 15 years coding, and I do use VS Code. It’s great. On the other hand, I almost never use Vim: it requires a lot of investment that I don’t want to commit to.</p>
-<p>Now, go to the extensions panel and search for “rust-analyzer” and install it. This is all you need to get the best Rust experience.</p>
+<p>People call it VS Code or just “Code”. 
+It’s open source, supports nearly all languages, and works really, really well.</p>
+<p>From those that code with Rust, they mainly use VS Code or Vim. 
+And I’m not going to recommend Vim to anyone. 
+It is an excellent program, but geared towards very senior people. 
+So VS Code it is.</p>
+<p>I have more than 15 years coding, and I do use VS Code. It’s great. 
+On the other hand, I almost never use Vim: 
+it requires a lot of investment that I don’t want to commit to.</p>
+<p>Now, go to the extensions panel and search for “rust-analyzer” and install it. 
+This is all you need to get the best Rust experience.</p>
 <p>(It is really important to have Rust properly installed at this point, or rust-analyzer will fail)</p>
-<p>Your first program</p>
-<p>Before doing anything, it is important to have a folder where you put all your programs. So go ahead and create a folder with the name you like (i.e. “programs”).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-program"><a class="header" href="#your-first-program">Your first program</a></h1>
+<p>Before doing anything, it is important to have a folder where you put all your programs. 
+So go ahead and create a folder with the name you like (i.e. “programs”)<sup class="footnote-reference"><a href="#1">1</a></sup>.
+<sup class="footnote-reference"><a href="#1">1</a></sup>: Personally I use <a href="https://git-scm.com/">Git</a> for everything, and I have 
+the folders structured as <code>/home/deavid/git/rust/project_name</code>.</p>
 <p>A few tips though:</p>
 <ul>
 <li>
-<p>Prefer to use lowercase only for the folder, no spaces. Use an underscore if you need to separate words, but I would recommend writing something short.</p>
+<p>Prefer to use lowercase only for the folder, no spaces. 
+Use an underscore if you need to separate words, but I would 
+recommend writing something short.</p>
 </li>
 <li>
-<p>Place the folder somewhere that has a short, easy path. Don’t place it on your Desktop. On Windows, “C:&quot; might be better as the home folder contains a path with spaces.</p>
+<p>Place the folder somewhere that has a short, easy path. Don’t place it on your 
+Desktop. On Windows, “C:&quot; might be better as the home folder contains a path with spaces.</p>
 </li>
 </ul>
-<p>Now open a terminal and go to this folder. Using “cd ..” and “cd your_folder_name” should do the trick. If you followed my tips, this should be an easy task.</p>
+<p>Now open a terminal and go to this folder. 
+Using <code>cd ..</code> and <code>cd your_folder_name</code> should do the trick. 
+If you followed my tips, this should be an easy task.</p>
 <p>Once you’re set, run the following command:</p>
-<pre><code>$ cargo new learnrust
+<pre><code class="language-console">$ cargo new learnrust
 </code></pre>
-<p>This will create a folder called “learnrust”, you should be able to find it with your file explorer. Inside, there are a few folders and files. This is how an empty Rust program looks.</p>
-<p>It already includes a program in src called “main.rs” (we’ll check out the contents later). And it can be executed. Do “cd learnrust” on the console to get into the folder, then run:</p>
+<p>This will create a folder called <code>learnrust</code>, you should be able to find it with 
+your file explorer. 
+Inside, there are a few folders and files. 
+This is how an empty Rust program looks.</p>
 <!-- Screenshot of the file manager? -->
-<pre><code>$ cargo run
+<p>It already includes a program in src called <code>main.rs</code> (we’ll check out the contents later). 
+And it can be executed. </p>
+<p>Do <code>cd learnrust</code> on the console to get into the folder, then run:</p>
+<pre><code class="language-console">$ cargo run
 </code></pre>
 <p>The output will be similar to this:</p>
-<pre><code>$ cargo run
+<pre><code class="language-console">$ cargo run
 Compiling learnrust v0.1.0 (/home/deavid/git/rust/learnrust)
 Finished dev [unoptimized + debuginfo] target(s) in 0.34s
- Running `target/debug/learnrust`
+  Running `target/debug/learnrust`
 Hello, world!
 </code></pre>
 <p>The program has been built and executed. The program output is “Hello, world!”.</p>
-<p>Congrats! you just wrote your first program. (more or less, hah)</p>
+<p>Congrats! You just wrote your first program. (more or less, hah)</p>
 <p>If you execute “cargo run” again, then:</p>
-<pre><code>$ cargo run
-Finished dev [unoptimized + debuginfo] target(s) in 0.00s
- Running `target/debug/learnrust`
-Hello, world!
+<pre><code class="language-console">    $ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/learnrust`
+    Hello, world!
 </code></pre>
-<p>Notice how something is different. At first it compiled the program, then executed it. On the second time, it noticed that the program was unchanged, so it was run without compiling it again.</p>
-<p>This is covered in Chapter 1.2 - Hello World! of the holy book.</p>
-<p>What is this cargo command?</p>
-<p>Surely you noticed that we did “cargo run” and not “rust run”. Cargo is like the swiss-army knife of Rust, it will simplify all our processes during coding, and removes a lot of stuff that we don’t need to learn.</p>
+<p>Notice how something is different. 
+At first, it compiled the program, then executed it. 
+On the second time, it noticed that the program was unchanged, so 
+it was run without compiling it again.</p>
+<p>This is covered in <code>Chapter 1.2 - Hello World!</code> of the holy book.</p>
+<h2 id="what-is-this-cargo-command"><a class="header" href="#what-is-this-cargo-command">What is this cargo command?</a></h2>
+<p>Surely you noticed that we did “cargo run” and not “rust run”. 
+Cargo is like the swiss-army knife of Rust, it will simplify all our processes 
+during coding, and removes a lot of stuff that we don’t need to learn.</p>
 <p>Main things that it does:</p>
 <ul>
-<li>Instead of compiling the program with “rustc”, it’s just “cargo build”. “rustc” will need flags and it’s a bit tricky to do right, cargo makes this super simple.</li>
-<li>The programs are built in ./target/debug/ or ./target/release. We could run these directly, but we would need to remember to build them first. “cargo run” does this for us.</li>
-<li>We might need to download libraries for additional stuff (this is common in all programming languages), but instead of doing this manually, we can declare in “Cargo.toml” which ones do we want, and when we do “cargo build” it will download anything missing automatically.</li>
+<li>Instead of compiling the program with <code>rustc</code>, it’s just <code>cargo build</code>. 
+<code>rustc</code> will need flags, and it’s a bit tricky to do right, cargo makes this super simple.</li>
+<li>The programs are built in <code>./target/debug/</code> or <code>./target/release</code>. 
+We could run these directly, but we would need to remember to build them first. 
+<code>cargo run</code> does this for us.</li>
+<li>We might need to download libraries for additional stuff 
+(this is common in all programming languages), but instead of doing this manually, 
+we can declare in <code>Cargo.toml</code> which ones do we want, and when 
+we do <code>cargo build</code> it will download anything missing automatically.</li>
 </ul>
-<p>There’s much more than this, but for now this is what we will be using. The bottom line is that we will always use “cargo” and forget about the other commands. That’s less things to remember.</p>
-<p>As a side note, if you installed with rustup.rs as I recommended, there’s also a “rustup” command. This is used to update rust and cargo themselves. If you need to update, just run “rustup update” and everything will be done automatically. It’s a good idea to do this once a month or so, but if you don’t do it is also fine.</p>
-<p>Quick, to the IDE!</p>
+<p>There’s much more than this, but for now this is what we will be using. 
+The bottom line is that we will always use <code>cargo</code> and forget about the other commands. 
+That’s fewer things to remember.</p>
+<p>As a side note, if you installed with <code>rustup.rs</code> as I recommended, there’s 
+also a <code>rustup</code> command. This is used to update rust and cargo themselves. 
+If you need to update, just run <code>rustup update</code> and everything will be done 
+automatically. 
+It’s a good idea to do this once a month or so, but if you don’t do it is also fine.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quick-to-the-ide"><a class="header" href="#quick-to-the-ide">Quick, to the IDE!</a></h1>
 <p>Let’s start using that nice VS Code that we installed earlier. Open VS Code, look for the Menu “File” and click “Open Folder…”. Select the “learnrust” folder that cargo created.</p>
 <p>Now, open the src folder using the left panel and you’ll see the main.rs. Double click on it.</p>
 <p>This is what you should see:</p>
@@ -335,7 +373,7 @@ Hello, world!
 <p>You can try to print different texts or more lines. For example:</p>
 <p>This is not very useful, but it’s important to play around and get familiar with what we learn.</p>
 <p>Programs are executed one line at a time. Rust will read the first line, execute the command, then go to the next line and do the same. Until it reaches the end of the program and then the program just ends.</p>
-<p>It’s like cooking recipes, seriously</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="its-like-cooking-recipes-seriously"><a class="header" href="#its-like-cooking-recipes-seriously">It’s like cooking recipes, seriously</a></h1>
 <p>You may not be into cooking, and that’s fine. But probably you know what a cooking recipe is: nothing more than a set of steps (instructions) that if followed produce the desired result: delicious food.</p>
 <p>A program works in the same way. It has a set of instructions that should be followed step by step to produce the desired result. </p>
 <p>There are stupid simple cooking recipes, for example to prepare frozen pizza:</p>
@@ -357,7 +395,7 @@ Hello, world!
 <p>There are loops, which allow us to say “do this 10 times”.</p>
 <p>There are functions, which in recipes appears when a meal is very complicated and for a particular step says “to do the base of the cake, refer to this other recipe”. It avoids repeating ourselves every time that a set of steps are reused across recipes.</p>
 <p>Of course programs can do things really complicated that are quite far from recipes, but if you’re starting to learn, this comparison will serve you to get a better grasp on how this all works.</p>
-<p>Variables are like little boxes that store things inside</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variables-are-like-little-boxes-that-store-things-inside"><a class="header" href="#variables-are-like-little-boxes-that-store-things-inside">Variables are like little boxes that store things inside</a></h1>
 <p>Printing some texts gets boring very fast. A computer does calculations for us, that’s what makes them useful. </p>
 <p>It is possible to do simple calculations and print them, but this doesn’t have much mystery either:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -424,7 +462,7 @@ In Rust we would do instead:</li>
 </span></code></pre></pre>
 <p>So, if this is the case, why do we complicate this so much?</p>
 <p>Well, variables will help us do much more complex programs, as they can keep track of what was the user input or other data that we are managing inside. It will make sense soon, so bear with me for now.</p>
-<p>Declaring variables</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="declaring-variables"><a class="header" href="#declaring-variables">Declaring variables</a></h1>
 <p>Before we can store values into a variable, we need to declare it. Declaring a variable means to tell Rust to create it, we will be explaining to it that this name is something that we will be using later.</p>
 <!-- I don't really like this explanation but can't think of anything else -->
 <p>Some programming languages don’t require declaring, and just storing a value for the first time will do the trick. This is the case for Python, but not for Rust.</p>
@@ -484,7 +522,7 @@ let z = 2;
 <p>We don’t write the programs for computers, we write them for humans to understand. If you think that a particular way is easier to read and understand, go with it.</p>
 <p>As you’ll start to notice by now, there are several ways to write a program (in fact, they’re infinite). This might feel annoying. Worse even, there’s no “right way”. There are subjectively better and worse ways, but it’s always up to humans to define what looks and feels better and come up with reasons for it.</p>
 <p>Don’t be bothered about this, don’t think much about this. It is fine. Just write what it feels better to you personally and you’ll be grand. Over time you’ll learn more about how to make the code more readable, but that comes with experience. For now, let’s focus on learning this.</p>
-<p>Incrementing and decrementing</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="incrementing-and-decrementing"><a class="header" href="#incrementing-and-decrementing">Incrementing and decrementing</a></h1>
 <p>There’s a lot of stuff we can do with variables, but a very common thing is to use them to count, so an instruction that just says “add one to X” is quite handy:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"> fn main() {
    let mut x = 4;
@@ -522,7 +560,7 @@ let z = 2;
 <p>Which just means: read “x”, add one, and write the result into “x” again; overwriting the previous content.</p>
 <p>A reminder: these are instructions, not math equations. The equals sign stores on the left the result of evaluating the right side.</p>
 <p>Most operations you can think of that take the same form have a shortened operator as well. For example doubling a number is just “x *= 2”, which means “x = x * 2”.</p>
-<p>Looping’ around</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="looping-around"><a class="header" href="#looping-around">Looping’ around</a></h1>
 <p>I’m sure you feel that variables don’t do that much. But that’s because the programs we can write up to now are too linear and simple. We need to step up the game with… loops!</p>
 <p>Loops are ways of repeating the same piece of code several times without need of copy pasting. For example, imagine we want to make a simple program that counts from 1 to 100:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
@@ -560,7 +598,7 @@ let z = 2;
 </code></pre></pre>
 <p>And of course, there’s no limit. You could put three or ten loops one inside another. The limit is your imagination here!</p>
 <p>In this code, it will first pick a row, then go over all the columns. When all 8 columns are done it will proceed with the next row.</p>
-<p>Adding some comments</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-some-comments"><a class="header" href="#adding-some-comments">Adding some comments</a></h1>
 <p>The programs sometimes are hard to understand and it would be nice to leave some notes for the people reading it so they can understand it too. And I bet you that you’ll forget what a program does after 3 months, even if you wrote it yourself. It happens to me too. So it’s good to have some notes on the program so we can understand it later.</p>
 <p>They can also be used to denote that some work is yet missing (we call these TODO) so it serves as a reminder for later on. But we all know that we will never get to do them. That’s how it works in reality, trust me.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
@@ -587,7 +625,7 @@ let z = 2;
 <p>Voilà. Now we no longer have any program. As Rust is concerned, the file is empty.</p>
 <p>But these comment types are a bit trickier. They cannot be nested. If you try to add a block comment on something that already contains a comment block inside, Rust will get confused.</p>
 <p>Because of this, I prefer to avoid these and stick with the simple and reliable double slash (//).</p>
-<p>What If…?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-if"><a class="header" href="#what-if">What If…?</a></h1>
 <p>… it is raining outside? You should get an umbrella, right?</p>
 <p>This is basically a conditional: If it’s raining, get an umbrella. We have these in Rust and use the keyword “if”. The name may not sound original at all, but helps reading the program as if it were english.</p>
 <p>For example:</p>
@@ -623,7 +661,7 @@ if condition { … what to do if the condition is true … } else { … what to 
  }
 </code></pre></pre>
 <p>Ok, enough of this. It’s too simple I guess and we need to spice it up with…</p>
-<p>For loops again!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="for-loops-again"><a class="header" href="#for-loops-again">For loops again!</a></h1>
 <p>Yay! Wait, I thought you were excited about this.</p>
 <p>Let’s do something useful. This program will graph the function “y = x * x / 20 - 9” in the terminal:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
@@ -681,14 +719,14 @@ if condition { … what to do if the condition is true … } else { … what to 
            }
 <span class="boring">}
 </span></code></pre></pre>
-<p>This computes x² by doing “x * x”, divides by 20 and then subtracts 9. Rust has a pow() function to do x² instead of x * x, but to keep it simple I avoided it. Anyway, this gets stored into the “value” variable and the “if” compares against “y”.
-So, if it’s less than “y” prints a hash “#”, if not, it prints a space “ “ otherwise.
-This is meant to fill the shape. Given the math function:</p>
+<p>This computes x² by doing “x * x”, divides by 20 and then subtracts 9. Rust has a pow() function to do x² instead of x * x, but to keep it simple I avoided it. Anyway, this gets stored into the “value” variable and the “if” compares against “y”.</p>
+<p>So, if it’s less than “y” prints a hash “#”, if not, it prints a space “ “ otherwise.</p>
+<p>This is meant to fill the shape. Given the math function:</p>
 <pre><code>    y = x² / 20 - 9
 </code></pre>
-<p>It computes which “squares” are below the math function and uses the “#” character to fill the shape.
-Notice how I used “print!” instead of “println!”. The lack of the “ln” (which stands for line) makes that print not open a new line, so it prints to the right, like a typewriter.
-So all that is left is to loop across all “x” and “y” squares:</p>
+<p>It computes which “squares” are below the math function and uses the “#” character to fill the shape.</p>
+<p>Notice how I used “print!” instead of “println!”. The lack of the “ln” (which stands for line) makes that print not open a new line, so it prints to the right, like a typewriter.</p>
+<p>So all that is left is to loop across all “x” and “y” squares:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -700,18 +738,18 @@ So all that is left is to loop across all “x” and “y” squares:</p>
    }
 <span class="boring">}
 </span></code></pre></pre>
-<p>So using here a nested loop we iterate through negative and positive values for both x and y.
-As “y” is usually the vertical axis, and the terminal prints first left-to-right and then to-to-bottom, we need to first print an entire row; That’s why the “for y” appears first and the “for x” appears next.
-After the “for x” is done, we need to move to the next line, so an empty “println!()” will move the cursor to the next line.
-Introducing Functions
-It might seem difficult to picture that sometimes the same piece of code needs to repeat in different places of the code, and it’s not a loop what I’m talking about.
-The example programs I can add in this book have to be small so we can go line by line. In reality, good useful programs have thousands of lines. It’s hard to make something really useful in twenty lines with only the basic operations we learned.
-It might seem daunting to think about writing several thousand lines, but it is easier than it seems. We always start small, we keep adding pieces and after a few weeks it’s easy to have those thousand lines.
-One of the applications I wrote, zzping, has nearly 7000 lines of code in it. And it has been only a hobby without much investment from my side. Programs get big very easily.
-Having all those instructions inside the “fn main() {…}” is very hard to follow. It’s similar to organizing stuff in your room or in the house. If all items of your house were in a single big box, trying to find anything there is nearly impossible, so we all use different drawers, stands and boxes to sort the stuff so we can locate it later.
-In the same fashion, we split big programs into different files, so all related instructions that work towards a similar goal are near each other, and each file has its own tools there.
-We will see later on how to split into different files (in Rust, those are called modules), but now I want to explain how to sort stuff out inside a single file.
-Imagine we’re doing some sort of program that tells the user interesting stuff and it has a menu:</p>
+<p>So using here a nested loop we iterate through negative and positive values for both x and y.</p>
+<p>As “y” is usually the vertical axis, and the terminal prints first left-to-right and then to-to-bottom, we need to first print an entire row; That’s why the “for y” appears first and the “for x” appears next.</p>
+<p>After the “for x” is done, we need to move to the next line, so an empty “println!()” will move the cursor to the next line.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introducing-functions"><a class="header" href="#introducing-functions">Introducing Functions</a></h1>
+<p>It might seem difficult to picture that sometimes the same piece of code needs to repeat in different places of the code, and it’s not a loop what I’m talking about.</p>
+<p>The example programs I can add in this book have to be small so we can go line by line. In reality, good useful programs have thousands of lines. It’s hard to make something really useful in twenty lines with only the basic operations we learned.</p>
+<p>It might seem daunting to think about writing several thousand lines, but it is easier than it seems. We always start small, we keep adding pieces and after a few weeks it’s easy to have those thousand lines.</p>
+<p>One of the applications I wrote, zzping, has nearly 7000 lines of code in it. And it has been only a hobby without much investment from my side. Programs get big very easily.</p>
+<p>Having all those instructions inside the “fn main() {…}” is very hard to follow. It’s similar to organizing stuff in your room or in the house. If all items of your house were in a single big box, trying to find anything there is nearly impossible, so we all use different drawers, stands and boxes to sort the stuff so we can locate it later.</p>
+<p>In the same fashion, we split big programs into different files, so all related instructions that work towards a similar goal are near each other, and each file has its own tools there.</p>
+<p>We will see later on how to split into different files (in Rust, those are called modules), but now I want to explain how to sort stuff out inside a single file.</p>
+<p>Imagine we’re doing some sort of program that tells the user interesting stuff and it has a menu:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
    println!(&quot;Welcome to the Trivia program!&quot;);
    println!(&quot;------------------------------&quot;);
@@ -802,7 +840,7 @@ fn your_function_name() { … your code here for what this function does … }</
 your_function_name();</p>
 <p>And the key thing here is “call it as many times you want”. The function’s purpose is to be reused several times, so you don’t have to repeat your code several times.</p>
 <p>The declaration part doesn’t need to be above or below the main(), it can be anywhere as long as it is not inside the main. Placing it before or after the main is fine, the order doesn’t matter.</p>
-<p>Returning values from functions </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="returning-values-from-functions"><a class="header" href="#returning-values-from-functions">Returning values from functions</a></h1>
 <p>It is also possible to use a function to calculate a certain value. For example, we can calculate the number PI:</p>
 <pre><pre class="playground"><code class="language-rust edition2021"> fn calculate_pi() -&gt; f64 {
    // https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
@@ -878,7 +916,7 @@ pi: 3.1415926785904635</p>
      Running `target/release/learnrust`
   pi: 3.1415926785904635
 </code></pre>
-<p>Function arguments</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="function-arguments"><a class="header" href="#function-arguments">Function arguments</a></h1>
 <p>But what if we wanted a configurable number of steps? We can do that!</p>
 <p>Functions can accept data when they’re called, like this:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -950,7 +988,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 </span></code></pre></pre>
 <p>This computes “steps = 10n”, that is, the power of 10 raised to the “n”. For this we use the function pow that exists inside the “i64” type. The double colon operator “a::b” is used to access the functions inside other libraries (or any content in fact).</p>
 <p>Note that this function pow accepts two numbers as input and returns a number.</p>
-<p>Data types</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="data-types"><a class="header" href="#data-types">Data types</a></h1>
 <p>We have reached a point where I cannot continue to explain much more without giving you a fair bit of theory. Sorry about this, but it’s needed.</p>
 <p>What are data types?</p>
 <p>First of all: what is data? Data is just the technical term for value. The number 5 is a value and is data, and so is 2.41 or the string “Basement”.</p>
@@ -971,7 +1009,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 </ul>
 <p>You might be inclined to always use floating point numbers for everything, as they can do much more than regular integers. If they’re better, there’s no point in using the puny integers, right?</p>
 <p>Well, no. Later on I will recommend you to avoid floats like the plague. They have lots of problems that will make your life difficult. But for now if you want to stick with them it’s totally fine. Just write 2.0 instead of 2 for every number and you’re done.</p>
-<p>Rust data types</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust-data-types"><a class="header" href="#rust-data-types">Rust data types</a></h1>
 <p>Rust data types are however a bit more nuanced. You see, these values we want to store have to be actually recorded somewhere in your physical computer. And that will be your computer memory (RAM, or DDR if you prefer). The number 4 might not look like much, but Rust has to ask for memory from your computer in order to save the value somewhere, else it would be lost, forgotten and programs won’t run.</p>
 <p>So the question that Rust faces is: how much memory is needed for this variable? A variable can change its value later on, for example that x=4, later on it can be x=99999999. It needs to grab enough memory in order to ensure that all values you might want to put there actually do fit.</p>
 <p>This is why integers are split into different sizes:</p>
@@ -1033,7 +1071,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <li>Booleans (true/false): bool</li>
 <li>Locating values inside a list: usize (we’ll see this later on)</li>
 </ul>
-<p>Back to declaring variables… with type</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="back-to-declaring-variables-with-type"><a class="header" href="#back-to-declaring-variables-with-type">Back to declaring variables… with type</a></h1>
 <p>Now that we have a rough idea on types, we can do more things with the “let” keyword.</p>
 <p>For example, we can tell Rust to use an i64 for our number:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -1056,7 +1094,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <p>Rust will do something similar to what I’m telling you to do. i64 is a perfectly fine type for most uses, so just go with that. Rust is probably doing the same thing here: It seems you want a number; does i64 work? ok, so that one then; that looks good<sup class="footnote-reference"><a href="#note">1</a></sup>.
 <sup class="footnote-reference"><a href="#note">1</a></sup> Note here that Rust might guess differently and prefer an i32 over an i64 “because it’s smaller and it still works”. As we didn’t care about which type, it’s pointless to try to know what Rust exactly does. If we want to be sure it’s an i64, we just write it down</p>
 <p>Rust does a lot of guesswork to select the type, and most of the time we don’t need to care about this. In a few particular times it might be confused with too many options that are too different, and might complain. In such cases, we need to help it by defining the type. Aside from that we’ll avoid setting the types and let Rust do its magic.</p>
-<p>Converting types with explicit conversions</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="converting-types-with-explicit-conversions"><a class="header" href="#converting-types-with-explicit-conversions">Converting types with explicit conversions</a></h1>
 <p>As you can imagine, it is pretty common having a mix of types. With so many data types it is easy to end up having an operation that needs to mix them in some way, and Rust does not allow that.</p>
 <p>We will avoid the majority of those problems by using as few types as possible, just i64 and f64. But it will happen at some point.</p>
 <p>For example, consider a simplistic example:</p>
@@ -1083,7 +1121,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <p>Explicit conversions have their limitations though. It works only between some types that are easy for Rust to convert. You can’t use it to convert to or from strings (there are other conversion types for that), or between string types.</p>
 <p>Doing the reverse, converting a float into an integer, will drop any decimal places. So “2.99999 as i64” is just 2. It will not round the number to 3. There are other ways for rounding numbers.</p>
 <p>The reason why explicit conversion works for so few cases and its behavior. These conversions are usually supported by your CPU and are really fast. Rounding numbers or converting an integer into a string will take several iterations in your CPU to complete. Those are also very fast, just not as fast as the explicit conversion. Rust is trying to signal you where your program might be consuming more resources, which is helpful, but we don’t need to be obsessed with speed. Rust is very fast, and so is your computer (even if old).</p>
-<p>A tiny bit on strings</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-tiny-bit-on-strings"><a class="header" href="#a-tiny-bit-on-strings">A tiny bit on strings</a></h1>
 <p>Storing and manipulating texts in a program is a bit harder to explain than numbers. This is because a computer does not work with text, but with numbers.</p>
 <p>Surely you have heard that in a computer everything are ones and zeros (the binary system). These can be combined to create big numbers, and with some tricks the CPU can also work natively with floating point in order to have decimal places.</p>
 <p>But text is not a number, which means that Rust needs a bit of work behind the scenes to make these work.</p>
@@ -1102,7 +1140,7 @@ fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
 <p>Why are texts called “strings”?
 https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-a-string
 (To be completed later)</p>
-<p>Simple explanation on &amp;str vs String</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="simple-explanation-on-str-vs-string"><a class="header" href="#simple-explanation-on-str-vs-string">Simple explanation on &amp;str vs String</a></h1>
 <p>We will use these soon, so they need a bit of an introduction. They both store a sequence of characters.</p>
 <p>It all boils down to what I commented early on. Rust (and the computer itself) needs to know how big a variable is. But a string can change in size very abruptly.</p>
 <p>Because of this, Rust cannot know the size of most strings until the program is actually executed. This poses a problem, because without a rigid size in memory we cannot have variables that contain text. At most, we can have a variable that stores a single character, but this isn’t very useful.</p>
@@ -1119,14 +1157,14 @@ https://stackoverflow.com/questions/880195/the-history-behind-the-definition-of-
  }
 </code></pre></pre>
 <p>We’ll go on more details later on, but for now we will basically use whatever type Rust is happier with. Depending on what we’re doing we will probably need one or the other and convert accordingly.</p>
-<p>Having fun with libraries</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="having-fun-with-libraries"><a class="header" href="#having-fun-with-libraries">Having fun with libraries</a></h1>
 <p>Doing everything by ourselves might be rewarding, but it is also tiring. It takes a lot of effort and knowledge to code a proper program that is really useful. But I like a saying that goes: “Don’t reinvent the wheel”</p>
 <p>If you need something, it is highly probable that someone else did it already and shared it for free. Seriously. Most of the time it is just a problem of not googling enough, or using the right keywords.</p>
-<p>People share their functions and modules as libraries called “crates” in a site called crates.io.
-As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#note">1</a></sup>. They will allow you to create interesting programs easily, giving you a good sense of progress.
+<p>People share their functions and modules as libraries called “crates” in a site called crates.io.</p>
+<p>As a beginner, it is important to use as many crates as you can<sup class="footnote-reference"><a href="#note">1</a></sup>. They will allow you to create interesting programs easily, giving you a good sense of progress.
 <sup class="footnote-reference"><a href="#note">1</a></sup> Of course, don’t go crazy and import the whole site. It’s not a race to see who imports more crates. Also, as you gain more experience you should be able to keep the number of imported libraries low.</p>
-<p>The first library I want you to try is “rand”: https://crates.io/crates/rand
-This crate as the name suggests creates random numbers. We need to install it in our project, and for that, notice that on the right side of the website there are Install instructions and Documentation:</p>
+<p>The first library I want you to try is “rand”: https://crates.io/crates/rand</p>
+<p>This crate as the name suggests creates random numbers. We need to install it in our project, and for that, notice that on the right side of the website there are Install instructions and Documentation:</p>
 <p>So we will follow the install instructions. We need to open our “Cargo.toml” file first. This file was created when we did “cargo new”.</p>
 <pre><code class="language-toml"> [package]
  name = &quot;learnrust&quot;
@@ -1139,7 +1177,7 @@ This crate as the name suggests creates random numbers. We need to install it in
  rand = &quot;0.8.4&quot;   # Add dependencies here
 </code></pre>
 <p>We add the new crate to this file by inserting the line <code>rand = &quot;0.8.4&quot;</code> as the instructions say just below the <code>[dependencies]</code>.</p>
-<p>It we execute now “cargo run” we get something different already:</p>
+<p>If we execute now “cargo run” we get something different already:</p>
 <pre><code> $ cargo run
    Compiling cfg-if v1.0.0
    Compiling ppv-lite86 v0.2.15
@@ -1208,8 +1246,8 @@ This crate as the name suggests creates random numbers. We need to install it in
 <p>In this case we need to create a random number generator object (rng). This will be holding the internal state of the random generator. It needs to be mutable because the state changes as each number is generated, so the numbers aren’t repeated every time.</p>
 <p>The gen_range(1..=100) specifies which range of numbers to retrieve, like in a for loop, but in this case we only get a single number, randomly.</p>
 <p>The “use rand::Rng” on the top is needed to access the gen_range method. This is what Rust calls a Trait. We will go over these later on.</p>
-<h1 id="-to-be-arranged-"><a class="header" href="#-to-be-arranged-">— To be arranged —</a></h1>
-<h2 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="to-do-pieces-that-need-more-work"><a class="header" href="#to-do-pieces-that-need-more-work">To-do: pieces that need more work</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h1>
 <p>So we talked earlier about Rust data types and we’re just using a few. Why do they exist? Let’s put them together here:</p>
 <table><thead><tr><th>Type</th><th>Min</th><th>Max</th><th></th><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
 <tr><td>u8</td><td>0</td><td>255</td><td></td><td>i8</td><td>-128</td><td>127</td></tr>
@@ -1232,9 +1270,9 @@ This crate as the name suggests creates random numbers. We need to install it in
 <p>Floating point numbers are used specially on scientific problems. Depending on the problem at hand an f64 might be required, while in others f32 might be better as it has enough precision but it is smaller, allowing for much complex simulations.</p>
 <p>Graphics cards use a lot of floating point numbers to draw scenes for a game. If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk</p>
 <p>I hope this helps understanding why these types exist, and why we aren’t using them for now.</p>
-<p>A bit more detailed explanation on functions</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-bit-more-detailed-explanation-on-functions"><a class="header" href="#a-bit-more-detailed-explanation-on-functions">A bit more detailed explanation on functions</a></h1>
 <p>(….) (roughly explain a type, why the parentheses produce the call of the function, what happens if you forget the parentheses when calling, etc)</p>
-<p>What is a Garbage Collector?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-a-garbage-collector"><a class="header" href="#what-is-a-garbage-collector">What is a Garbage Collector?</a></h1>
 <p>It’s something that Rust doesn’t have. Have a good day!</p>
 <p>Garbage Collector is about memory allocation. In C &amp; C++ memory needs to be manually requested and freed. Because this is very dangerous, most other languages automatically allocate and free.</p>
 <p>Allocating is “easy”, as the first use is allocating. But automatic free is hard, because you need to ensure that no parts of the program can access that variable anymore.</p>
@@ -1249,19 +1287,19 @@ This crate as the name suggests creates random numbers. We need to install it in
 <p>Rust is kind of a compiler assisted C++. Automatic like Python, but if the compiler cannot prove your program is correct (even if the program in fact IS correct), it will reject it and won’t compile. </p>
 <p>So the drawback from Rust approach is the added difficulty of learning Ownership &amp; Borrowing (which I talk about in my blog post)
 ….</p>
-<p>Appendix A. License of this book</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendices"><a class="header" href="#appendices">Appendices</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-a-license-of-this-book"><a class="header" href="#appendix-a-license-of-this-book">Appendix A. License of this book</a></h1>
 <p>This text is licensed under the Creative Commons license “Attribution 4.0 International (CC BY 4.0)” which can be read here:</p>
 <p>https://creativecommons.org/licenses/by/4.0/</p>
 <p>https://creativecommons.org/licenses/by/4.0/legalcode</p>
-<p>Appendix B. Caveats and challenges in this book</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-b-caveats-and-challenges-in-this-book"><a class="header" href="#appendix-b-caveats-and-challenges-in-this-book">Appendix B. Caveats and challenges in this book</a></h1>
 <p>This book is intended to people with no previous experience in coding at all and attempts to teach programming in a very approachable way.</p>
 <p>Because of this, a lot of information is hidden, misrepresented or factually incorrect. It is needed to hide and oversimplify stuff so new learners don’t get overloaded with information. This also helps the reader to create their own programs very early on without needing 
 to have a proper understanding, which can come in later on.</p>
 <p>Other books might put a lot of theory in front to give a good understanding of what is coming next, but theory is indeed boring until it’s put into use, so in this book I try to push down the theory as far as possible.</p>
 <p>If this approach is good or bad it’s certainly subjective. But as everyone else goes for a more academic way, and there is almost no one that does something like I do in this book, I think it’s good to add more choices for learning.</p>
-<p>Appendix C. Exercises and Solutions</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-c-exercises-and-solutions"><a class="header" href="#appendix-c-exercises-and-solutions">Appendix C. Exercises and Solutions</a></h1>
 <p>TODO: There should be some exercises for the reader and put the solutions here. Ideally, place the solutions in random order to avoid the reader from inadvertently reading the next solution to their problem. </p>
-<hr />
 
                     </main>
 

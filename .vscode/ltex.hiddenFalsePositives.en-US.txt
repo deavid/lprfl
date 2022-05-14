@@ -1,0 +1,2 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qu16 is used for storing UTF16 characters, which are 2 byte long.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qu32 can be used to store colors of pixels of an image (Red, Green, Blue and Alpha)\\E$"}
