@@ -1,0 +1,6 @@
+[book]
+authors = ["David Martinez Marti"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Learn programming with Rust as a first language"
