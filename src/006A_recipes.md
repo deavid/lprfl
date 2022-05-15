@@ -36,7 +36,7 @@ There are loops, which allow us to say "do this 10 times".
 
 There are functions, which in recipes appears when a meal is very complicated 
 and for a particular step says "to do the base of the cake, refer to this other recipe". 
-It avoids repeating ourselves every time that a set of steps are reused across recipes.
+It avoids repeating ourselves every time that a set of steps we can reuse across recipes.
 
 Of course programs can do things really complicated that are quite far from recipes, 
 but if you're starting to learn, this comparison will serve you to get a 
