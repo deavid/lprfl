@@ -3,7 +3,7 @@
 For learning purposes, there was a little program called `turtle` in the 80s for
 a programming language called LOGO.
 
-This was intended for kids to learn coding. It displayed a little turtle and
+This was intended for kids to learn coding. It displayed a little turtle, and
 they could send commands such as:
 
 * Move right 30 pixels.

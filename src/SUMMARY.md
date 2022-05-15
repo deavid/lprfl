@@ -28,6 +28,11 @@
 - [A tiny bit on strings](./018A_strings_intro.md)
     - [Simple explanation on &str vs String](./018B_strings_and_str.md)
 - [Having fun with libraries](./019A_fun_with_libs.md)
+- [Not everything are numbers and texts: Structs](./020A_structs.md)
+    - [Struct-specific functions, really?](./020B_struct_impl.md)
+    - [OOP? More like OP](./020C_oop.md)
+- [Enums!]()
+- [Borrowing]()
 ----------------
 - [To-do: pieces that need more work](./X01A_TODO.md)
     - [What are those other data types for?](./X02A_datatypes.md)
@@ -38,3 +43,4 @@
     - [Appendix A. License of this book](./Y02A_license.md)
     - [Appendix B. Caveats and challenges in this book](./Y03A_caveats.md)
     - [Appendix C. Exercises and Solutions](./Y04A_solutions.md)
+    - [Appendix D. Proposed projects](./Y05A_projects.md)
