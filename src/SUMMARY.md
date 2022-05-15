@@ -11,6 +11,8 @@
 - [Variables are like little boxes that store things inside](./007A_little_boxes.md)
     - [Exercise: Printing and Formatting](./007B_ex_print_format.md)
 - [Declaring variables](./008A_declaring.md)
+    - [Exercise: Variables](./008B_ex_variables.md)
+    - [Let's try Turtle!](./008C_turtle.md) 
 - [Incrementing and decrementing](./009A_incrementing.md)
 - [Looping' around](./010A_looping.md)
 - [Adding some comments](./011A_comments.md)

@@ -11,4 +11,11 @@ name = "sample1"
 [[bin]]
 name = "print"
 
+[[bin]]
+name = "variables"
+
+[[bin]]
+name = "turtle_vars"
+
 [dependencies]
+turtle = { git = "https://github.com/sunjay/turtle.git", tag = "v1.0.0-rc.2" }
