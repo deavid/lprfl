@@ -237,7 +237,7 @@ It is the true starting point for learning the language and contains
 everything, from beginner to truly advanced. 
 It covers the entire language (except the uses of Unsafe, that are covered in 
 the Necronomicon… I mean, the Rustonomicon)</p>
-<p>This guide is not meant to replace the holy book itself, as it is very well 
+<p>This guide it is not meant to replace the holy book itself, as it is very well 
 written by experts and reviewed by the whole community. </p>
 <p>If that’s the case, what’s the point of this then? Well, the holy book assumes 
 some knowledge. It will rapidly grow in difficulty and will require several 
@@ -254,9 +254,9 @@ the term to make it a funny joke.</p>
 <h2 id="other-rust-books"><a class="header" href="#other-rust-books">Other Rust books</a></h2>
 <p>See <a href="https://github.com/sger/RustBooks">https://github.com/sger/RustBooks</a></p>
 <ul>
-<li>Rust by Example</li>
-<li>Easy Rust</li>
-<li>A Gentle Introduction to Rust</li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/">Rust by Example</a></li>
+<li><a href="https://dhghomon.github.io/easy_rust/">Easy Rust</a></li>
+<li><a href="https://stevedonovan.github.io/rust-gentle-intro/">A Gentle Introduction to Rust</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="setting-up-the-computer"><a class="header" href="#setting-up-the-computer">Setting up the computer</a></h1>
 <p>So you reached this point! I guess we’re doing it. Let’s stop the chatter and bring in the real stuff. Let’s install Rust.</p>
@@ -293,9 +293,7 @@ This is all you need to get the best Rust experience.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="your-first-program"><a class="header" href="#your-first-program">Your first program</a></h1>
 <p>Before doing anything, it is important to have a folder where you put all your programs. 
-So go ahead and create a folder with the name you like (i.e. “programs”)<sup class="footnote-reference"><a href="#1">1</a></sup>.
-<sup class="footnote-reference"><a href="#1">1</a></sup>: Personally I use <a href="https://git-scm.com/">Git</a> for everything, and I have 
-the folders structured as <code>/home/deavid/git/rust/project_name</code>.</p>
+So go ahead and create a folder with the name you like (i.e., “programs”)<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
 <p>A few tips though:</p>
 <ul>
 <li>
@@ -352,11 +350,11 @@ during coding, and removes a lot of stuff that we don’t need to learn.</p>
 <ul>
 <li>Instead of compiling the program with <code>rustc</code>, it’s just <code>cargo build</code>. 
 <code>rustc</code> will need flags, and it’s a bit tricky to do right, cargo makes this super simple.</li>
-<li>The programs are built in <code>./target/debug/</code> or <code>./target/release</code>. 
+<li>Cargo built the program in <code>./target/debug/</code> or <code>./target/release</code>. 
 We could run these directly, but we would need to remember to build them first. 
 <code>cargo run</code> does this for us.</li>
 <li>We might need to download libraries for additional stuff 
-(this is common in all programming languages), but instead of doing this manually, 
+(this is common in all programming languages). Instead of doing this manually, 
 we can declare in <code>Cargo.toml</code> which ones do we want, and when 
 we do <code>cargo build</code> it will download anything missing automatically.</li>
 </ul>
@@ -368,6 +366,10 @@ also a <code>rustup</code> command. This is used to update rust and cargo themse
 If you need to update, just run <code>rustup update</code> and everything will be done 
 automatically. 
 It’s a good idea to do this once a month or so, but if you don’t do it is also fine.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Personally I use <a href="https://git-scm.com/">Git</a> for everything, and I have 
+the folders structured as <code>/home/deavid/git/rust/project_name</code>.</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-to-the-ide"><a class="header" href="#quick-to-the-ide">Quick, to the IDE!</a></h1>
 <p>Let’s start using that nice VS Code that we installed earlier. </p>
 <p>Open VS Code, look for the Menu <code>File</code> and click <code>Open Folder...</code>. </p>
@@ -724,10 +726,10 @@ Now variables are actually being useful.</p>
 <p>We are asking the program to have a variable that counts from 1 to 100. 
 The current count number will be stored in the variable <code>number</code> 
 (which we can name it as we like).</p>
-<p>The <code>..=</code> in between the numbers is used to define a range. 
+<p>The <code>..=</code> in between the numbers defines a range. 
 The equals on the right means that it includes the right number. 
 There also exists <code>..</code> which does not include the last number 
-(i.e. <code>0..100</code> counts from 0 to 99).</p>
+(i.e., <code>0..100</code> counts from 0 to 99).</p>
 <p>We can also put a loop inside a loop, so we can count in two directions. 
 This could be useful to describe all positions in a chess board:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
@@ -742,7 +744,7 @@ This could be useful to describe all positions in a chess board:</p>
 You could put three or ten loops one inside another. 
 The limit is your imagination here!</p>
 <p>In this code, it will first pick a row, then go over all the columns. 
-When all 8 columns are done it will proceed with the next row.</p>
+When the program finishes all 8 columns, it will proceed with the next row.</p>
 <hr />
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>As usual, I’m lying, and it’s not the real syntax. For loops are way more
@@ -777,7 +779,7 @@ VS Code has shortcuts for this (and you can customize them) so it’s easier.</p
 <!-- Shortcut for VSCode for comments - default and how to customize -->
 <p>But Rust also has comment blocks. 
 A comment block starts with <code>/*</code> and ends with <code>*/</code>. 
-Everything in the middle is completely ignored even if there are multiple pages.</p>
+Rust will ignore everything in the middle, even if there are multiple lines.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">/*fn main() {
    for row in 1..=8 {
        for column in 1..=8 {
@@ -786,11 +788,11 @@ Everything in the middle is completely ignored even if there are multiple pages.
    }
  }*/
 </code></pre></pre>
-<p>Voilà. Now we no longer have any program. As Rust is concerned, the file is empty.</p>
+<p>Voilà. Now we no longer have any program. From Rust’s perspective, the file is empty.</p>
 <p>But these comment types are a bit trickier. They cannot be nested. If you try to add a block comment on something that already contains a comment block inside, Rust will get confused.</p>
 <p>Because of this, I prefer to avoid these and stick with the simple and reliable double slash (//).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-if"><a class="header" href="#what-if">What If…?</a></h1>
-<p>… it is raining outside? You should get an umbrella, right?</p>
+<p>…it is raining outside? You should get an umbrella, right?</p>
 <p>This is basically a conditional: If it’s raining, get an umbrella. 
 We have these in Rust and use the keyword “if”. 
 The name may not sound original at all, but helps to read the program 
@@ -820,7 +822,7 @@ Don’t go that fast! We’ll see something useful soon.</p>
 </span></code></pre></pre>
 <p>Condition can be anything that is either true or false. Some examples:</p>
 <ul>
-<li><code>apples == 1</code> → if “apples” is exactly 1.</li>
+<li><code>apples == 1</code> → if <code>apples</code> is exactly 1.</li>
 <li><code>apples != 1</code> → if it’s not 1. Any other value except one will do.</li>
 <li><code>apples &gt;= 1</code> → if it’s greater or equal to 1.</li>
 <li><code>apples &lt; 1</code> → if it’s less than 1.</li>
@@ -1194,23 +1196,41 @@ make the program perform at its best.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  let pi = calculate_pi(100);
+</span>let pi = calculate_pi(100);
 <span class="boring">}
 </span></code></pre></pre>
 <p>But for this to work we need to change the function signature:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  fn calculate_pi(steps: i64) -&gt; f64 {
+</span>fn calculate_pi(steps: i64) -&gt; f64 {
 <span class="boring">}
 </span></code></pre></pre>
-<p>We have to specify between the parenthesis what is the variable name that will record the input value, as well as the type. Since steps won’t have any decimal places, we use “i64” instead of “f64”.</p>
-<p>Therefore, a more complete description on the syntax for a function is:
-fn function_name( input_var_name: type ) -&gt; return_type { … }</p>
-<p>Where the arguments can be omitted and the return type can be omitted as well if we don’t use them.</p>
-<p>It is possible as well to have many input values, just separating them by comma:
-fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
-<p>Each input variable needs to have its own type associated. We’ll see more examples on this later on.</p>
+<p>We have to specify between the parenthesis what is the variable name that will
+record the input value, as well as the type. 
+Since steps won’t have any decimal places, we use “i64” instead of “f64”.</p>
+<p>Therefore, a more complete description on the syntax for a function is:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name( input_var_name: type ) -&gt; return_type { 
+    // Function code here... 
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Where the arguments can be omitted, and the return type can be omitted as well
+if we don’t use them.</p>
+<p>It is possible as well to have many input values, just separating them by comma:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name( input1: type1, input2: type2, input2: type2 ) { 
+    // Function code here... 
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Each input variable needs to have its own type associated. 
+We’ll see more examples on this later on.</p>
 <p>For now, let’s see the full program changed:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn calculate_pi(steps: i64) -&gt; f64 {
    // https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
@@ -1681,11 +1701,17 @@ This is what Rust calls a Trait. We will go over these later on.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h1>
 <p>So we talked earlier about Rust data types, and we’re just using a few. 
 Why do they exist? Let’s put them together here:</p>
-<table><thead><tr><th>Type</th><th>Min</th><th>Max</th><th></th><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
-<tr><td>u8</td><td>0</td><td>255</td><td></td><td>i8</td><td>-128</td><td>127</td></tr>
-<tr><td>u16</td><td>0</td><td>65535</td><td></td><td>i16</td><td>-32768</td><td>32767</td></tr>
-<tr><td>u32</td><td>0</td><td>4294967296</td><td></td><td>i32</td><td>-2147483648</td><td>2147483647</td></tr>
-<tr><td>u64</td><td>0</td><td>1.84 * 10^19</td><td></td><td>i64</td><td>-9.22 * 10^18</td><td>9.22 * 10^18</td></tr>
+<table><thead><tr><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
+<tr><td>u8</td><td>0</td><td>255</td></tr>
+<tr><td>u16</td><td>0</td><td>65535</td></tr>
+<tr><td>u32</td><td>0</td><td>4294967296</td></tr>
+<tr><td>u64</td><td>0</td><td>1.84 * 10^19</td></tr>
+</tbody></table>
+<table><thead><tr><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
+<tr><td>i8</td><td>-128</td><td>127</td></tr>
+<tr><td>i16</td><td>-32768</td><td>32767</td></tr>
+<tr><td>i32</td><td>-2147483648</td><td>2147483647</td></tr>
+<tr><td>i64</td><td>-9.22 * 10^18</td><td>9.22 * 10^18</td></tr>
 </tbody></table>
 <p>Examples:</p>
 <ul>
@@ -1717,7 +1743,7 @@ correctly (and a few extra ones) while f64 can record more than 12.</p>
 the problem at hand an f64 might be required, while in others f32 might be better 
 as it has enough precision, but it is smaller, allowing for much complex simulations.</p>
 <p>Graphics cards use a lot of floating point numbers to draw scenes for a game. 
-If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk</p>
+If the precision is not high enough it might lead to jitter: <a href="https://www.youtube.com/watch?v=jsLiDQyyBXk">https://www.youtube.com/watch?v=jsLiDQyyBXk</a></p>
 <p>I hope this helps to understand why these types exist, and why we aren’t using them for now.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-bit-more-detailed-explanation-on-functions"><a class="header" href="#a-bit-more-detailed-explanation-on-functions">A bit more detailed explanation on functions</a></h1>
 <p>(….) (roughly explain a type, why the parentheses produce the call of the 
@@ -1762,21 +1788,21 @@ Ownership &amp; Borrowing (which I talk about in my blog post)
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-b-caveats-and-challenges-in-this-book"><a class="header" href="#appendix-b-caveats-and-challenges-in-this-book">Appendix B. Caveats and challenges in this book</a></h1>
 <p>This book is intended to people with no previous experience in coding at all 
 and attempts to teach programming in a very approachable way.</p>
-<p>Because of this, a lot of information is hidden, misrepresented or 
+<p>Because of this, a lot of information is hidden, misrepresented, or 
 factually incorrect. It is needed to hide and oversimplify stuff, so new 
 learners don’t get overloaded with information. This also helps the reader 
 to create their own programs very early on without needing 
 to have a proper understanding, which can come in later on.</p>
 <p>Other books might put a lot of theory in front to give a good understanding 
-of what is coming next, but theory is indeed boring until it’s put into use, 
-so in this book I try to push down the theory as far as possible.</p>
+of what is coming next, but theory is indeed boring until it’s put into use. 
+In this book I try to push down the theory as far as possible.</p>
 <p>If this approach is good or bad it’s certainly subjective. But as everyone else 
 goes for a more academic way, and there is almost no one that does something 
 like I do in this book, I think it’s good to add more choices for learning.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-c-exercises-and-solutions"><a class="header" href="#appendix-c-exercises-and-solutions">Appendix C. Exercises and Solutions</a></h1>
-<p>TODO: There should be some exercises for the reader and put the solutions here. 
+<!-- TODO: There should be some exercises for the reader and put the solutions here. 
 Ideally, place the solutions in random order to avoid the reader from 
-inadvertently reading the next solution to their problem. </p>
+inadvertently reading the next solution to their problem.  -->
 
                 </main>
 

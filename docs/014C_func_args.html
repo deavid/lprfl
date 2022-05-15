@@ -160,23 +160,41 @@
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  let pi = calculate_pi(100);
+</span>let pi = calculate_pi(100);
 <span class="boring">}
 </span></code></pre></pre>
 <p>But for this to work we need to change the function signature:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  fn calculate_pi(steps: i64) -&gt; f64 {
+</span>fn calculate_pi(steps: i64) -&gt; f64 {
 <span class="boring">}
 </span></code></pre></pre>
-<p>We have to specify between the parenthesis what is the variable name that will record the input value, as well as the type. Since steps won’t have any decimal places, we use “i64” instead of “f64”.</p>
-<p>Therefore, a more complete description on the syntax for a function is:
-fn function_name( input_var_name: type ) -&gt; return_type { … }</p>
-<p>Where the arguments can be omitted and the return type can be omitted as well if we don’t use them.</p>
-<p>It is possible as well to have many input values, just separating them by comma:
-fn function_name( input1: type1, input2: type2, input2: type2, … ) { … }</p>
-<p>Each input variable needs to have its own type associated. We’ll see more examples on this later on.</p>
+<p>We have to specify between the parenthesis what is the variable name that will
+record the input value, as well as the type. 
+Since steps won’t have any decimal places, we use “i64” instead of “f64”.</p>
+<p>Therefore, a more complete description on the syntax for a function is:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name( input_var_name: type ) -&gt; return_type { 
+    // Function code here... 
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Where the arguments can be omitted, and the return type can be omitted as well
+if we don’t use them.</p>
+<p>It is possible as well to have many input values, just separating them by comma:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn function_name( input1: type1, input2: type2, input2: type2 ) { 
+    // Function code here... 
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Each input variable needs to have its own type associated. 
+We’ll see more examples on this later on.</p>
 <p>For now, let’s see the full program changed:</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn calculate_pi(steps: i64) -&gt; f64 {
    // https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80

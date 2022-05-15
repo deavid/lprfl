@@ -3,13 +3,19 @@
 So we talked earlier about Rust data types, and we're just using a few. 
 Why do they exist? Let's put them together here:
 
-| Type | Min |     Max      | | Type |      Min      |      Max     |
-|------|-----|--------------|-|------|---------------|--------------|
-|  u8  |  0  |          255 | |  i8  |          -128 |          127 |
-|  u16 |  0  |        65535 | |  i16 |        -32768 |        32767 |
-|  u32 |  0  |   4294967296 | |  i32 |   -2147483648 |   2147483647 |
-|  u64 |  0  | 1.84 * 10^19 | |  i64 | -9.22 * 10^18 | 9.22 * 10^18 |
+| Type | Min |     Max      | 
+|------|-----|--------------|
+|  u8  |  0  |          255 | 
+|  u16 |  0  |        65535 | 
+|  u32 |  0  |   4294967296 | 
+|  u64 |  0  | 1.84 * 10^19 | 
 	
+| Type |      Min      |      Max     |
+|------|---------------|--------------|
+|  i8  |          -128 |          127 |
+|  i16 |        -32768 |        32767 |
+|  i32 |   -2147483648 |   2147483647 |
+|  i64 | -9.22 * 10^18 | 9.22 * 10^18 |
 
 Examples:
 * u8 is generally used to represent characters in the ASCII table, and also bytes in a file in disk.
@@ -46,6 +52,6 @@ the problem at hand an f64 might be required, while in others f32 might be bette
 as it has enough precision, but it is smaller, allowing for much complex simulations.
 
 Graphics cards use a lot of floating point numbers to draw scenes for a game. 
-If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk
+If the precision is not high enough it might lead to jitter: <https://www.youtube.com/watch?v=jsLiDQyyBXk>
 
 I hope this helps to understand why these types exist, and why we aren't using them for now.

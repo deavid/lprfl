@@ -1,9 +1,7 @@
 # Your first program
 
 Before doing anything, it is important to have a folder where you put all your programs. 
-So go ahead and create a folder with the name you like (i.e. "programs")[^1].
-[^1]: Personally I use [Git](https://git-scm.com/) for everything, and I have 
-the folders structured as `/home/deavid/git/rust/project_name`.
+So go ahead and create a folder with the name you like (i.e., "programs")[^1].
 
 A few tips though:
 
@@ -79,11 +77,11 @@ Main things that it does:
 
 * Instead of compiling the program with `rustc`, it's just `cargo build`. 
   `rustc` will need flags, and it's a bit tricky to do right, cargo makes this super simple.
-* The programs are built in `./target/debug/` or `./target/release`. 
+* Cargo built the program in `./target/debug/` or `./target/release`. 
   We could run these directly, but we would need to remember to build them first. 
   `cargo run` does this for us.
 * We might need to download libraries for additional stuff 
-  (this is common in all programming languages), but instead of doing this manually, 
+  (this is common in all programming languages). Instead of doing this manually, 
   we can declare in `Cargo.toml` which ones do we want, and when 
   we do `cargo build` it will download anything missing automatically.
 
@@ -96,3 +94,6 @@ also a `rustup` command. This is used to update rust and cargo themselves.
 If you need to update, just run `rustup update` and everything will be done 
 automatically. 
 It's a good idea to do this once a month or so, but if you don't do it is also fine.
+
+[^1]: Personally I use [Git](https://git-scm.com/) for everything, and I have 
+the folders structured as `/home/deavid/git/rust/project_name`.

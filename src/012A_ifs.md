@@ -1,6 +1,6 @@
-# What If...?
+# What If…?
 
-... it is raining outside? You should get an umbrella, right?
+…it is raining outside? You should get an umbrella, right?
 
 This is basically a conditional: If it's raining, get an umbrella. 
 We have these in Rust and use the keyword "if". 
@@ -34,7 +34,7 @@ if condition {
 ```
 
 Condition can be anything that is either true or false. Some examples:
-* `apples == 1` → if "apples" is exactly 1.
+* `apples == 1` → if `apples` is exactly 1.
 * `apples != 1` → if it's not 1. Any other value except one will do.
 * `apples >= 1` → if it's greater or equal to 1.
 * `apples < 1` → if it's less than 1.
@@ -61,4 +61,4 @@ fn main() {
  }
 ```
 
-Ok, enough of this. I guess it's too simple, and we need to spice it up with...
+Ok, enough of this. I guess it's too simple, and we need to spice it up with…

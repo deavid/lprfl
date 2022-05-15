@@ -8,3 +8,4 @@ usize
 isize
 bool
 &str
+frac

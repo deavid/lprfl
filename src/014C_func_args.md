@@ -6,26 +6,40 @@ But what if we wanted a configurable number of steps? We can do that!
 Functions can accept data when they're called, like this:
 
 ```rust
-  let pi = calculate_pi(100);
+let pi = calculate_pi(100);
 ```
 
 But for this to work we need to change the function signature:
 
 ```rust
-  fn calculate_pi(steps: i64) -> f64 {
+fn calculate_pi(steps: i64) -> f64 {
 ```
 
-We have to specify between the parenthesis what is the variable name that will record the input value, as well as the type. Since steps won't have any decimal places, we use "i64" instead of "f64".
+We have to specify between the parenthesis what is the variable name that will
+record the input value, as well as the type. 
+Since steps won't have any decimal places, we use "i64" instead of "f64".
 
 Therefore, a more complete description on the syntax for a function is:
-        fn function_name( input_var_name: type ) -> return_type { ... }
 
-Where the arguments can be omitted and the return type can be omitted as well if we don't use them.
+```rust
+fn function_name( input_var_name: type ) -> return_type { 
+    // Function code here... 
+}
+```        
+
+Where the arguments can be omitted, and the return type can be omitted as well
+if we don't use them.
 
 It is possible as well to have many input values, just separating them by comma:
-        fn function_name( input1: type1, input2: type2, input2: type2, ... ) { ... }
 
-Each input variable needs to have its own type associated. We'll see more examples on this later on.
+```rust
+fn function_name( input1: type1, input2: type2, input2: type2 ) { 
+    // Function code here... 
+}
+```
+
+Each input variable needs to have its own type associated. 
+We'll see more examples on this later on.
 
 For now, let's see the full program changed:
 

@@ -35,7 +35,7 @@ VS Code has shortcuts for this (and you can customize them) so it's easier.
 
 But Rust also has comment blocks. 
 A comment block starts with `/*` and ends with `*/`. 
-Everything in the middle is completely ignored even if there are multiple pages.
+Rust will ignore everything in the middle, even if there are multiple lines.
 
 
 ```rust
@@ -48,7 +48,7 @@ Everything in the middle is completely ignored even if there are multiple pages.
  }*/
 ```
 
-Voilà. Now we no longer have any program. As Rust is concerned, the file is empty.
+Voilà. Now we no longer have any program. From Rust's perspective, the file is empty.
 
 But these comment types are a bit trickier. They cannot be nested. If you try to add a block comment on something that already contains a comment block inside, Rust will get confused.
 

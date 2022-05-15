@@ -157,11 +157,17 @@
                     <h1 id="what-are-those-other-data-types-for"><a class="header" href="#what-are-those-other-data-types-for">What are those other data types for?</a></h1>
 <p>So we talked earlier about Rust data types, and we’re just using a few. 
 Why do they exist? Let’s put them together here:</p>
-<table><thead><tr><th>Type</th><th>Min</th><th>Max</th><th></th><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
-<tr><td>u8</td><td>0</td><td>255</td><td></td><td>i8</td><td>-128</td><td>127</td></tr>
-<tr><td>u16</td><td>0</td><td>65535</td><td></td><td>i16</td><td>-32768</td><td>32767</td></tr>
-<tr><td>u32</td><td>0</td><td>4294967296</td><td></td><td>i32</td><td>-2147483648</td><td>2147483647</td></tr>
-<tr><td>u64</td><td>0</td><td>1.84 * 10^19</td><td></td><td>i64</td><td>-9.22 * 10^18</td><td>9.22 * 10^18</td></tr>
+<table><thead><tr><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
+<tr><td>u8</td><td>0</td><td>255</td></tr>
+<tr><td>u16</td><td>0</td><td>65535</td></tr>
+<tr><td>u32</td><td>0</td><td>4294967296</td></tr>
+<tr><td>u64</td><td>0</td><td>1.84 * 10^19</td></tr>
+</tbody></table>
+<table><thead><tr><th>Type</th><th>Min</th><th>Max</th></tr></thead><tbody>
+<tr><td>i8</td><td>-128</td><td>127</td></tr>
+<tr><td>i16</td><td>-32768</td><td>32767</td></tr>
+<tr><td>i32</td><td>-2147483648</td><td>2147483647</td></tr>
+<tr><td>i64</td><td>-9.22 * 10^18</td><td>9.22 * 10^18</td></tr>
 </tbody></table>
 <p>Examples:</p>
 <ul>
@@ -193,7 +199,7 @@ correctly (and a few extra ones) while f64 can record more than 12.</p>
 the problem at hand an f64 might be required, while in others f32 might be better 
 as it has enough precision, but it is smaller, allowing for much complex simulations.</p>
 <p>Graphics cards use a lot of floating point numbers to draw scenes for a game. 
-If the precision is not high enough it might lead to jitter: https://www.youtube.com/watch?v=jsLiDQyyBXk</p>
+If the precision is not high enough it might lead to jitter: <a href="https://www.youtube.com/watch?v=jsLiDQyyBXk">https://www.youtube.com/watch?v=jsLiDQyyBXk</a></p>
 <p>I hope this helps to understand why these types exist, and why we aren’t using them for now.</p>
 
                 </main>

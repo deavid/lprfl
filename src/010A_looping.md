@@ -2,7 +2,7 @@
 
 I'm sure you feel that variables don't do that much. 
 But that's because the programs we can write up to now are too linear and simple. 
-We need to step up the game with... loops!
+We need to step up the game with… loops!
 
 Loops are ways of repeating the same piece of code several times without 
 need of copying and pasting. 
@@ -23,7 +23,7 @@ fn main() {
 As you can imagine, this gets tedious very easily. 
 Copying, pasting and changing all the numbers manually is cumbersome.
 
-Presenting... the for loop!
+Presenting… the for loop!
 
 ```rust
 fn main() {
@@ -46,10 +46,10 @@ We are asking the program to have a variable that counts from 1 to 100.
 The current count number will be stored in the variable `number` 
 (which we can name it as we like).
 
-The `..=` in between the numbers is used to define a range. 
+The `..=` in between the numbers defines a range. 
 The equals on the right means that it includes the right number. 
 There also exists `..` which does not include the last number 
-(i.e. `0..100` counts from 0 to 99).
+(i.e., `0..100` counts from 0 to 99).
 
 We can also put a loop inside a loop, so we can count in two directions. 
 This could be useful to describe all positions in a chess board:
@@ -69,7 +69,7 @@ You could put three or ten loops one inside another.
 The limit is your imagination here!
 
 In this code, it will first pick a row, then go over all the columns. 
-When all 8 columns are done it will proceed with the next row.
+When the program finishes all 8 columns, it will proceed with the next row.
 
 ------
 [^1]: As usual, I'm lying, and it's not the real syntax. For loops are way more

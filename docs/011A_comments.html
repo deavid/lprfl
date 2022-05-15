@@ -183,7 +183,7 @@ VS Code has shortcuts for this (and you can customize them) so it’s easier.</p
 <!-- Shortcut for VSCode for comments - default and how to customize -->
 <p>But Rust also has comment blocks. 
 A comment block starts with <code>/*</code> and ends with <code>*/</code>. 
-Everything in the middle is completely ignored even if there are multiple pages.</p>
+Rust will ignore everything in the middle, even if there are multiple lines.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">/*fn main() {
    for row in 1..=8 {
        for column in 1..=8 {
@@ -192,7 +192,7 @@ Everything in the middle is completely ignored even if there are multiple pages.
    }
  }*/
 </code></pre></pre>
-<p>Voilà. Now we no longer have any program. As Rust is concerned, the file is empty.</p>
+<p>Voilà. Now we no longer have any program. From Rust’s perspective, the file is empty.</p>
 <p>But these comment types are a bit trickier. They cannot be nested. If you try to add a block comment on something that already contains a comment block inside, Rust will get confused.</p>
 <p>Because of this, I prefer to avoid these and stick with the simple and reliable double slash (//).</p>
 

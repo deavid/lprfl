@@ -13,9 +13,9 @@ The holy book is the main learning resource for Rust.
 It is the true starting point for learning the language and contains 
 everything, from beginner to truly advanced. 
 It covers the entire language (except the uses of Unsafe, that are covered in 
-the Necronomicon... I mean, the Rustonomicon)
+the Necronomicon… I mean, the Rustonomicon)
 
-This guide is not meant to replace the holy book itself, as it is very well 
+This guide it is not meant to replace the holy book itself, as it is very well 
 written by experts and reviewed by the whole community. 
 
 If that's the case, what's the point of this then? Well, the holy book assumes 
@@ -36,7 +36,7 @@ the term to make it a funny joke.
 ## Other Rust books
 
 See <https://github.com/sger/RustBooks>
-* Rust by Example
-* Easy Rust
-* A Gentle Introduction to Rust
+* [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
+* [Easy Rust](https://dhghomon.github.io/easy_rust/)
+* [A Gentle Introduction to Rust](https://stevedonovan.github.io/rust-gentle-intro/)
 
