@@ -6,6 +6,7 @@
 - [Setting up the computer](./003A_setup.md)
 - [Your first program](./004A_first_program.md)
 - [Quick, to the IDE!](./005A_to_the_IDE.md)
+    - [Saving our progress](./005B_saving_progress.md)
 - [It's like cooking recipes, seriously](./006A_recipes.md)
 - [Variables are like little boxes that store things inside](./007A_little_boxes.md)
 - [Declaring variables](./008A_declaring.md)

@@ -9,3 +9,4 @@ isize
 bool
 &str
 frac
+learnrust
