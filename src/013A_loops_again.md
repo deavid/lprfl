@@ -83,7 +83,7 @@ This is meant to fill the shape. Given the math function:
 
 \\[ y = \frac{x^2}{20} - 9 \\]
 
-It computes which *"squares"* are below the math function and uses the `#` character to fill the shape.
+It computes which *“squares”* are below the math function and uses the `#` character to fill the shape.
 
 Notice how I used `print!` instead of `println!`. The lack of the `ln` 
 (which stands for line) makes that print not open a new line, 
