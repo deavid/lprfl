@@ -9,6 +9,7 @@
     - [Saving our progress](./005B_saving_progress.md)
 - [It's like cooking recipes, seriously](./006A_recipes.md)
 - [Variables are like little boxes that store things inside](./007A_little_boxes.md)
+    - [Exercise: Printing and Formatting](./007B_ex_print_format.md)
 - [Declaring variables](./008A_declaring.md)
 - [Incrementing and decrementing](./009A_incrementing.md)
 - [Looping' around](./010A_looping.md)

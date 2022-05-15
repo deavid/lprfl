@@ -8,4 +8,7 @@ edition = "2021"
 [[bin]]
 name = "sample1"
 
+[[bin]]
+name = "print"
+
 [dependencies]

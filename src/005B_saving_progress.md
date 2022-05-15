@@ -86,6 +86,11 @@ Each time we want to add a new program, we just create another file in the
 `bin/` folder, add it to `Cargo.toml` as we just did, and voilà! We can have as 
 many programs as we want.
 
+> You can name your program as you want, but needs to be all letters, lowercase
+> and must end with `.rs`. It may contain numbers, but it must not begin with a 
+> number. For example `example1.rs` is fine, but `1example.rs` is not. You can
+> use underscores to separate words as well: `my_program.rs`. Don't put spaces.
+
 ## Executing the old program
 
 Now, as you noticed, the old program in `main.rs` can no longer be executed by
