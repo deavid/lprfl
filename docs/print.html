@@ -916,6 +916,34 @@ at later stages of this book. For now, let’s move on.</p>
     println!();
 }
 </code></pre></pre>
+<p>Remember to write save it in <code>learnrust/src/bin/print.rs</code> and edit <code>Cargo.toml</code>
+as I explained on top. </p>
+<p>Then run it with: <code>cargo run --bin print</code></p>
+<pre><code class="language-console">$ cargo run --bin print
+   Compiling learnrust v0.1.0 (/home/deavid/git/rust/lprfl/learnrust)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.11s
+     Running `target/debug/print`
+
+#############################################################
+#                                                           #
+#                This is a PRINT program                    #
+#                                                           #
+#############################################################
+
+Summary: This program demonstrates different
+         ways of printing text
+
+The sum of 2 + 3 is 5. Isn't that great?
+And 4 * 3 is 12. Fantastic.
+
+5.0 / 3.0 = 1.6666666666666667
+5.0 / 3.0 = 1.667
+5.0 / 3.0 = 1.67
+5.0 / 3.0 = 2
+
+10 / 2 = 0005
+5.0 / 3.0 = 0001.67
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="declaring-variables"><a class="header" href="#declaring-variables">Declaring variables</a></h1>
 <p>Before we can store values into a variable, we need to declare it. Declaring a 
 variable means to tell Rust to create it, we will be explaining to it that this 

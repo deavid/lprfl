@@ -282,3 +282,34 @@ Here's the program completed:
 {{#include ../learnrust/src/bin/print.rs:all}}
 ```
 
+Remember to write save it in `learnrust/src/bin/print.rs` and edit `Cargo.toml`
+as I explained on top. 
+
+Then run it with: `cargo run --bin print`
+
+```console
+$ cargo run --bin print
+   Compiling learnrust v0.1.0 (/home/deavid/git/rust/lprfl/learnrust)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.11s
+     Running `target/debug/print`
+
+#############################################################
+#                                                           #
+#                This is a PRINT program                    #
+#                                                           #
+#############################################################
+
+Summary: This program demonstrates different
+         ways of printing text
+
+The sum of 2 + 3 is 5. Isn't that great?
+And 4 * 3 is 12. Fantastic.
+
+5.0 / 3.0 = 1.6666666666666667
+5.0 / 3.0 = 1.667
+5.0 / 3.0 = 1.67
+5.0 / 3.0 = 2
+
+10 / 2 = 0005
+5.0 / 3.0 = 0001.67
+```
