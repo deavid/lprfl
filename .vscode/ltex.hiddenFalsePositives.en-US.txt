@@ -20,3 +20,5 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAnd let's face it, the console is booooring.\\E$"}
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QIntroducing Functions\nReturning values from functions\nFunction arguments\nData types\nRust data types\nBack to declaring variables… with type\nConverting types with explicit conversions\nA tiny bit on strings\nSimple explanation on &str vs String\nHaving fun with libraries\nNot everything are numbers and texts: Structs\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSee TMTLA.\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QBorrowing\nPolymorphism\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QBorrowing\nLifetimes\nPolymorphism\\E$"}
