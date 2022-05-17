@@ -22,3 +22,5 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSee TMTLA.\\E$"}
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QBorrowing\nPolymorphism\\E$"}
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QBorrowing\nLifetimes\nPolymorphism\\E$"}
+{"rule":"PASSIVE_VOICE","sentence":"^\\QThe other type of loop is called \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and does the same as `loop\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QEvery time we call \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q it returns an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q that can be either \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q or \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

@@ -18,6 +18,7 @@
 - [Adding some comments](./011A_comments.md)
 - [What If…?](./012A_ifs.md)
 - [For loops again!](./013A_loops_again.md)
+    - [Other types of loops](./013B_other_loops.md)
 - [Introducing Functions](./014A_functions.md)
     - [Returning values from functions](./014B_func_return.md)
     - [Function arguments](./014C_func_args.md)
