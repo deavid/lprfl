@@ -24,3 +24,6 @@
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QBorrowing\nLifetimes\nPolymorphism\\E$"}
 {"rule":"PASSIVE_VOICE","sentence":"^\\QThe other type of loop is called \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and does the same as `loop\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QEvery time we call \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q it returns an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q that can be either \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q or \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"SENT_START_NUM","sentence":"^\\Q12 (hours): Even will happen in 12 hours.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QIf something fails, it will return an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QThis doesn't work because \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q will return a \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and not an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q:\\E$"}

@@ -11,3 +11,6 @@ bool
 frac
 learnrust
 Enums
+Enum
+enums
+enum
