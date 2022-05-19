@@ -14,3 +14,8 @@ Enums
 Enum
 enums
 enum
+Macroquad
+ggez
+ggez
+Deques
+HashMaps

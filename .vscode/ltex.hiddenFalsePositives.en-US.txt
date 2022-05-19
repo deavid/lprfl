@@ -27,3 +27,7 @@
 {"rule":"SENT_START_NUM","sentence":"^\\Q12 (hours): Even will happen in 12 hours.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QIf something fails, it will return an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QThis doesn't work because \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q will return a \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and not an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q:\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QSince it is an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, it can take billions of different numbers, either positive or negative, and for each one we can specify what to do in each case.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QStandard Error  (stderr): Here the program sends error messages, usually they appear in the console too.\\E$"}
+{"rule":"PASSIVE_VOICE","sentence":"^\\QAlso, floats were invented for scientific purposes, like sending people to the moon.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QOther types of loops\nTurtle: Improving with loops\nTurtle: Making a spiral\nLevel: Apprentice\nIntroducing Functions\nReturning values from functions\nFunction arguments\nData types\nRust data types\nBack to declaring variables… with type\ndbg!() and format!()\nConverting types with explicit conversions\nA tiny bit on strings\nSimple explanation on &str vs String\nA bit more detailed explanation on functions\nClosures\nHaving fun with libraries\nProject: A simple game with Macroquad\nLevel: Adept\nNot everything are numbers and texts: Structs\nStruct-specific functions, really?\\E$"}

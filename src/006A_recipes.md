@@ -41,3 +41,30 @@ It avoids repeating ourselves every time that a set of steps we can reuse across
 Of course programs can do things really complicated that are quite far from recipes, 
 but if you're starting to learn, this comparison will serve you to get a 
 better grasp on how this all works.
+
+## Program Arguments
+
+When you execute a program in the console, it can accept arguments:
+
+```
+$ myprogram "argument1" "argument2" "argument3"
+```
+
+They also have "return values" which you can check in Bash[^1]:
+```
+$ echo "hello"
+$ echo $? 
+0
+```
+
+Zero indicates success. Any other number is an error.
+
+## Input and Output
+
+A program in the console has by default three ways to communicate:
+
+* Standard Input  (stdin): This is what the user types in the console.
+* Standard Output (stdout): This is where the program writes in the console.
+* Standard Error  (stderr): Here the program sends error messages, usually they
+appear in the console too.
+
