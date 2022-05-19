@@ -17,5 +17,12 @@ name = "variables"
 [[bin]]
 name = "turtle_vars"
 
+[[bin]]
+name = "structs"
+
+[[bin]]
+name = "enums"
+
 [dependencies]
 turtle = { git = "https://github.com/sunjay/turtle.git", tag = "v1.0.0-rc.2" }
+chrono = "0.4"
