@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>Let&#x27;s try Turtle! - Learn Programming with Rust as a first language</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../favicon.svg">
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+    <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- MathJax -->
+    <script async type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../L01_starter.html"><strong aria-hidden="true">1.</strong> Level: Starter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L01starter/001A_first_language.html"><strong aria-hidden="true">1.1.</strong> Your first programming language</a></li><li class="chapter-item expanded "><a href="../L01starter/002A_books.html"><strong aria-hidden="true">1.2.</strong> Related books</a></li><li class="chapter-item expanded "><a href="../L01starter/003A_setup.html"><strong aria-hidden="true">1.3.</strong> Setting up the computer</a></li><li class="chapter-item expanded "><a href="../L01starter/004A_first_program.html"><strong aria-hidden="true">1.4.</strong> Your first program</a></li><li class="chapter-item expanded "><a href="../L01starter/005A_to_the_IDE.html"><strong aria-hidden="true">1.5.</strong> Quick, to the IDE!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L01starter/005B_saving_progress.html"><strong aria-hidden="true">1.5.1.</strong> Saving our progress</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../L02_novice.html"><strong aria-hidden="true">2.</strong> Level: Novice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/006A_recipes.html"><strong aria-hidden="true">2.1.</strong> It's like cooking recipes, seriously</a></li><li class="chapter-item expanded "><a href="../L02novice/007A_little_boxes.html"><strong aria-hidden="true">2.2.</strong> Variables are like little boxes that store things inside</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/007B_ex_print_format.html"><strong aria-hidden="true">2.2.1.</strong> Exercise: Printing and Formatting</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/007C_fun_with_libs.html"><strong aria-hidden="true">2.3.</strong> Having fun with libraries</a></li><li class="chapter-item expanded "><a href="../L02novice/008A_declaring.html"><strong aria-hidden="true">2.4.</strong> Declaring variables</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/008B_ex_variables.html"><strong aria-hidden="true">2.4.1.</strong> Exercise: Variables</a></li><li class="chapter-item expanded "><a href="../L02novice/008C_turtle.html" class="active"><strong aria-hidden="true">2.4.2.</strong> Let's try Turtle!</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/009A_incrementing.html"><strong aria-hidden="true">2.5.</strong> Incrementing and decrementing</a></li><li class="chapter-item expanded "><a href="../L02novice/010A_looping.html"><strong aria-hidden="true">2.6.</strong> Looping' around</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/010B_ex_loops.html"><strong aria-hidden="true">2.6.1.</strong> Exercise: loops</a></li><li class="chapter-item expanded "><a href="../L02novice/010C_turtle_loops.html"><strong aria-hidden="true">2.6.2.</strong> Turtle: loops</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/011A_comments.html"><strong aria-hidden="true">2.7.</strong> Adding some comments</a></li><li class="chapter-item expanded "><a href="../L02novice/012A_ifs.html"><strong aria-hidden="true">2.8.</strong> What If…?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/012B_ex_ifs.html"><strong aria-hidden="true">2.8.1.</strong> Exercise: conditionals</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/013A_loops_again.html"><strong aria-hidden="true">2.9.</strong> For loops again!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/013B_other_loops.html"><strong aria-hidden="true">2.9.1.</strong> Other types of loops</a></li><li class="chapter-item expanded "><a href="../L02novice/013C_turtle_loops.html"><strong aria-hidden="true">2.9.2.</strong> Turtle: Improving with loops</a></li><li class="chapter-item expanded "><a href="../L02novice/013D_turtle_spiral.html"><strong aria-hidden="true">2.9.3.</strong> Turtle: Making a spiral</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../L03_apprentice.html"><strong aria-hidden="true">3.</strong> Level: Apprentice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014A_functions.html"><strong aria-hidden="true">3.1.</strong> Introducing Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014B_func_return.html"><strong aria-hidden="true">3.1.1.</strong> Returning values from functions</a></li><li class="chapter-item expanded "><a href="../L03apprentice/014C_func_args.html"><strong aria-hidden="true">3.1.2.</strong> Function arguments</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/015A_data_types.html"><strong aria-hidden="true">3.2.</strong> Data types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/015B_rust_types.html"><strong aria-hidden="true">3.2.1.</strong> Rust data types</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/016A_typedvars.html"><strong aria-hidden="true">3.3.</strong> Back to declaring variables… with type</a></li><li class="chapter-item expanded "><a href="../L03apprentice/016B_dbg_format.html"><strong aria-hidden="true">3.4.</strong> dbg!() and format!()</a></li><li class="chapter-item expanded "><a href="../L03apprentice/017A_conversions.html"><strong aria-hidden="true">3.5.</strong> Converting types with explicit conversions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/017B_ex_conversions.html"><strong aria-hidden="true">3.5.1.</strong> Exercise: explicit conversions</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/018A_strings_intro.html"><strong aria-hidden="true">3.6.</strong> A tiny bit on strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/018B_strings_and_str.html"><strong aria-hidden="true">3.6.1.</strong> Simple explanation on &str vs String</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/X03A_funcs_revisited.html"><strong aria-hidden="true">3.7.</strong> A bit more detailed explanation on functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014D_closures.html"><strong aria-hidden="true">3.7.1.</strong> Closures</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/020A_proj_game_macroquad.html"><strong aria-hidden="true">3.8.</strong> Project: A simple game with Macroquad</a></li></ol></li><li class="chapter-item expanded "><a href="../L04_adept.html"><strong aria-hidden="true">4.</strong> Level: Adept</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L04adept/020A_structs.html"><strong aria-hidden="true">4.1.</strong> Not everything are numbers and texts: Structs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L04adept/020B_struct_impl.html"><strong aria-hidden="true">4.1.1.</strong> Struct-specific functions, really?</a></li><li class="chapter-item expanded "><a href="../L04adept/020C_oop.html"><strong aria-hidden="true">4.1.2.</strong> OOP? More like OP</a></li></ol></li><li class="chapter-item expanded "><a href="../L04adept/021A_enums.html"><strong aria-hidden="true">4.2.</strong> Enums!</a></li><li class="chapter-item expanded "><a href="../L04adept/022A_match.html"><strong aria-hidden="true">4.3.</strong> Match!</a></li><li class="chapter-item expanded "><a href="../L04adept/023A_float_gotchas.html"><strong aria-hidden="true">4.4.</strong> Floating point gotchas</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.1.</strong> Lists</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.2.</strong> Tuples</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.3.</strong> Slices</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.4.</strong> HashMaps</div></li></ol></li><li class="chapter-item expanded "><a href="../L04adept/023A_proj_game_ggez.html"><strong aria-hidden="true">4.6.</strong> Project: A simple game with ggez</a></li></ol></li><li class="chapter-item expanded "><a href="../L05_master.html"><strong aria-hidden="true">5.</strong> Level: Master</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L05master/X02A_datatypes.html"><strong aria-hidden="true">5.1.</strong> What are those other data types for?</a></li><li class="chapter-item expanded "><a href="../L05master/023A_borrowing.html"><strong aria-hidden="true">5.2.</strong> Borrowing</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Lifetimes</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> Generic parameters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.1.</strong> Lists again!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.1.1.</strong> Deques and ring buffers</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.2.</strong> HashMaps again!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.2.1.</strong> HashSets, what?</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.3.</strong> The infamous linked list</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.4.</strong> Trees</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.5.</strong> Heaps</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.6.</strong> Algorithms</div></li></ol></li><li class="chapter-item expanded "><a href="../L06_grandmaster.html"><strong aria-hidden="true">6.</strong> Level: Grand Master</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> A glance over macros</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Polymorphism (Traits)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Functional programming</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.1.</strong> Iterators</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> Smart Pointers</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.1.</strong> Box</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.2.</strong> Rc</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.3.</strong> RefCell</div></li></ol></li><li class="chapter-item expanded "><a href="../L06grandmaster/X04A_garbage_collector.html"><strong aria-hidden="true">6.5.</strong> What is a Garbage Collector?</a></li></ol></li><li class="chapter-item expanded "><a href="../L07_legendary.html"><strong aria-hidden="true">7.</strong> Level: Legendary</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Polymorphism (dyn Box)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> No Size? ?Sized</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> Threading</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.1.</strong> Mutexes/Locks</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.2.</strong> Atomics</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.4.</strong> Async</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.5.</strong> Databases and SQL</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.5.1.</strong> What about NoSQL?</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.</strong> Web applications!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.1.</strong> HTML+CSS+JS in one shot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.2.</strong> Web servers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.3.</strong> REST services</div></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../X01A_TODO.html"><strong aria-hidden="true">8.</strong> To-do: pieces that need more work</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../Y01A_appendices.html"><strong aria-hidden="true">9.</strong> Appendices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Y02A_license.html"><strong aria-hidden="true">9.1.</strong> Appendix A. License of this book</a></li><li class="chapter-item expanded "><a href="../Y03A_caveats.html"><strong aria-hidden="true">9.2.</strong> Appendix B. Caveats and challenges in this book</a></li><li class="chapter-item expanded "><a href="../Y04A_solutions.html"><strong aria-hidden="true">9.3.</strong> Appendix C. Exercises and Solutions</a></li><li class="chapter-item expanded "><a href="../Y05A_projects.html"><strong aria-hidden="true">9.4.</strong> Appendix D. Proposed projects</a></li><li class="chapter-item expanded "><a href="../Y06A_rust_compared.html"><strong aria-hidden="true">9.5.</strong> Appendix E. Rust compared to other languages</a></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🦀 Learn Programming with Rust as a first language</h1>
+
+                <div class="right-buttons">
+                    <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                });
+            </script>
+
+            <div id="content" class="content">
+                <main>
+                    <h1 id="lets-try-turtle"><a class="header" href="#lets-try-turtle">Let’s try Turtle!</a></h1>
+<p>For learning purposes, there was a little program called <code>turtle</code> in the 80s for
+a programming language called LOGO.</p>
+<p>This was intended for kids to learn coding. It displayed a little turtle, and
+they could send commands such as:</p>
+<ul>
+<li>Move right 30 pixels.</li>
+<li>Move top 30 pixels.</li>
+<li>Move left 30 pixels.</li>
+<li>Move bottom 30 pixels.</li>
+</ul>
+<p>And that would create a rectangle on screen.</p>
+<p>This is fascinating for learning because there is a visual feedback on the 
+screen. And let’s face it, the console is booooring.</p>
+<p>In Rust, there’s a library for this and I think it’s worth exploring.</p>
+<p>If it doesn’t work for you, or if you prefer console, just move on. I’ll have
+examples for everything in the console.</p>
+<p>The library is this one: <a href="https://crates.io/crates/turtle">https://crates.io/crates/turtle</a></p>
+<p>What we should do now is add this library as a dependency to our <code>Cargo.toml</code>
+like this:</p>
+<pre><code class="language-toml">[dependencies]
+turtle = { git = &quot;https://github.com/sunjay/turtle.git&quot;, tag = &quot;v1.0.0-rc.2&quot; }
+</code></pre>
+<p>We just need to add the line<sup class="footnote-reference"><a href="#1">1</a></sup> 
+<code>turtle = { git = &quot;https://github.com/sunjay/turtle.git&quot;, tag = &quot;v1.0.0-rc.2&quot; }</code> 
+at the end of the file, just below <code>[dependencies]</code>.</p>
+<p><strong>BEFORE GOING FURTHER:</strong> Please verify this does work for you. Run <code>cargo build</code>
+on the terminal and ensure that there are no errors.</p>
+<p>Here’s what happens on my computer after running this the first time:</p>
+<pre><code class="language-console">$ cargo build
+   Compiling lazy_static v1.4.0
+   Compiling bitflags v1.3.2
+   Compiling byteorder v1.4.3
+   Compiling scopeguard v1.1.0
+   Compiling cfg-if v0.1.10
+   Compiling piston-float v1.0.1
+   Compiling rand_core v0.4.2
+   Compiling void v1.0.2
+   Compiling adler32 v1.2.0
+   Compiling downcast-rs v1.2.0
+   Compiling piston-graphics_api_version v0.2.0
+   Compiling same-file v1.0.6
+   Compiling lzw v0.10.0
+   Compiling either v1.6.1
+   Compiling cty v0.2.2
+   Compiling color_quant v1.1.0
+   Compiling piston-texture v0.8.0
+   Compiling percent-encoding v2.1.0
+   Compiling scoped_threadpool v0.1.9
+   Compiling read_color v1.0.0
+   Compiling interpolation v0.2.0
+   Compiling fnv v1.0.7
+   Compiling piston-shaders_graphics2d v0.3.1
+   Compiling itoa v1.0.1
+   Compiling ryu v1.0.9
+   Compiling svg v0.6.0
+   Compiling libloading v0.6.7
+   Compiling lock_api v0.3.4
+   Compiling draw_state v0.8.0
+   Compiling inflate v0.4.5
+   Compiling piston-viewport v1.0.2
+   Compiling vecmath v1.0.0
+   Compiling rand_core v0.3.1
+   Compiling rand_jitter v0.1.4
+   Compiling raw-window-handle v0.4.3
+   Compiling libc v0.2.125
+   Compiling crossbeam-utils v0.8.8
+   Compiling maybe-uninit v2.0.0
+   Compiling crc32fast v1.3.2
+   Compiling shader_version v0.6.0
+   Compiling walkdir v2.3.2
+   Compiling gif v0.10.3
+   Compiling stb_truetype v0.3.1
+   Compiling deflate v0.7.20
+   Compiling num-traits v0.2.15
+   Compiling memoffset v0.6.5
+   Compiling libloading v0.5.2
+   Compiling dlib v0.4.2
+   Compiling rand_hc v0.1.0
+   Compiling rand_xorshift v0.1.1
+   Compiling rand_isaac v0.1.1
+   Compiling crossbeam-channel v0.5.4
+   Compiling rand_chacha v0.1.1
+   Compiling rand_pcg v0.1.2
+   Compiling gfx_core v0.9.2
+   Compiling smallvec v0.6.14
+   Compiling crossbeam-epoch v0.9.8
+   Compiling wayland-sys v0.21.13
+   Compiling glutin_egl_sys v0.1.5
+   Compiling gfx_gl v0.6.1
+   Compiling serde v1.0.137
+   Compiling gl v0.11.0
+   Compiling dirs-sys v0.3.7
+   Compiling nix v0.14.1
+   Compiling num_cpus v1.13.1
+   Compiling memmap v0.7.0
+   Compiling x11-dl v2.19.1
+   Compiling raw-window-handle v0.3.4
+   Compiling shared_library v0.1.9
+   Compiling rand_os v0.1.3
+   Compiling parking_lot_core v0.6.2
+   Compiling png v0.15.3
+   Compiling crossbeam-deque v0.8.1
+   Compiling dirs v4.0.0
+   Compiling rand v0.6.5
+   Compiling osmesa-sys v0.1.2
+   Compiling ordered-float v1.1.1
+   Compiling approx v0.3.2
+   Compiling line_drawing v0.7.0
+   Compiling num-integer v0.1.45
+   Compiling tiff v0.3.1
+   Compiling parking_lot v0.9.0
+   Compiling rayon-core v1.9.3
+   Compiling xdg v2.4.1
+   Compiling rusttype v0.8.3
+   Compiling num-rational v0.2.4
+   Compiling num-iter v0.1.43
+   Compiling gfx v0.18.2
+   Compiling gfx_device_gl v0.16.2
+   Compiling rusttype v0.7.9
+   Compiling andrew v0.2.1
+   Compiling piston2d-graphics v0.35.0
+   Compiling rayon v1.5.3
+   Compiling glutin_glx_sys v0.1.7
+   Compiling pistoncore-input v0.28.1
+   Compiling serde_json v1.0.81
+   Compiling wayland-commons v0.21.13
+   Compiling wayland-client v0.21.13
+   Compiling jpeg-decoder v0.1.22
+   Compiling pistoncore-window v0.44.0
+   Compiling pistoncore-event_loop v0.49.0
+   Compiling wayland-protocols v0.21.13
+   Compiling piston v0.49.0
+   Compiling image v0.22.5
+   Compiling smithay-client-toolkit v0.4.6
+   Compiling piston-gfx_texture v0.40.0
+   Compiling piston2d-gfx_graphics v0.66.0
+   Compiling winit v0.19.5
+   Compiling glutin v0.21.2
+   Compiling pistoncore-glutin_window v0.63.0
+   Compiling piston_window v0.105.0
+   Compiling turtle v1.0.0-rc.3
+   Compiling learnrust v0.1.0 (/home/deavid/git/rust/lprfl/learnrust)
+    Finished dev [unoptimized + debuginfo] target(s) in 14.61s
+</code></pre>
+<p>If we run it again, it will be much shorter. This is correct:</p>
+<pre><code>$ cargo build
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+</code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>I had to use the Git repository and the tag <code>v1.0.0-rc.2</code> because 
+<code>v1.0.0-rc.3</code> which is the latest one crashes for me, and just specifying the
+RC version doesn’t seem to be something that Cargo likes for this package.</p>
+</div>
+<h1 id="testing-turtle"><a class="header" href="#testing-turtle">Testing Turtle</a></h1>
+<p>Let’s begin by creating a file <code>turtle_vars.rs</code> in <code>learnrust/src/bin/</code> and
+place the following example code inside:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">use turtle::Turtle;
+
+fn main() {
+    let mut turtle = Turtle::new();
+
+    turtle.forward(10.0);
+}
+</code></pre></pre>
+<p>Now, remember that we have to add this program into <code>Cargo.toml</code>:</p>
+<pre><code class="language-toml">[[bin]]
+name = &quot;turtle_vars&quot;
+</code></pre>
+<p>And now, let’s test this:</p>
+<pre><code class="language-console">$ cargo run --bin turtle_vars
+</code></pre>
+<p>This should display a window like this:</p>
+<p><img src="./img/turtle_vars_01.png" alt="Small arrow up" /></p>
+<p>If this is what you see, congrats! It works for you!</p>
+<h1 id="drawing-a-rectangle"><a class="header" href="#drawing-a-rectangle">Drawing a rectangle</a></h1>
+<p>As explained at the beginning, we just need a few commands to do this.</p>
+<p>Basically, we can tell the turtle to turn right while moving, and if done
+in four steps, we should get a rectangle:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    turtle.forward(100.0);
+    turtle.right(90.0);
+    turtle.forward(100.0);
+    turtle.right(90.0);
+    turtle.forward(100.0);
+    turtle.right(90.0);
+    turtle.forward(100.0);
+<span class="boring">}
+</span></code></pre></pre>
+<p>And this gives us a nice animation. The end result is:</p>
+<p><img src="./img/turtle_vars_02.png" alt="Square" /></p>
+<p>But wait! What does <code>100.0</code> mean? And <code>90.0</code>?</p>
+<p>The first one is the distance to move, the second one is the angle to turn.</p>
+<p>So the program really says:</p>
+<ul>
+<li>Walk forward 100 pixels.</li>
+<li>Turn right 90 degrees.</li>
+<li>Now walk forward again 100 pixels.</li>
+<li>Turn right again 90 degrees.</li>
+<li>Walk again 100 pixels.</li>
+<li>Right by 90 degrees.</li>
+<li>Walk 100 pixels.</li>
+</ul>
+<p>But to someone reading the program it might be confusing to understand.</p>
+<p>Also, what if we want to make the rectangle bigger or smaller? We would need
+to change the <code>100.0</code> in all four places. That’s a lot of work!<sup class="footnote-reference"><a href="#2">2</a></sup></p>
+<p>So let’s use variables to prevent repetition:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let distance = 100.0;
+    let angle = 90.0;
+
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+<span class="boring">}
+</span></code></pre></pre>
+<p>Nice! Now if we want to make it bigger we just change:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let distance = 200.0;
+    let angle = 90.0;
+<span class="boring">}
+</span></code></pre></pre>
+<p>But what happens if we change the angle? Let’s try it out!</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let distance = 200.0;
+    let angle = 120.0;
+<span class="boring">}
+</span></code></pre></pre>
+<p><img src="./img/turtle_vars_03.png" alt="Triangle" /></p>
+<p>It draws a triangle! Wait, what?!</p>
+<p>That’s because a regular polygon has their sides separated by an angle defined by:</p>
+<p>\[angle = 360 / sides \]</p>
+<p>And \(360/3=120\), so 120 degrees is just a triangle.</p>
+<p>Wait a second… can we make this, so it can do different polygons?</p>
+<p>Sure! First we copy the <code>forward</code> and <code>right</code> commands a few times more:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let distance = 200.0;
+    let angle = 120.0;
+
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+<span class="boring">}
+</span></code></pre></pre>
+<p>Now we can compute the angle by using the formula:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let sides = 5.0;
+    let distance = 200.0;
+    let angle = 360.0 / sides;
+<span class="boring">}
+</span></code></pre></pre>
+<p>And we get a new figure:</p>
+<p><img src="./img/turtle_vars_04.png" alt="Pentagon" /></p>
+<p>Try playing yourself with the values and see what happens each time. </p>
+<ul>
+<li>What happens if we put <code>sides = 10.0</code> and <code>distance = 50.0</code>? Why?</li>
+<li>What happens if we change <code>angle = 300.0</code> and <code>sides = 8.0</code>?</li>
+<li>And <code>angle = 315.0</code> and <code>sides = 5.0</code>?</li>
+</ul>
+<hr />
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>Yes, we programmers are lazy. How could you have guessed that?</p>
+</div>
+<h2 id="thats-it"><a class="header" href="#thats-it">That’s it!</a></h2>
+<p>Well done. Hope you enjoyed this.</p>
+<p>Yes, there’s still a lot of repetition in the code, 
+but well get to that very soon.</p>
+<p>Here’s the full program:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">use turtle::Turtle;
+
+fn main() {
+    let mut turtle = Turtle::new();
+
+    let sides = 5.0;
+    let distance = 200.0;
+    let angle = 360.0 / sides;
+
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+    turtle.right(angle);
+    turtle.forward(distance);
+}
+</code></pre></pre>
+
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../L02novice/008B_ex_variables.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../L02novice/009A_incrementing.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../L02novice/008B_ex_variables.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../L02novice/009A_incrementing.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- Livereload script (if served using the cli tool) -->
+    <script type="text/javascript">
+        const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+        const socket = new WebSocket(wsAddress);
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload();
+            }
+        };
+
+        window.onbeforeunload = function () {
+            socket.close();
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+
+    <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Custom JS scripts -->
+
+
+</body>
+
+</html>

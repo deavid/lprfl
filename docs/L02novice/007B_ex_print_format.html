@@ -1,0 +1,517 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>Exercise: Printing and Formatting - Learn Programming with Rust as a first language</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../favicon.svg">
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+    <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- MathJax -->
+    <script async type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../L01_starter.html"><strong aria-hidden="true">1.</strong> Level: Starter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L01starter/001A_first_language.html"><strong aria-hidden="true">1.1.</strong> Your first programming language</a></li><li class="chapter-item expanded "><a href="../L01starter/002A_books.html"><strong aria-hidden="true">1.2.</strong> Related books</a></li><li class="chapter-item expanded "><a href="../L01starter/003A_setup.html"><strong aria-hidden="true">1.3.</strong> Setting up the computer</a></li><li class="chapter-item expanded "><a href="../L01starter/004A_first_program.html"><strong aria-hidden="true">1.4.</strong> Your first program</a></li><li class="chapter-item expanded "><a href="../L01starter/005A_to_the_IDE.html"><strong aria-hidden="true">1.5.</strong> Quick, to the IDE!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L01starter/005B_saving_progress.html"><strong aria-hidden="true">1.5.1.</strong> Saving our progress</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../L02_novice.html"><strong aria-hidden="true">2.</strong> Level: Novice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/006A_recipes.html"><strong aria-hidden="true">2.1.</strong> It's like cooking recipes, seriously</a></li><li class="chapter-item expanded "><a href="../L02novice/007A_little_boxes.html"><strong aria-hidden="true">2.2.</strong> Variables are like little boxes that store things inside</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/007B_ex_print_format.html" class="active"><strong aria-hidden="true">2.2.1.</strong> Exercise: Printing and Formatting</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/007C_fun_with_libs.html"><strong aria-hidden="true">2.3.</strong> Having fun with libraries</a></li><li class="chapter-item expanded "><a href="../L02novice/008A_declaring.html"><strong aria-hidden="true">2.4.</strong> Declaring variables</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/008B_ex_variables.html"><strong aria-hidden="true">2.4.1.</strong> Exercise: Variables</a></li><li class="chapter-item expanded "><a href="../L02novice/008C_turtle.html"><strong aria-hidden="true">2.4.2.</strong> Let's try Turtle!</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/009A_incrementing.html"><strong aria-hidden="true">2.5.</strong> Incrementing and decrementing</a></li><li class="chapter-item expanded "><a href="../L02novice/010A_looping.html"><strong aria-hidden="true">2.6.</strong> Looping' around</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/010B_ex_loops.html"><strong aria-hidden="true">2.6.1.</strong> Exercise: loops</a></li><li class="chapter-item expanded "><a href="../L02novice/010C_turtle_loops.html"><strong aria-hidden="true">2.6.2.</strong> Turtle: loops</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/011A_comments.html"><strong aria-hidden="true">2.7.</strong> Adding some comments</a></li><li class="chapter-item expanded "><a href="../L02novice/012A_ifs.html"><strong aria-hidden="true">2.8.</strong> What If…?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/012B_ex_ifs.html"><strong aria-hidden="true">2.8.1.</strong> Exercise: conditionals</a></li></ol></li><li class="chapter-item expanded "><a href="../L02novice/013A_loops_again.html"><strong aria-hidden="true">2.9.</strong> For loops again!</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L02novice/013B_other_loops.html"><strong aria-hidden="true">2.9.1.</strong> Other types of loops</a></li><li class="chapter-item expanded "><a href="../L02novice/013C_turtle_loops.html"><strong aria-hidden="true">2.9.2.</strong> Turtle: Improving with loops</a></li><li class="chapter-item expanded "><a href="../L02novice/013D_turtle_spiral.html"><strong aria-hidden="true">2.9.3.</strong> Turtle: Making a spiral</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../L03_apprentice.html"><strong aria-hidden="true">3.</strong> Level: Apprentice</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014A_functions.html"><strong aria-hidden="true">3.1.</strong> Introducing Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014B_func_return.html"><strong aria-hidden="true">3.1.1.</strong> Returning values from functions</a></li><li class="chapter-item expanded "><a href="../L03apprentice/014C_func_args.html"><strong aria-hidden="true">3.1.2.</strong> Function arguments</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/015A_data_types.html"><strong aria-hidden="true">3.2.</strong> Data types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/015B_rust_types.html"><strong aria-hidden="true">3.2.1.</strong> Rust data types</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/016A_typedvars.html"><strong aria-hidden="true">3.3.</strong> Back to declaring variables… with type</a></li><li class="chapter-item expanded "><a href="../L03apprentice/016B_dbg_format.html"><strong aria-hidden="true">3.4.</strong> dbg!() and format!()</a></li><li class="chapter-item expanded "><a href="../L03apprentice/017A_conversions.html"><strong aria-hidden="true">3.5.</strong> Converting types with explicit conversions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/017B_ex_conversions.html"><strong aria-hidden="true">3.5.1.</strong> Exercise: explicit conversions</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/018A_strings_intro.html"><strong aria-hidden="true">3.6.</strong> A tiny bit on strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/018B_strings_and_str.html"><strong aria-hidden="true">3.6.1.</strong> Simple explanation on &str vs String</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/X03A_funcs_revisited.html"><strong aria-hidden="true">3.7.</strong> A bit more detailed explanation on functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L03apprentice/014D_closures.html"><strong aria-hidden="true">3.7.1.</strong> Closures</a></li></ol></li><li class="chapter-item expanded "><a href="../L03apprentice/020A_proj_game_macroquad.html"><strong aria-hidden="true">3.8.</strong> Project: A simple game with Macroquad</a></li></ol></li><li class="chapter-item expanded "><a href="../L04_adept.html"><strong aria-hidden="true">4.</strong> Level: Adept</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L04adept/020A_structs.html"><strong aria-hidden="true">4.1.</strong> Not everything are numbers and texts: Structs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L04adept/020B_struct_impl.html"><strong aria-hidden="true">4.1.1.</strong> Struct-specific functions, really?</a></li><li class="chapter-item expanded "><a href="../L04adept/020C_oop.html"><strong aria-hidden="true">4.1.2.</strong> OOP? More like OP</a></li></ol></li><li class="chapter-item expanded "><a href="../L04adept/021A_enums.html"><strong aria-hidden="true">4.2.</strong> Enums!</a></li><li class="chapter-item expanded "><a href="../L04adept/022A_match.html"><strong aria-hidden="true">4.3.</strong> Match!</a></li><li class="chapter-item expanded "><a href="../L04adept/023A_float_gotchas.html"><strong aria-hidden="true">4.4.</strong> Floating point gotchas</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.1.</strong> Lists</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.2.</strong> Tuples</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.3.</strong> Slices</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.4.</strong> HashMaps</div></li></ol></li><li class="chapter-item expanded "><a href="../L04adept/023A_proj_game_ggez.html"><strong aria-hidden="true">4.6.</strong> Project: A simple game with ggez</a></li></ol></li><li class="chapter-item expanded "><a href="../L05_master.html"><strong aria-hidden="true">5.</strong> Level: Master</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../L05master/X02A_datatypes.html"><strong aria-hidden="true">5.1.</strong> What are those other data types for?</a></li><li class="chapter-item expanded "><a href="../L05master/023A_borrowing.html"><strong aria-hidden="true">5.2.</strong> Borrowing</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Lifetimes</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> Generic parameters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.1.</strong> Lists again!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.1.1.</strong> Deques and ring buffers</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.2.</strong> HashMaps again!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.2.1.</strong> HashSets, what?</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.3.</strong> The infamous linked list</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.4.</strong> Trees</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.5.</strong> Heaps</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.6.</strong> Algorithms</div></li></ol></li><li class="chapter-item expanded "><a href="../L06_grandmaster.html"><strong aria-hidden="true">6.</strong> Level: Grand Master</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> A glance over macros</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Polymorphism (Traits)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Functional programming</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.1.</strong> Iterators</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> Smart Pointers</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.1.</strong> Box</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.2.</strong> Rc</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.3.</strong> RefCell</div></li></ol></li><li class="chapter-item expanded "><a href="../L06grandmaster/X04A_garbage_collector.html"><strong aria-hidden="true">6.5.</strong> What is a Garbage Collector?</a></li></ol></li><li class="chapter-item expanded "><a href="../L07_legendary.html"><strong aria-hidden="true">7.</strong> Level: Legendary</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Polymorphism (dyn Box)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> No Size? ?Sized</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> Threading</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.1.</strong> Mutexes/Locks</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.2.</strong> Atomics</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.4.</strong> Async</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.5.</strong> Databases and SQL</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.5.1.</strong> What about NoSQL?</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.</strong> Web applications!</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.1.</strong> HTML+CSS+JS in one shot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.2.</strong> Web servers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.3.</strong> REST services</div></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../X01A_TODO.html"><strong aria-hidden="true">8.</strong> To-do: pieces that need more work</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../Y01A_appendices.html"><strong aria-hidden="true">9.</strong> Appendices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Y02A_license.html"><strong aria-hidden="true">9.1.</strong> Appendix A. License of this book</a></li><li class="chapter-item expanded "><a href="../Y03A_caveats.html"><strong aria-hidden="true">9.2.</strong> Appendix B. Caveats and challenges in this book</a></li><li class="chapter-item expanded "><a href="../Y04A_solutions.html"><strong aria-hidden="true">9.3.</strong> Appendix C. Exercises and Solutions</a></li><li class="chapter-item expanded "><a href="../Y05A_projects.html"><strong aria-hidden="true">9.4.</strong> Appendix D. Proposed projects</a></li><li class="chapter-item expanded "><a href="../Y06A_rust_compared.html"><strong aria-hidden="true">9.5.</strong> Appendix E. Rust compared to other languages</a></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🦀 Learn Programming with Rust as a first language</h1>
+
+                <div class="right-buttons">
+                    <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                });
+            </script>
+
+            <div id="content" class="content">
+                <main>
+                    <h1 id="exercise-printing-and-formatting"><a class="header" href="#exercise-printing-and-formatting">Exercise: Printing and Formatting</a></h1>
+<p>So we saw that <code>println!()</code> does print lines in the console. Let’s practice a 
+bit and see other fun ways of using <code>println!()</code>.</p>
+<p>First, we’ll create another program which we’ll call <code>print.rs</code>.</p>
+<p>Go ahead and create a new file in <code>learnrust/src/bin/print.rs</code>.</p>
+<p>Add the contents:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {}
+</code></pre></pre>
+<p>Now open <code>Cargo.toml</code> and add:</p>
+<pre><code class="language-toml">[[bin]]
+name = &quot;print&quot;
+</code></pre>
+<p>Your <code>Cargo.toml</code> should now look like this:</p>
+<pre><code class="language-toml">[package]
+name = &quot;learnrust&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+# See more keys and their definitions at ...
+
+[[bin]]
+name = &quot;sample1&quot;
+
+[[bin]]
+name = &quot;print&quot;
+
+[dependencies]
+</code></pre>
+<p>We can now run this program with <code>cargo run --bin print</code>:</p>
+<pre><code class="language-console">$ cargo run --bin print
+   Compiling learnrust v0.1.0 (/home/deavid/git/rust/lprfl/learnrust)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.66s
+     Running `target/debug/print`
+</code></pre>
+<p>As you can see, aside of compiling the program, this does nothing. Pretty 
+obvious when you see the code, right? It’s almost empty.</p>
+<h2 id="printing-banners-of-text"><a class="header" href="#printing-banners-of-text">Printing banners of text</a></h2>
+<p>Say we want to have some banner when the program starts. That would require 
+multiple lines and will describe what is this program.</p>
+<p>While it’s possible to have multiple lines in a single <code>println!()</code>, I don’t 
+recommend this. It’s hard to read and hard to write.</p>
+<p>Instead, we’ll just use one <code>println!()</code> per line:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:header}}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>HINT: On the piece of code above there should appear a “play” button if your
+browser supports JavaScript. If you click it, you can see the output of this
+program. The play button appears in most of the pieces of code in this book,
+so you don’t need to try every single program out.</p>
+</blockquote>
+<h2 id="placeholders"><a class="header" href="#placeholders">Placeholders</a></h2>
+<p>Now, printing text is nice. But soon we will want to replace a part of the text
+with something we can replace later on.</p>
+<p>For example, consider this piece of code:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:sum}}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The placeholder is <code>{}</code>. These two characters tell Rust that “here we want to
+put a value”. Then after the text, we add a comma and write down the value we 
+want. It can be a number, text, or like in this case, an operation.</p>
+<p>Rut basically will do the following steps:</p>
+<ol>
+<li>It will compute the sum we wrote:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    println!(&quot;The sum of 2 + 3 is {}. Isn't that great?&quot;, 5);
+<span class="boring">}
+</span></code></pre></pre>
+<ol start="2">
+<li>Replaces the placeholder with the value:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    println!(&quot;The sum of 2 + 3 is 5. Isn't that great?&quot;);
+<span class="boring">}
+</span></code></pre></pre>
+<ol start="3">
+<li>Prints the text into the console:</li>
+</ol>
+<pre><code class="language-console">The sum of 2 + 3 is 5. Isn't that great?
+</code></pre>
+<p>We can use more than one placeholder, just add more values at the end separated
+by commas:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:mult}}
+<span class="boring">}
+</span></code></pre></pre>
+<p>This prints: <code>And 4 * 3 is 12. Fantastic.</code></p>
+<p>The values must appear in the same order as the placeholders. The first value
+corresponds to the first <code>{}</code> from the left, the second value to the second <code>{}</code>.
+You get the idea.</p>
+<p>If it’s empty, without text or values, it will just print a new line. This can 
+be useful to separate parts of the output:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:newline}}
+<span class="boring">}
+</span></code></pre></pre>
+<p>But be careful! We cannot put values without a placeholder. This <strong>DOES NOT WORK</strong>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(5 * 10);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>HINT: Try to click the play button for the above code. It should show you the
+error that Rust gives for this particular code.</p>
+</blockquote>
+<p>Instead, if we just want a value, we need to add a placeholder for it:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, 5 * 10);
+<span class="boring">}
+</span></code></pre></pre>
+<p>And of course, the number of placeholders must be equal to the number of values
+we added. If too many placeholders appear, it will error out:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{} this placeholder does not have a value-&gt;{}&quot;, 5 * 10);
+<span class="boring">}
+</span></code></pre></pre>
+<p>And in the reverse, if we have too many values, it is also an error:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;{}&quot;, 5, 10, 5 * 10);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="understanding-rust-errors"><a class="header" href="#understanding-rust-errors">Understanding Rust errors</a></h2>
+<p>Again, please read the errors carefully. They explain a lot of what is wrong.</p>
+<p>For example, on the above code we had:</p>
+<pre><code class="language-console">error: 2 positional arguments in format string, but there is 1 argument
+ --&gt; src/main.rs:4:11
+  |
+4 | println!(&quot;{} this placeholder does not have a value-&gt;{}&quot;, 5 * 10);
+  |           ^^                                         ^^   ------
+
+error: could not compile `playground` due to previous error
+</code></pre>
+<p><strong>ALWAYS</strong> read the errors from top to bottom! Start from the first line and 
+keep reading line by line, like a book. I know this sounds obvious, but in the 
+console, we tend to read just the last line:</p>
+<pre><code>error: could not compile `playground` due to previous error
+</code></pre>
+<p>In fact, most people just reads:</p>
+<pre><code>error: could not compile
+</code></pre>
+<p>And forgets about anything else. I swear. Some people just reads <code>error</code> and 
+gets puzzled. Don’t be like them. Read the errors from top to bottom.</p>
+<p>Let’s break down the error in small parts to understand what it means:</p>
+<pre><code>(...) 2 positional arguments in format string (...)
+</code></pre>
+<p>By “positional arguments”, Rust means that we wrote two placeholders. And 
+“format string” is the text to print <code>&quot;{} this placeholder does not have a value-&gt;{}&quot;</code>.</p>
+<pre><code>(...), but there is 1 argument
+</code></pre>
+<p>And the “argument” is the value on the right of the text, in our case <code>, 5 * 10</code>.</p>
+<p>So, let’s read again:</p>
+<pre><code>error: 2 positional arguments in format string, but there is 1 argument
+</code></pre>
+<p>Therefore, what Rust means here is:</p>
+<blockquote>
+<p>You wrote two placeholders <code>{}</code> in the text, but you only provided one 
+value on the right: <code>, 5 * 10</code></p>
+</blockquote>
+<p>And if we keep reading (we must keep reading!), we have a nice help of what’s
+happening:</p>
+<pre><code class="language-console"> --&gt; src/main.rs:4:11
+  |
+4 | println!(&quot;{} this placeholder does not have a value-&gt;{}&quot;, 5 * 10);
+  |           ^^                                         ^^   ------
+</code></pre>
+<p>Notice the first line: <code>--&gt; src/main.rs:4:11</code>. This tells us which file has the
+problem (in my case I executed this in the browser, so the file does not match
+with what we have in our project). The <code>:4:11</code> means <strong>line 4</strong>, character 11. 
+Rust is telling us exactly (down to which character) has the problem. This is 
+super useful!!</p>
+<p>In the next lines, see how it is showing the line of the program that is 
+affected. And the characters bellow (<code>^^</code> and <code>-----</code>) are underlining the parts
+that are contributing to this error.</p>
+<blockquote>
+<p><strong>Error messages are super helpful!</strong> Keep reading them<sup class="footnote-reference"><a href="#1">1</a></sup>. They will explain to
+you how to fix your program.</p>
+</blockquote>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Each time that you reach out for help for an error and turns out that you
+didn’t read the error message carefully, put one coin into your 
+“Haven’t read the error message” jar. Use the contents to invite your helper
+friends to a drink from time to time.</p>
+</div>
+<h2 id="formatting-numbers"><a class="header" href="#formatting-numbers">Formatting numbers</a></h2>
+<p>Now that I’ve been a pain in the neck for long enough about errors, let’s do
+something interesting again. Sorry about that, but you’ll thank me later.</p>
+<p>Let’s say we want to print some decimal numbers. But sometimes, they’re ugly:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;5.0 / 3.0 = {}&quot;, 5.0 / 3.0);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This prints <code>5.0 / 3.0 = 1.6666666666666667</code><sup class="footnote-reference"><a href="#2">2</a></sup>, and it might be difficult
+to read. Wouldn’t it be nice if we could round to two decimals?</p>
+<p>Let’s see a few samples:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:rounding}}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Click on the play button and see how they are rounded to different decimal 
+places. Also, notice that Rust rounded the number, so 1.6 becomes 2.</p>
+<blockquote>
+<p>You can read the full documentation on formatting in here: <a href="https://doc.rust-lang.org/std/fmt/">https://doc.rust-lang.org/std/fmt/</a></p>
+</blockquote>
+<p>We can also do leading zeros:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;10 / 2 = {:04}&quot;, 5);
+<span class="boring">}
+</span></code></pre></pre>
+<p>And we can mix both together, but be careful because the leading zeros count
+all digits and dot. So you need more “leading zeros” to cover for the decimal
+places:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!(&quot;5.0 / 3.0 = {:07.2}&quot;, 5.0 / 3.0);
+<span class="boring">}
+</span></code></pre></pre>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>Note that, depending on your computer and Rust version you might see more or
+less decimals; Also the last digits might change. This is normal. Don’t
+think much about it. The explanation is an advanced concept that I hope to get
+at later stages of this book. For now, let’s move on.</p>
+</div>
+<h2 id="done"><a class="header" href="#done">Done!</a></h2>
+<p>That’s it for now! Feel free to play around and try yourself.</p>
+<p>Here’s the program completed:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{#include ../learnrust/src/bin/print.rs:all}}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Remember to write save it in <code>learnrust/src/bin/print.rs</code> and edit <code>Cargo.toml</code>
+as I explained on top. </p>
+<p>Then run it with: <code>cargo run --bin print</code></p>
+<pre><code class="language-console">$ cargo run --bin print
+   Compiling learnrust v0.1.0 (/home/deavid/git/rust/lprfl/learnrust)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.11s
+     Running `target/debug/print`
+
+#############################################################
+#                                                           #
+#                This is a PRINT program                    #
+#                                                           #
+#############################################################
+
+Summary: This program demonstrates different
+         ways of printing text
+
+The sum of 2 + 3 is 5. Isn't that great?
+And 4 * 3 is 12. Fantastic.
+
+5.0 / 3.0 = 1.6666666666666667
+5.0 / 3.0 = 1.667
+5.0 / 3.0 = 1.67
+5.0 / 3.0 = 2
+
+10 / 2 = 0005
+5.0 / 3.0 = 0001.67
+</code></pre>
+
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../L02novice/007A_little_boxes.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../L02novice/007C_fun_with_libs.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../L02novice/007A_little_boxes.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../L02novice/007C_fun_with_libs.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- Livereload script (if served using the cli tool) -->
+    <script type="text/javascript">
+        const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+        const socket = new WebSocket(wsAddress);
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload();
+            }
+        };
+
+        window.onbeforeunload = function () {
+            socket.close();
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+
+    <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Custom JS scripts -->
+
+
+</body>
+
+</html>

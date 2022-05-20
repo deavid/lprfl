@@ -18,6 +18,9 @@ name = "variables"
 name = "turtle_vars"
 
 [[bin]]
+name = "turtle_loops"
+
+[[bin]]
 name = "structs"
 
 [[bin]]
