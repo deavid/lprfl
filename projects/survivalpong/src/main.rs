@@ -26,12 +26,15 @@ async fn main() {
 
 async fn main_loop() {
     // TODO: Cut sounds
+    // Sometimes sound does not work...
     let click = load_sound("sfx/click.wav").await.unwrap();
     let snare = load_sound("sfx/snare.wav").await.unwrap();
     let over = load_sound("sfx/over.wav").await.unwrap();
+    // SOUND VOLUME
     set_sound_volume(click, 2.0);
     set_sound_volume(snare, 2.0);
-    set_sound_volume(over, 1.0);
+    set_sound_volume(over, 2.0);
+
     let mut score = 0;
     // BALL
     let mut x_pos: f32 = screen_width() - 50.0;
@@ -68,7 +71,7 @@ async fn main_loop() {
         // BALL MOVEMENT
 
         let prec_steps = 20;
-        for _ in 0..prec_steps {
+        for i in 0..prec_steps {
             x_pos += dx / prec_steps as f32;
             y_pos += dy / prec_steps as f32;
 
@@ -92,8 +95,8 @@ async fn main_loop() {
                 x_pos = screen_width() - 50.0;
                 y_pos = screen_height() / 2.0;
                 score /= 2;
-                sizey = 150.0;
-                sizey_2 = sizey / 2.0;
+                // sizey = 150.0;
+                // sizey_2 = sizey / 2.0;
                 play_sound_once(over);
             }
             if x_pos + size_2 > screen_width() - scr_margin {
@@ -114,7 +117,7 @@ async fn main_loop() {
                         let diff_y = (y_pos - paddle_y) / sizey_2;
                         dy += diff_y * 5.0;
                         let speed2 = f32::sqrt(dx * dx + dy * dy);
-                        let f = speed / speed2;
+                        let f = (speed / speed2).sqrt();
                         dx *= f;
                         dy *= f;
                         score += 1;
@@ -124,18 +127,23 @@ async fn main_loop() {
                     }
                 }
             }
+            let f = i as f32 / prec_steps as f32;
+            let trail_color = Color::new(0.00, 0.50 * f, 1.00 * f, 1.00);
+            draw_rectangle(x_pos - size_2, y_pos - size_2, size, size, trail_color);
         }
         // BALL RENDERING
-        draw_rectangle(x_pos - size_2, y_pos - size_2, size, size, WHITE);
+        let ball_color = Color::new(1.00, 0.75, 0.50, 0.50);
+        draw_rectangle(x_pos - size_2, y_pos - size_2, size, size, ball_color);
 
         // KEYBOARD INPUT - TO PADDLE
+        draw_rectangle(paddle_x - sizex_2, paddle_y - sizey_2, sizex, sizey, BROWN);
         let up = is_key_down(KeyCode::W);
         let down = is_key_down(KeyCode::S);
         if up {
-            paddle_y -= 6.0;
+            paddle_y -= 10.0;
         }
         if down {
-            paddle_y += 6.0;
+            paddle_y += 10.0;
         }
         if paddle_y - sizey_2 < scr_margin {
             paddle_y = scr_margin + sizey_2;
@@ -143,8 +151,11 @@ async fn main_loop() {
         if paddle_y + sizey_2 > screen_height() - scr_margin {
             paddle_y = screen_height() - scr_margin - sizey_2;
         }
+        if sizey < 150.0 {
+            sizey += 0.03;
+            sizey_2 = sizey / 2.0;
+        }
         // PADDLE RENDERING
-
         draw_rectangle(paddle_x - sizex_2, paddle_y - sizey_2, sizex, sizey, YELLOW);
 
         // UI - FPS METERS
