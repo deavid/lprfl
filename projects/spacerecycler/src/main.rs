@@ -1,8 +1,11 @@
+mod game;
+mod player;
+mod vector;
+
 use ggez::conf::{WindowMode, WindowSetup};
 use ggez::event;
 use ggez::ContextBuilder;
 
-mod game;
 use game::SpaceRecyclerGame;
 
 const WIDTH: f32 = 1200.0;

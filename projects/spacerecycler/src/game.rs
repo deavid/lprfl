@@ -1,3 +1,8 @@
+use std::time::Instant;
+
+use crate::player;
+use crate::vector::Position;
+use crate::vector::Vector;
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
@@ -11,25 +16,36 @@ use ggez::GameResult;
 pub struct SpaceRecyclerGame {
     // Your state here...
     // lives: i64,
+    pub player_ship: player::Ship,
+    pub last_update: Instant,
 }
 
 impl SpaceRecyclerGame {
     pub fn new(_ctx: &mut Context) -> SpaceRecyclerGame {
         // Load/create resources such as images here.
         SpaceRecyclerGame {
+            player_ship: player::Ship::default(),
+            last_update: Instant::now(),
             // ...
         }
     }
 }
 
 impl EventHandler for SpaceRecyclerGame {
-    fn update(&mut self, _ctx: &mut Context) -> GameResult<()> {
+    fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
         // Update code here...
+        let delta = self.last_update.elapsed();
+        self.last_update = Instant::now();
+
+        // Maybe increase quality of simulation by doing smaller delta steps.
+        self.player_ship.update(ctx, delta)?;
+
         Ok(())
     }
 
     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         graphics::clear(ctx, Color::BLACK);
+        // Draw code here...
 
         let rect = graphics::Rect::new(
             MARGIN_W,
@@ -45,7 +61,8 @@ impl EventHandler for SpaceRecyclerGame {
         )?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
 
-        // Draw code here...
+        self.player_ship.draw(ctx)?;
+        // Now display:
         graphics::present(ctx)
     }
 }
