@@ -1,4 +1,4 @@
-use std::time::{Duration, Instant};
+use std::time::Duration;
 
 use crate::vector::{Position, Vector};
 use crate::HEIGHT;
@@ -12,6 +12,8 @@ use ggez::graphics::DrawParam;
 use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
+
+#[derive(Debug, Clone)]
 pub struct Ship {
     pub pos: Position,
     pub speed: Vector,

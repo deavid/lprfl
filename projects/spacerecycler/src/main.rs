@@ -1,8 +1,9 @@
+mod asteroid;
 mod game;
 mod player;
 mod vector;
 
-use ggez::conf::{WindowMode, WindowSetup};
+use ggez::conf::{NumSamples, WindowMode, WindowSetup};
 use ggez::event;
 use ggez::ContextBuilder;
 
@@ -16,6 +17,7 @@ fn main() {
     let window_cfg = WindowSetup {
         title: "Space Recycler".to_owned(),
         vsync: false,
+        samples: NumSamples::Four,
         ..Default::default()
     };
     let window_mode = WindowMode {
