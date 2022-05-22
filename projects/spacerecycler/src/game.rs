@@ -1,4 +1,5 @@
 use crate::asteroid::AsteroidField;
+use crate::bullet::Bullet;
 use crate::bullet::MachineGun;
 use crate::player;
 use crate::player::Ship;
@@ -53,20 +54,30 @@ impl EventHandler for SpaceRecyclerGame {
             self.bullets.shoot(&self.player_ship);
         }
         self.bullets.check_asteroids(&mut self.asteroids);
-        if self
+        if let Some((c_vec, num)) = self
             .asteroids
             .check_collision(self.player_ship.pos, Ship::SIZE_Y)
-            .is_some()
         {
+            let ast = self.asteroids.asteroids.get_mut(num).unwrap();
+            ast.speed.dx += c_vec.dx;
+            ast.speed.dy += c_vec.dy;
+            self.player_ship.speed.dx -= c_vec.dx;
+            self.player_ship.speed.dy -= c_vec.dy;
             self.player_ship.consume_life();
         }
 
-        if self
+        if let Some((c_vec, num)) = self
             .bullets
             .check_collision_bounced(self.player_ship.pos, Ship::SIZE_Y)
-            .is_some()
         {
-            self.player_ship.consume_life();
+            let bullet = self.bullets.bullets.get_mut(num).unwrap();
+            if bullet.life > Bullet::LIFE / 4.0 {
+                self.player_ship.consume_life();
+            }
+            let old_speed = bullet.speed.distance();
+            let new_speed = c_vec.unit().scale(old_speed / 2.0);
+            bullet.speed = new_speed;
+            bullet.life /= 2.0;
         }
         // Maybe increase quality of simulation by doing smaller delta steps.
         self.asteroids.update(ctx, delta)?;

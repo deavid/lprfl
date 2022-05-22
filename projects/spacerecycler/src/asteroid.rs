@@ -102,7 +102,7 @@ impl Default for Asteroid {
         let size = kind.gen_size();
         Self {
             pos: Position {
-                x: WIDTH + MARGIN_W * 5.0,
+                x: WIDTH + MARGIN_W * 5.0 + size,
                 y: rng.gen_range(MARGIN_W..HEIGHT - MARGIN_W),
             },
             speed: Vector {
@@ -132,6 +132,9 @@ impl Asteroid {
         if self.life <= 0.0 {
             return true;
         }
+        if self.pos.x > WIDTH * 1.5 && self.speed.dx > 0.0 {
+            return true;
+        }
         if self.pos.x < -self.size {
             return true;
         }
@@ -148,7 +151,7 @@ impl Asteroid {
             x: self.pos.x,
             y: self.pos.y,
         };
-        let tolerance = 10.0 / self.size; // Max error for precise circles.
+        let tolerance = 20.0 / self.size; // Max error for precise circles.
 
         let r1 = graphics::Mesh::new_circle(
             ctx,
@@ -200,8 +203,8 @@ impl Default for AsteroidField {
 }
 
 impl AsteroidField {
-    const MAX_ASTEROIDS: usize = 20;
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(300);
+    const MAX_ASTEROIDS: usize = 200;
+    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(800);
 
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let mut to_remove = vec![];
@@ -233,13 +236,17 @@ impl AsteroidField {
                         let a = self.asteroids.get_mut(i).unwrap();
                         a.pos.x += col_v.dx / size_f;
                         a.pos.y += col_v.dy / size_f;
-                        a.speed.dx += col_v.dx / size_f;
-                        a.speed.dy += col_v.dy / size_f;
+                        if a.pos.x < WIDTH {
+                            a.speed.dx += col_v.dx / size_f * 10.0;
+                            a.speed.dy += col_v.dy / size_f * 10.0;
+                        }
                         let b = self.asteroids.get_mut(j).unwrap();
                         b.pos.x -= col_v.dx * size_f;
                         b.pos.y -= col_v.dy * size_f;
-                        b.speed.dx -= col_v.dx * size_f;
-                        b.speed.dy -= col_v.dy * size_f;
+                        if b.pos.x < WIDTH {
+                            b.speed.dx -= col_v.dx * size_f * 10.0;
+                            b.speed.dy -= col_v.dy * size_f * 10.0;
+                        }
                         collided = true;
                     }
                 }

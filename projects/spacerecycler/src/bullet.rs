@@ -22,12 +22,12 @@ pub struct Bullet {
 }
 
 impl Bullet {
+    pub const SIZE: f32 = 5.0;
+    pub const LIFE: f32 = 500.0;
     const X_SPEED: f32 = 1800.0;
     const Y_SPEED: f32 = 150.0;
     const TRAIL_DIST_SECS: f32 = 1.0 / 20.0;
     const LIFE_CONSUMPTION_RATE: f32 = 300.0;
-    const SIZE: f32 = 5.0;
-    const LIFE: f32 = 500.0;
     const BULLET_COLOR: Color = Color {
         r: 1.00,
         g: 0.65,
@@ -112,7 +112,7 @@ impl Bullet {
         };
         let trail_dist = Self::TRAIL_DIST_SECS * (self.life / Self::LIFE).sqrt().sqrt();
         let trail_len = self.speed.distance() * trail_dist;
-        let trail_points = (trail_len / 2.0).round() as usize;
+        let trail_points = (trail_len / 5.0).round() as usize;
         for f in 1..=trail_points {
             let f = f as f32 / trail_points as f32;
             let last_pos = ggez::mint::Point2 {
