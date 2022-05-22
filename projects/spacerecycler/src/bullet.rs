@@ -18,18 +18,19 @@ pub struct Bullet {
     pub pos: Position,
     pub speed: Vector,
     pub life: f32,
+    pub bounced: bool,
 }
 
 impl Bullet {
-    const X_SPEED: f32 = 1500.0;
-    const Y_SPEED: f32 = 20.0;
+    const X_SPEED: f32 = 1800.0;
+    const Y_SPEED: f32 = 150.0;
     const TRAIL_DIST_SECS: f32 = 1.0 / 20.0;
     const LIFE_CONSUMPTION_RATE: f32 = 300.0;
     const SIZE: f32 = 5.0;
-    const LIFE: f32 = 300.0;
-    const COLOR: Color = Color {
+    const LIFE: f32 = 500.0;
+    const BULLET_COLOR: Color = Color {
         r: 1.00,
-        g: 0.85,
+        g: 0.65,
         b: 0.00,
         a: 1.00,
     };
@@ -39,20 +40,34 @@ impl Bullet {
         b: 0.00,
         a: 0.05,
     };
-    pub fn new(player: &Ship) -> Self {
+    const BOUNCED_COLOR: Color = Color {
+        r: 1.00,
+        g: 0.20,
+        b: 0.00,
+        a: 1.00,
+    };
+    const BOUNCED_TRAIL_COLOR: Color = Color {
+        r: 1.00,
+        g: 0.30,
+        b: 0.00,
+        a: 0.08,
+    };
+    pub fn new(player: &Ship, spread_factor: f32) -> Self {
         let mut rng = rand::thread_rng();
         let pos = Position {
             x: player.pos.x + Ship::SIZE_X / 2.0 + rng.gen_range(0.0..Self::X_SPEED / 30.0),
-            y: player.pos.y,
+            y: player.pos.y + rng.gen_range(-Ship::SIZE_Y / 2.0..Ship::SIZE_Y / 2.0),
         };
+        let spread = spread_factor.powi(3) * Self::Y_SPEED;
         let speed = Vector {
-            dx: Self::X_SPEED + player.speed.dx,
-            dy: rng.gen_range(-Self::Y_SPEED..Self::Y_SPEED) + player.speed.dy,
+            dx: Self::X_SPEED * (1.0 - spread_factor / 3.0) + player.speed.dx,
+            dy: rng.gen_range(-spread..spread) + player.speed.dy,
         };
         Self {
             pos,
             speed,
-            life: Self::LIFE,
+            life: Self::LIFE * (1.0 - spread_factor / 2.0),
+            bounced: false,
         }
     }
     pub fn update(&mut self, _ctx: &mut Context, delta: Duration) -> GameResult<()> {
@@ -83,40 +98,56 @@ impl Bullet {
         false
     }
     pub fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
+        let color = match self.bounced {
+            true => Self::BOUNCED_COLOR,
+            false => Self::BULLET_COLOR,
+        };
+        let trail_color = match self.bounced {
+            true => Self::BOUNCED_TRAIL_COLOR,
+            false => Self::TRAIL_COLOR,
+        };
         let p = ggez::mint::Point2 {
             x: self.pos.x,
             y: self.pos.y,
         };
-        if self.speed.distance_2() > 1000.0 {
-            for f in 1..10 {
-                let f = f as f32 / 10.0;
-                let last_pos = ggez::mint::Point2 {
-                    x: self.pos.x - self.speed.dx * Self::TRAIL_DIST_SECS * f,
-                    y: self.pos.y - self.speed.dy * Self::TRAIL_DIST_SECS * f,
-                };
-                let l = graphics::Mesh::new_line(
-                    ctx,
-                    &[last_pos, p],
-                    Self::SIZE * (1.0 - f / 2.0),
-                    Self::TRAIL_COLOR,
-                )?;
-                graphics::draw(ctx, &l, DrawParam::default())?;
-            }
+        let trail_dist = Self::TRAIL_DIST_SECS * (self.life / Self::LIFE).sqrt().sqrt();
+        let trail_len = self.speed.distance() * trail_dist;
+        let trail_points = (trail_len / 2.0).round() as usize;
+        for f in 1..=trail_points {
+            let f = f as f32 / trail_points as f32;
+            let last_pos = ggez::mint::Point2 {
+                x: self.pos.x - self.speed.dx * trail_dist * f,
+                y: self.pos.y - self.speed.dy * trail_dist * f,
+            };
+            let l = graphics::Mesh::new_line(
+                ctx,
+                &[last_pos, p],
+                Self::SIZE * (1.0 - f / 2.0),
+                trail_color,
+            )?;
+            graphics::draw(ctx, &l, DrawParam::default())?;
         }
 
-        let tolerance = 10.0 / Self::SIZE; // Max error for precise circles.
+        let size = Self::SIZE * (self.life / Self::LIFE).sqrt().sqrt().sqrt();
 
-        let r1 = graphics::Mesh::new_circle(
-            ctx,
-            graphics::DrawMode::fill(),
-            p,
-            Self::SIZE,
-            tolerance,
-            Self::COLOR,
-        )?;
+        let tolerance = 10.0 / size; // Max error for precise circles.
+
+        let r1 =
+            graphics::Mesh::new_circle(ctx, graphics::DrawMode::fill(), p, size, tolerance, color)?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
 
         Ok(())
+    }
+    pub fn check_collision(&self, pos: Position, size: f32) -> Option<Vector> {
+        let v = self.pos.vector_to(&pos);
+        let d2 = v.distance_2();
+        if d2 >= (Self::SIZE + size).powi(2) {
+            return None;
+        }
+        let d = d2.sqrt();
+        let col_d = (Self::SIZE + size) - d;
+        let col_v = v.scale(col_d / d);
+        Some(col_v)
     }
 }
 
@@ -139,10 +170,16 @@ impl Default for MachineGun {
 
 impl MachineGun {
     const SHOT_DURATION: Duration = Duration::from_millis(50);
-    const MAX_TEMP: f32 = 100.0;
-    const TEMP_SHOT: f32 = 0.4;
-    const COOLING_RATE: f32 = 1.03;
+    const MAX_TEMP: f32 = 200.0;
+    const TEMP_SHOT: f32 = 1.4;
+    const COOLING_RATE: f32 = 1.1;
+    const BLINK_RATE_SECS: f32 = 0.2;
+
     pub fn shoot(&mut self, player: &Ship) {
+        if self.last_shot > Instant::now() {
+            // Rust might panic if we do self.last_shot.elapsed() and returns negative.
+            return;
+        }
         if self.last_shot.elapsed() < Self::SHOT_DURATION {
             // Gun loading next bullet.
             return;
@@ -153,8 +190,22 @@ impl MachineGun {
             return;
         }
         self.last_shot = Instant::now();
-        self.bullets.push(Bullet::new(player));
+        self.bullets
+            .push(Bullet::new(player, self.temp / Self::MAX_TEMP));
         self.temp += Self::TEMP_SHOT;
+    }
+
+    pub fn blinking(&self, rev: bool) -> bool {
+        let now = Instant::now();
+        if self.last_shot > now {
+            let remaining = self.last_shot - now;
+            let b = (remaining.as_secs_f32() / Self::BLINK_RATE_SECS).round() as i64;
+            if rev {
+                return b % 2 == 1;
+            }
+            return b % 2 == 0;
+        }
+        false
     }
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let mut to_remove = vec![];
@@ -178,14 +229,31 @@ impl MachineGun {
         for bullet in self.bullets.iter_mut() {
             if let Some((col_vec, n)) = asteroids.check_collision(bullet.pos, Bullet::SIZE) {
                 let asteroid = asteroids.asteroids.get_mut(n).unwrap();
+                let p = 1.0 - (asteroid.life.min(bullet.life / 2.0) / asteroid.life);
+                asteroid.size *= p.sqrt().sqrt();
                 asteroid.life -= bullet.life;
+
                 //                bullet.life -= asteroid.life;
                 bullet.pos.x -= col_vec.dx;
                 bullet.pos.y -= col_vec.dy;
                 bullet.speed = col_vec.unit().scale(-Bullet::X_SPEED / 2.0);
+                bullet.bounced = true;
             }
         }
     }
+
+    pub fn check_collision_bounced(&self, pos: Position, size: f32) -> Option<(Vector, usize)> {
+        for (n, bullet) in self.bullets.iter().enumerate() {
+            if !bullet.bounced {
+                continue;
+            }
+            if let Some(col_v) = bullet.check_collision(pos, size) {
+                return Some((col_v, n));
+            }
+        }
+        None
+    }
+
     pub fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         for bullet in self.bullets.iter_mut() {
             bullet.draw(ctx)?;
@@ -199,9 +267,12 @@ impl MachineGun {
             Color::WHITE,
         )?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
-
+        let color = match self.blinking(false) {
+            false => Color::RED,
+            true => Color::YELLOW,
+        };
         let rect = graphics::Rect::new(MARGIN_W * 2.0, MARGIN_W * 2.0, self.temp, 10.0);
-        let r1 = graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), rect, Color::RED)?;
+        let r1 = graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), rect, color)?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
 
         Ok(())

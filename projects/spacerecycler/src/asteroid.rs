@@ -12,17 +12,94 @@ use ggez::GameResult;
 use rand::Rng;
 
 #[derive(Debug, Clone)]
+pub enum AsteroidKind {
+    Rock,
+    Plastic,
+    Aluminium,
+    Cardboard,
+}
+
+impl Default for AsteroidKind {
+    fn default() -> Self {
+        let mut rng = rand::thread_rng();
+        let dice1 = rng.gen_range(1..=6);
+        let dice2 = rng.gen_range(1..=6);
+        let dice3 = rng.gen_range(1..=6);
+        let dice4 = rng.gen_range(1..=6);
+
+        // From 4 .. 24 - mid: 12
+        let dices = dice1 + dice2 + dice3 + dice4;
+        match dices {
+            12 => Self::Aluminium,
+            14 => Self::Plastic,
+            16 => Self::Cardboard,
+            _ => Self::Rock,
+        }
+    }
+}
+
+impl AsteroidKind {
+    fn color(&self) -> Color {
+        match self {
+            AsteroidKind::Rock => Color {
+                r: 0.70,
+                g: 0.40,
+                b: 0.20,
+                a: 1.00,
+            },
+            AsteroidKind::Plastic => Color {
+                r: 0.60,
+                g: 0.95,
+                b: 0.60,
+                a: 1.00,
+            },
+            AsteroidKind::Aluminium => Color {
+                r: 0.90,
+                g: 0.85,
+                b: 0.80,
+                a: 1.00,
+            },
+            AsteroidKind::Cardboard => Color {
+                r: 0.20,
+                g: 0.25,
+                b: 0.20,
+                a: 1.00,
+            },
+        }
+    }
+    fn gen_size(&self) -> f32 {
+        let mut rng = rand::thread_rng();
+        match self {
+            AsteroidKind::Rock => rng.gen_range(16.0..32.0),
+            AsteroidKind::Plastic => rng.gen_range(12.0..18.0),
+            AsteroidKind::Aluminium => rng.gen_range(12.0..18.0),
+            AsteroidKind::Cardboard => rng.gen_range(12.0..18.0),
+        }
+    }
+    fn money_factor(&self) -> f32 {
+        match self {
+            AsteroidKind::Rock => 0.0,
+            AsteroidKind::Plastic => 10.0,
+            AsteroidKind::Aluminium => 30.0,
+            AsteroidKind::Cardboard => 90.0,
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
 pub struct Asteroid {
     pub pos: Position,
     pub speed: Vector,
     pub size: f32,
     pub life: f32,
+    pub kind: AsteroidKind,
 }
 
 impl Default for Asteroid {
     fn default() -> Self {
         let mut rng = rand::thread_rng();
-        let size = rng.gen_range(Self::MIN_SIZE..Self::MAX_SIZE);
+        let kind = AsteroidKind::default();
+        let size = kind.gen_size();
         Self {
             pos: Position {
                 x: WIDTH + MARGIN_W * 5.0,
@@ -34,22 +111,15 @@ impl Default for Asteroid {
             },
             life: Self::LIFE_POINTS_X_SIZE * size * size,
             size,
+            kind,
         }
     }
 }
 
 impl Asteroid {
     const LIFE_POINTS_X_SIZE: f32 = 2.0;
-    const MIN_SIZE: f32 = 16.0;
-    const MAX_SIZE: f32 = 32.0;
     const X_SPEED: f32 = -100.0;
     const Y_SPEED: f32 = 10.0;
-    const COLOR: Color = Color {
-        r: 0.90,
-        g: 0.85,
-        b: 0.80,
-        a: 1.00,
-    };
     pub fn update(&mut self, _ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let delta = delta.as_secs_f32();
 
@@ -86,7 +156,7 @@ impl Asteroid {
             p,
             self.size,
             tolerance,
-            Self::COLOR,
+            self.kind.color(),
         )?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
 

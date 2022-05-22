@@ -1,6 +1,7 @@
 use crate::asteroid::AsteroidField;
 use crate::bullet::MachineGun;
 use crate::player;
+use crate::player::Ship;
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
@@ -52,7 +53,21 @@ impl EventHandler for SpaceRecyclerGame {
             self.bullets.shoot(&self.player_ship);
         }
         self.bullets.check_asteroids(&mut self.asteroids);
+        if self
+            .asteroids
+            .check_collision(self.player_ship.pos, Ship::SIZE_Y)
+            .is_some()
+        {
+            self.player_ship.consume_life();
+        }
 
+        if self
+            .bullets
+            .check_collision_bounced(self.player_ship.pos, Ship::SIZE_Y)
+            .is_some()
+        {
+            self.player_ship.consume_life();
+        }
         // Maybe increase quality of simulation by doing smaller delta steps.
         self.asteroids.update(ctx, delta)?;
         self.player_ship.update(ctx, delta)?;
@@ -66,8 +81,8 @@ impl EventHandler for SpaceRecyclerGame {
         // Draw code here...
 
         self.asteroids.draw(ctx)?;
-        self.player_ship.draw(ctx)?;
         self.bullets.draw(ctx)?;
+        self.player_ship.draw(ctx)?;
 
         let rect = graphics::Rect::new(
             MARGIN_W,
