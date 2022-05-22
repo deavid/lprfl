@@ -1,4 +1,5 @@
 mod asteroid;
+mod bullet;
 mod game;
 mod player;
 mod vector;

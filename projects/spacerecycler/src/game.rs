@@ -1,41 +1,41 @@
-use std::time::Duration;
-use std::time::Instant;
-
-use crate::asteroid::Asteroid;
 use crate::asteroid::AsteroidField;
+use crate::bullet::MachineGun;
 use crate::player;
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
 use ggez::event::EventHandler;
+use ggez::event::KeyCode;
 use ggez::graphics;
 use ggez::graphics::Color;
 use ggez::graphics::DrawParam;
+use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
+use std::time::Instant;
 
 pub struct SpaceRecyclerGame {
     // Your state here...
     // lives: i64,
     pub player_ship: player::Ship,
     pub asteroids: AsteroidField,
+    pub bullets: MachineGun,
     pub last_update: Instant,
 }
 
 impl SpaceRecyclerGame {
-    const MAX_ASTEROIDS: usize = 30;
     const COLOR_BG: Color = Color {
         r: 0.10,
         g: 0.15,
         b: 0.20,
         a: 1.0,
     };
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(1000);
     pub fn new(_ctx: &mut Context) -> SpaceRecyclerGame {
         // Load/create resources such as images here.
         SpaceRecyclerGame {
             player_ship: player::Ship::default(),
             asteroids: AsteroidField::default(),
+            bullets: MachineGun::default(),
             last_update: Instant::now(),
             // ...
         }
@@ -48,10 +48,15 @@ impl EventHandler for SpaceRecyclerGame {
         let delta = self.last_update.elapsed();
         self.last_update = Instant::now();
 
-        // Maybe increase quality of simulation by doing smaller delta steps.
-        self.player_ship.update(ctx, delta)?;
+        if keyboard::is_key_pressed(ctx, KeyCode::Space) {
+            self.bullets.shoot(&self.player_ship);
+        }
+        self.bullets.check_asteroids(&mut self.asteroids);
 
+        // Maybe increase quality of simulation by doing smaller delta steps.
         self.asteroids.update(ctx, delta)?;
+        self.player_ship.update(ctx, delta)?;
+        self.bullets.update(ctx, delta)?;
 
         Ok(())
     }
@@ -60,8 +65,9 @@ impl EventHandler for SpaceRecyclerGame {
         graphics::clear(ctx, Self::COLOR_BG);
         // Draw code here...
 
-        self.player_ship.draw(ctx)?;
         self.asteroids.draw(ctx)?;
+        self.player_ship.draw(ctx)?;
+        self.bullets.draw(ctx)?;
 
         let rect = graphics::Rect::new(
             MARGIN_W,

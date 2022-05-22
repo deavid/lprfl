@@ -32,8 +32,8 @@ impl Default for Ship {
 }
 
 impl Ship {
-    const SIZE_X: f32 = 32.0;
-    const SIZE_Y: f32 = 14.0;
+    pub const SIZE_X: f32 = 32.0;
+    pub const SIZE_Y: f32 = 14.0;
     const X_SPEED: f32 = 1000.0;
     const Y_SPEED: f32 = 1000.0;
     const FRICTION: f32 = 1000.0;

@@ -102,6 +102,17 @@ impl Asteroid {
 
         Ok(())
     }
+    pub fn check_collision(&self, pos: Position, size: f32) -> Option<Vector> {
+        let v = self.pos.vector_to(&pos);
+        let d2 = v.distance_2();
+        if d2 >= (self.size + size).powi(2) {
+            return None;
+        }
+        let d = d2.sqrt();
+        let col_d = (self.size + size) - d;
+        let col_v = v.scale(col_d / d);
+        Some(col_v)
+    }
 }
 
 pub struct AsteroidField {
@@ -119,8 +130,8 @@ impl Default for AsteroidField {
 }
 
 impl AsteroidField {
-    const MAX_ASTEROIDS: usize = 50;
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(100);
+    const MAX_ASTEROIDS: usize = 20;
+    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(300);
 
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let mut to_remove = vec![];
@@ -146,12 +157,8 @@ impl AsteroidField {
                 for j in i + 1..self.asteroids.len() {
                     let a = &self.asteroids[i];
                     let b = &self.asteroids[j];
-                    let v = a.pos.vector_to(&b.pos);
-                    let d2 = v.distance_2();
-                    if d2 < (a.size + b.size).powi(2) {
-                        let d = d2.sqrt();
-                        let col_d = (a.size + b.size) - d;
-                        let col_v = v.scale(col_d / d / 10.0);
+                    if let Some(col_v) = a.check_collision(b.pos, b.size) {
+                        let col_v = col_v.scale(1.0 / 10.0);
                         let size_f = a.size.powi(2) / b.size.powi(2);
                         let a = self.asteroids.get_mut(i).unwrap();
                         a.pos.x += col_v.dx / size_f;
@@ -180,6 +187,16 @@ impl AsteroidField {
         }
         Ok(())
     }
+
+    pub fn check_collision(&self, pos: Position, size: f32) -> Option<(Vector, usize)> {
+        for (n, asteroid) in self.asteroids.iter().enumerate() {
+            if let Some(col_v) = asteroid.check_collision(pos, size) {
+                return Some((col_v, n));
+            }
+        }
+        None
+    }
+
     pub fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         for asteroid in self.asteroids.iter_mut() {
             asteroid.draw(ctx)?;

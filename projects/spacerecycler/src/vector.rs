@@ -32,4 +32,7 @@ impl Vector {
             dy: self.dy * s,
         }
     }
+    pub fn unit(&self) -> Vector {
+        self.scale(1.0 / self.distance())
+    }
 }
