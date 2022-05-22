@@ -1,17 +1,44 @@
 use std::time::{Duration, Instant};
 
+use crate::asteroid::{AsteroidField, AsteroidKind};
 use crate::vector::{Position, Vector};
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
 use ggez::event::KeyCode;
-use ggez::event::KeyMods;
 use ggez::graphics;
 use ggez::graphics::Color;
 use ggez::graphics::DrawParam;
 use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
+
+#[derive(Debug, Clone, Copy)]
+pub enum ShipAction {
+    None,
+    GunFire,
+    Collector(AsteroidKind),
+    Turbo,
+    Overheat,
+}
+
+impl std::fmt::Display for ShipAction {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ShipAction::None => write!(f, "CRUISE"),
+            ShipAction::GunFire => write!(f, "FIRING MAIN CANNON"),
+            ShipAction::Collector(k) => write!(f, "COLLECTING {}", k),
+            ShipAction::Turbo => write!(f, "TURBO THRUST"),
+            ShipAction::Overheat => write!(f, "SYSTEM OVERLOAD"),
+        }
+    }
+}
+
+impl Default for ShipAction {
+    fn default() -> Self {
+        Self::None
+    }
+}
 
 #[derive(Debug, Clone)]
 pub struct Ship {
@@ -20,6 +47,8 @@ pub struct Ship {
     pub lifes: u64,
     pub old_lifes: u64,
     pub last_life: Instant,
+    pub action: ShipAction,
+    pub collector: Collector,
 }
 
 impl Default for Ship {
@@ -33,6 +62,8 @@ impl Default for Ship {
             lifes: 8,
             old_lifes: 8,
             last_life: Instant::now(),
+            action: Default::default(),
+            collector: Default::default(),
         }
     }
 }
@@ -47,7 +78,8 @@ impl Ship {
     const X_SPEED: f32 = 1000.0;
     const Y_SPEED: f32 = 1000.0;
     const FRICTION: f32 = 1000.0;
-    const FRICTION_TURBO: f32 = 2.0;
+    const FRICTION_TURBO: f32 = 200.0;
+    const SPEED_FACTOR_TURBO: f32 = 2.0;
     const LIFE_COLOR: Color = Color {
         r: 0.0,
         g: 1.0,
@@ -62,22 +94,30 @@ impl Ship {
     };
 
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
+        self.collector.update(ctx, delta, self.action)?;
+
         let delta = delta.as_secs_f32();
+
+        let friction = match self.action {
+            ShipAction::Turbo => Self::FRICTION_TURBO,
+            _ => Self::FRICTION,
+        };
+        let turbo = match self.action {
+            ShipAction::Turbo => Self::SPEED_FACTOR_TURBO,
+            _ => 1.0,
+        };
         // Increase or decrease `position_x` by 0.5, or by 5.0 if Shift is held.
         if keyboard::is_key_pressed(ctx, KeyCode::Right) {
-            self.speed.dx += Self::X_SPEED * delta;
+            self.speed.dx += Self::X_SPEED * delta * turbo;
         } else if keyboard::is_key_pressed(ctx, KeyCode::Left) {
-            self.speed.dx -= Self::X_SPEED * delta;
+            self.speed.dx -= Self::X_SPEED * delta * turbo;
         }
         if keyboard::is_key_pressed(ctx, KeyCode::Up) {
-            self.speed.dy -= Self::Y_SPEED * delta;
+            self.speed.dy -= Self::Y_SPEED * delta * turbo;
         } else if keyboard::is_key_pressed(ctx, KeyCode::Down) {
-            self.speed.dy += Self::Y_SPEED * delta;
+            self.speed.dy += Self::Y_SPEED * delta * turbo;
         }
-        let friction = match keyboard::is_mod_active(ctx, KeyMods::SHIFT) {
-            true => Self::FRICTION_TURBO,
-            false => Self::FRICTION,
-        };
+
         self.speed.dx /= friction.powf(delta);
         self.speed.dy /= friction.powf(delta);
 
@@ -135,8 +175,16 @@ impl Ship {
     pub fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         let color = match self.blinking(false) {
             true => Color::CYAN,
-            false => Color::BLUE,
+            false => match &self.action {
+                ShipAction::Turbo => Color::RED,
+                ShipAction::GunFire => Color::YELLOW,
+                ShipAction::Collector(k) => k.color(),
+                _ => Color::BLUE,
+            },
         };
+
+        self.collector.draw(ctx, self.pos)?;
+
         let rect = graphics::Rect::new(
             self.pos.x - Self::SIZE_X / 2.0,
             self.pos.y - Self::SIZE_Y / 2.0,
@@ -189,5 +237,138 @@ impl Ship {
             graphics::draw(ctx, &r1, DrawParam::default())?;
         }
         Ok(())
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Collector {
+    pub mode: Option<AsteroidKind>,
+    pub radius: f32,
+}
+impl Default for Collector {
+    fn default() -> Self {
+        Self {
+            mode: None,
+            radius: 0.0,
+        }
+    }
+}
+
+impl Collector {
+    pub const COLLECTOR_SIZE: f32 = 64.0;
+    const COLLECTOR_SPEED: f32 = 80.0;
+    pub fn update(
+        &mut self,
+        _ctx: &mut Context,
+        delta: Duration,
+        action: ShipAction,
+    ) -> GameResult<()> {
+        let delta = delta.as_secs_f32();
+
+        let mut collector_on = false;
+        if let ShipAction::Collector(k) = action {
+            if self.radius < Ship::SIZE_Y {
+                self.mode = Some(k);
+            }
+            if let Some(mode) = self.mode {
+                if mode == k {
+                    collector_on = true;
+                }
+            }
+        }
+        if collector_on {
+            if self.radius < Self::COLLECTOR_SIZE {
+                self.radius += Self::COLLECTOR_SPEED * delta;
+            }
+        } else if self.radius > Ship::SIZE_Y / 2.0 {
+            self.radius -= Self::COLLECTOR_SPEED * delta;
+            if self.radius < Ship::SIZE_Y {
+                self.mode = None;
+            }
+        }
+
+        Ok(())
+    }
+    pub fn draw(&mut self, ctx: &mut Context, pos: Position) -> GameResult<()> {
+        if let Some(k) = self.mode {
+            let tolerance = 10.0 / self.radius; // Max error for precise circles.
+            let p = ggez::mint::Point2 { x: pos.x, y: pos.y };
+            let mut color = k.color();
+            color.a /= 5.0;
+            let r1 = graphics::Mesh::new_circle(
+                ctx,
+                graphics::DrawMode::fill(),
+                p,
+                self.radius,
+                tolerance,
+                color,
+            )?;
+            graphics::draw(ctx, &r1, DrawParam::default())?;
+            let color = Color {
+                r: 0.00,
+                g: 0.00,
+                b: 0.00,
+                a: 0.20,
+            };
+            let r1 = graphics::Mesh::new_circle(
+                ctx,
+                graphics::DrawMode::fill(),
+                p,
+                self.radius * 0.8,
+                tolerance / 0.8,
+                color,
+            )?;
+            graphics::draw(ctx, &r1, DrawParam::default())?;
+            let r1 = graphics::Mesh::new_circle(
+                ctx,
+                graphics::DrawMode::fill(),
+                p,
+                self.radius * 0.6,
+                tolerance / 0.6,
+                color,
+            )?;
+            graphics::draw(ctx, &r1, DrawParam::default())?;
+        }
+        Ok(())
+    }
+    pub fn check_asteroids(
+        &mut self,
+        pos: Position,
+        asteroids: &mut AsteroidField,
+        delta: Duration,
+    ) -> Option<f32> {
+        let delta = delta.as_secs_f32();
+        let mode = self.mode?;
+        let mut score = 0.0;
+        let mut collected = false;
+        let collisions: Vec<_> = asteroids.check_collision_many(pos, self.radius);
+        for (col_vec, n) in collisions {
+            let force = col_vec.distance();
+            let asteroid = asteroids.asteroids.get_mut(n).unwrap();
+            let p = 1.0 - (asteroid.life.min(force / 2.0) / asteroid.life);
+            let col_vec = col_vec.unit();
+            asteroid.speed.dx -= col_vec.dx * delta * 70.0;
+            asteroid.speed.dy -= col_vec.dy * delta * 70.0;
+            asteroid.speed.dx /= 1.5_f32.powf(delta);
+            asteroid.speed.dy /= 1.5_f32.powf(delta);
+            if asteroid.kind == AsteroidKind::Rock {
+                continue;
+            } else {
+                asteroid.size *= p.sqrt().sqrt();
+                let impact = asteroid.life.min(force);
+                collected = true;
+                asteroid.life -= impact;
+                if asteroid.kind == mode {
+                    score += impact * asteroid.kind.money_factor();
+                } else {
+                    score += -impact * asteroid.kind.money_factor();
+                }
+            }
+        }
+        if collected {
+            Some(score)
+        } else {
+            None
+        }
     }
 }

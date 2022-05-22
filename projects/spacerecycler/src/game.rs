@@ -1,8 +1,10 @@
 use crate::asteroid::AsteroidField;
+use crate::asteroid::AsteroidKind;
 use crate::bullet::Bullet;
 use crate::bullet::MachineGun;
 use crate::player;
 use crate::player::Ship;
+use crate::player::ShipAction;
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
@@ -50,26 +52,61 @@ impl EventHandler for SpaceRecyclerGame {
     fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
         // Update code here...
         let delta = self.last_update.elapsed();
+        let delta32 = delta.as_secs_f32();
         self.last_update = Instant::now();
-
-        if keyboard::is_key_pressed(ctx, KeyCode::Space) {
-            self.bullets.shoot(&self.player_ship);
+        self.player_ship.action = ShipAction::None;
+        if !self.bullets.overheated() {
+            if keyboard::is_key_pressed(ctx, KeyCode::V) {
+                self.player_ship.action = ShipAction::Turbo;
+                self.bullets.temp += 60.0 * delta32;
+            }
+            if keyboard::is_key_pressed(ctx, KeyCode::Z) {
+                self.player_ship.action = ShipAction::Collector(AsteroidKind::Aluminium);
+                self.bullets.temp += 30.0 * delta32;
+            }
+            if keyboard::is_key_pressed(ctx, KeyCode::X) {
+                self.player_ship.action = ShipAction::Collector(AsteroidKind::Plastic);
+                self.bullets.temp += 30.0 * delta32;
+            }
+            if keyboard::is_key_pressed(ctx, KeyCode::C) {
+                self.player_ship.action = ShipAction::Collector(AsteroidKind::Cardboard);
+                self.bullets.temp += 35.0 * delta32;
+            }
+            if keyboard::is_key_pressed(ctx, KeyCode::Space) {
+                self.player_ship.action = ShipAction::GunFire;
+                self.bullets.shoot(&self.player_ship);
+            }
         }
+        if self.bullets.overheated() {
+            self.player_ship.action = ShipAction::Overheat;
+        }
+
+        let collector_score = self.player_ship.collector.check_asteroids(
+            self.player_ship.pos,
+            &mut self.asteroids,
+            delta,
+        );
+
         self.score -= self.bullets.check_asteroids(&mut self.asteroids);
         if self.score < 0.0 {
             self.score = 0.0;
         }
 
-        if let Some((c_vec, num)) = self
-            .asteroids
-            .check_collision(self.player_ship.pos, Ship::SIZE_Y)
-        {
-            let ast = self.asteroids.asteroids.get_mut(num).unwrap();
-            ast.speed.dx += c_vec.dx;
-            ast.speed.dy += c_vec.dy;
-            self.player_ship.speed.dx -= c_vec.dx;
-            self.player_ship.speed.dy -= c_vec.dy;
-            self.player_ship.consume_life();
+        match collector_score {
+            Some(score) => self.score += score,
+            None => {
+                if let Some((c_vec, num)) = self
+                    .asteroids
+                    .check_collision(self.player_ship.pos, Ship::SIZE_Y)
+                {
+                    let ast = self.asteroids.asteroids.get_mut(num).unwrap();
+                    ast.speed.dx += c_vec.dx;
+                    ast.speed.dy += c_vec.dy;
+                    self.player_ship.speed.dx -= c_vec.dx;
+                    self.player_ship.speed.dy -= c_vec.dy;
+                    self.player_ship.consume_life();
+                }
+            }
         }
 
         if let Some((c_vec, num)) = self
@@ -125,6 +162,10 @@ impl EventHandler for SpaceRecyclerGame {
 
         let t = graphics::Text::new(format!("SCORE: {:08.0}", self.score));
         let dest = ggez::mint::Vector2 { x: 600.0, y: 30.0 };
+        graphics::draw(ctx, &t, DrawParam::default().dest(dest))?;
+
+        let t = graphics::Text::new(self.player_ship.action.to_string());
+        let dest = ggez::mint::Vector2 { x: 600.0, y: 50.0 };
         graphics::draw(ctx, &t, DrawParam::default().dest(dest))?;
 
         // Now display:

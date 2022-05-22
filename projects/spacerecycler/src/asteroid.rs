@@ -11,7 +11,7 @@ use ggez::Context;
 use ggez::GameResult;
 use rand::Rng;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum AsteroidKind {
     Rock,
     Plastic,
@@ -38,6 +38,17 @@ impl Default for AsteroidKind {
     }
 }
 
+impl std::fmt::Display for AsteroidKind {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            AsteroidKind::Rock => write!(f, "ROCK"),
+            AsteroidKind::Plastic => write!(f, "PLASTIC"),
+            AsteroidKind::Aluminium => write!(f, "ALUMINUM"),
+            AsteroidKind::Cardboard => write!(f, "CARDBOARD"),
+        }
+    }
+}
+
 impl AsteroidKind {
     pub fn color(&self) -> Color {
         match self {
@@ -60,8 +71,8 @@ impl AsteroidKind {
                 a: 1.00,
             },
             AsteroidKind::Cardboard => Color {
-                r: 0.20,
-                g: 0.25,
+                r: 0.60,
+                g: 0.05,
                 b: 0.20,
                 a: 1.00,
             },
@@ -203,8 +214,8 @@ impl Default for AsteroidField {
 }
 
 impl AsteroidField {
-    const MAX_ASTEROIDS: usize = 200;
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(800);
+    const MAX_ASTEROIDS: usize = 50;
+    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(1500);
 
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let mut to_remove = vec![];
@@ -272,6 +283,16 @@ impl AsteroidField {
             }
         }
         None
+    }
+
+    pub fn check_collision_many(&self, pos: Position, size: f32) -> Vec<(Vector, usize)> {
+        let mut ret = vec![];
+        for (n, asteroid) in self.asteroids.iter().enumerate() {
+            if let Some(col_v) = asteroid.check_collision(pos, size) {
+                ret.push((col_v, n));
+            }
+        }
+        ret
     }
 
     pub fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
