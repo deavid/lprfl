@@ -16,6 +16,7 @@ use ggez::graphics::DrawParam;
 use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
+use std::cmp::Ordering;
 use std::time::Instant;
 
 pub struct SpaceRecyclerGame {
@@ -26,6 +27,7 @@ pub struct SpaceRecyclerGame {
     pub bullets: MachineGun,
     pub last_update: Instant,
     pub score: f32,
+    pub prev_score: f32,
 }
 
 impl SpaceRecyclerGame {
@@ -43,6 +45,7 @@ impl SpaceRecyclerGame {
             bullets: MachineGun::default(),
             last_update: Instant::now(),
             score: 0.0,
+            prev_score: 0.0,
             // ...
         }
     }
@@ -53,6 +56,11 @@ impl EventHandler for SpaceRecyclerGame {
         // Update code here...
         let delta = self.last_update.elapsed();
         let delta32 = delta.as_secs_f32();
+        self.prev_score = (self.score * delta32 * 4.0 + self.prev_score) / (1.0 + delta32 * 4.0);
+        if (self.prev_score - self.score).abs() < 0.5 {
+            self.prev_score = self.score;
+        }
+
         self.last_update = Instant::now();
         self.player_ship.action = ShipAction::None;
         if !self.bullets.overheated() {
@@ -160,9 +168,20 @@ impl EventHandler for SpaceRecyclerGame {
         )?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
 
-        let t = graphics::Text::new(format!("SCORE: {:08.0}", self.score));
+        let t = graphics::Text::new(format!("SCORE: {:08.0}", self.prev_score));
         let dest = ggez::mint::Vector2 { x: 600.0, y: 30.0 };
-        graphics::draw(ctx, &t, DrawParam::default().dest(dest))?;
+        let baseparam = DrawParam::default().dest(dest);
+        let drawparam = match self
+            .score
+            .partial_cmp(&self.prev_score)
+            .unwrap_or(Ordering::Equal)
+        {
+            Ordering::Less => baseparam.color(Color::RED),
+            Ordering::Equal => baseparam.dest(dest),
+            Ordering::Greater => baseparam.dest(dest).color(Color::GREEN),
+        };
+
+        graphics::draw(ctx, &t, drawparam)?;
 
         let t = graphics::Text::new(self.player_ship.action.to_string());
         let dest = ggez::mint::Vector2 { x: 600.0, y: 50.0 };

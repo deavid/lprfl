@@ -106,7 +106,6 @@ impl Ship {
             ShipAction::Turbo => Self::SPEED_FACTOR_TURBO,
             _ => 1.0,
         };
-        // Increase or decrease `position_x` by 0.5, or by 5.0 if Shift is held.
         if keyboard::is_key_pressed(ctx, KeyCode::Right) {
             self.speed.dx += Self::X_SPEED * delta * turbo;
         } else if keyboard::is_key_pressed(ctx, KeyCode::Left) {
