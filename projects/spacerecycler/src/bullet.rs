@@ -225,13 +225,16 @@ impl MachineGun {
 
         Ok(())
     }
-    pub fn check_asteroids(&mut self, asteroids: &mut AsteroidField) {
+    pub fn check_asteroids(&mut self, asteroids: &mut AsteroidField) -> f32 {
+        let mut points = 0.0;
         for bullet in self.bullets.iter_mut() {
             if let Some((col_vec, n)) = asteroids.check_collision(bullet.pos, Bullet::SIZE) {
                 let asteroid = asteroids.asteroids.get_mut(n).unwrap();
                 let p = 1.0 - (asteroid.life.min(bullet.life / 2.0) / asteroid.life);
                 asteroid.size *= p.sqrt().sqrt();
-                asteroid.life -= bullet.life;
+                let impact = asteroid.life.min(bullet.life);
+                asteroid.life -= impact;
+                points += impact * asteroid.kind.money_factor();
 
                 //                bullet.life -= asteroid.life;
                 bullet.pos.x -= col_vec.dx;
@@ -240,6 +243,7 @@ impl MachineGun {
                 bullet.bounced = true;
             }
         }
+        points
     }
 
     pub fn check_collision_bounced(&self, pos: Position, size: f32) -> Option<(Vector, usize)> {

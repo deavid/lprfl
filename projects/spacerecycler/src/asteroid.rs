@@ -39,7 +39,7 @@ impl Default for AsteroidKind {
 }
 
 impl AsteroidKind {
-    fn color(&self) -> Color {
+    pub fn color(&self) -> Color {
         match self {
             AsteroidKind::Rock => Color {
                 r: 0.70,
@@ -67,7 +67,7 @@ impl AsteroidKind {
             },
         }
     }
-    fn gen_size(&self) -> f32 {
+    pub fn gen_size(&self) -> f32 {
         let mut rng = rand::thread_rng();
         match self {
             AsteroidKind::Rock => rng.gen_range(16.0..32.0),
@@ -76,12 +76,12 @@ impl AsteroidKind {
             AsteroidKind::Cardboard => rng.gen_range(12.0..18.0),
         }
     }
-    fn money_factor(&self) -> f32 {
+    pub fn money_factor(&self) -> f32 {
         match self {
-            AsteroidKind::Rock => 0.0,
-            AsteroidKind::Plastic => 10.0,
-            AsteroidKind::Aluminium => 30.0,
-            AsteroidKind::Cardboard => 90.0,
+            AsteroidKind::Rock => -0.1,
+            AsteroidKind::Plastic => 1.0,
+            AsteroidKind::Aluminium => 3.0,
+            AsteroidKind::Cardboard => 9.0,
         }
     }
 }

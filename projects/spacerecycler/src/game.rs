@@ -23,6 +23,7 @@ pub struct SpaceRecyclerGame {
     pub asteroids: AsteroidField,
     pub bullets: MachineGun,
     pub last_update: Instant,
+    pub score: f32,
 }
 
 impl SpaceRecyclerGame {
@@ -39,6 +40,7 @@ impl SpaceRecyclerGame {
             asteroids: AsteroidField::default(),
             bullets: MachineGun::default(),
             last_update: Instant::now(),
+            score: 0.0,
             // ...
         }
     }
@@ -53,7 +55,11 @@ impl EventHandler for SpaceRecyclerGame {
         if keyboard::is_key_pressed(ctx, KeyCode::Space) {
             self.bullets.shoot(&self.player_ship);
         }
-        self.bullets.check_asteroids(&mut self.asteroids);
+        self.score -= self.bullets.check_asteroids(&mut self.asteroids);
+        if self.score < 0.0 {
+            self.score = 0.0;
+        }
+
         if let Some((c_vec, num)) = self
             .asteroids
             .check_collision(self.player_ship.pos, Ship::SIZE_Y)
@@ -116,6 +122,10 @@ impl EventHandler for SpaceRecyclerGame {
             Color::WHITE,
         )?;
         graphics::draw(ctx, &r1, DrawParam::default())?;
+
+        let t = graphics::Text::new(format!("SCORE: {:08.0}", self.score));
+        let dest = ggez::mint::Vector2 { x: 600.0, y: 30.0 };
+        graphics::draw(ctx, &t, DrawParam::default().dest(dest))?;
 
         // Now display:
         graphics::present(ctx)
