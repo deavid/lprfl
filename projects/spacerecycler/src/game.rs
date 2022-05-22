@@ -5,6 +5,7 @@ use crate::bullet::MachineGun;
 use crate::player;
 use crate::player::Ship;
 use crate::player::ShipAction;
+use crate::sfx::Sfx;
 use crate::HEIGHT;
 use crate::MARGIN_W;
 use crate::WIDTH;
@@ -28,6 +29,7 @@ pub struct SpaceRecyclerGame {
     pub last_update: Instant,
     pub score: f32,
     pub prev_score: f32,
+    pub sfx: Sfx,
 }
 
 impl SpaceRecyclerGame {
@@ -37,17 +39,18 @@ impl SpaceRecyclerGame {
         b: 0.20,
         a: 1.0,
     };
-    pub fn new(_ctx: &mut Context) -> SpaceRecyclerGame {
+    pub fn new(_ctx: &mut Context) -> GameResult<SpaceRecyclerGame> {
         // Load/create resources such as images here.
-        SpaceRecyclerGame {
+        Ok(SpaceRecyclerGame {
             player_ship: player::Ship::default(),
             asteroids: AsteroidField::default(),
             bullets: MachineGun::default(),
             last_update: Instant::now(),
             score: 0.0,
             prev_score: 0.0,
+            sfx: Sfx::new()?,
             // ...
-        }
+        })
     }
 }
 
@@ -62,10 +65,14 @@ impl EventHandler for SpaceRecyclerGame {
         }
 
         self.last_update = Instant::now();
+        let old_action = self.player_ship.action;
         self.player_ship.action = ShipAction::None;
         if !self.bullets.overheated() {
             if keyboard::is_key_pressed(ctx, KeyCode::V) {
                 self.player_ship.action = ShipAction::Turbo;
+                if old_action != ShipAction::Turbo {
+                    self.sfx.turbo(ctx)?;
+                }
                 self.bullets.temp += 60.0 * delta32;
             }
             if keyboard::is_key_pressed(ctx, KeyCode::Z) {
@@ -101,7 +108,14 @@ impl EventHandler for SpaceRecyclerGame {
         }
 
         match collector_score {
-            Some(score) => self.score += score,
+            Some(score) => {
+                self.score += score;
+                if score > 0.0 {
+                    self.sfx.collectorw1(ctx)?;
+                } else {
+                    self.sfx.collectorw2(ctx)?;
+                }
+            }
             None => {
                 if let Some((c_vec, num)) = self
                     .asteroids
@@ -130,10 +144,20 @@ impl EventHandler for SpaceRecyclerGame {
             bullet.speed = new_speed;
             bullet.life /= 2.0;
         }
+
+        if let ShipAction::Collector(_) = self.player_ship.action {
+            self.sfx.collector(ctx, true)?;
+        } else {
+            self.sfx.collector(ctx, false)?;
+        }
         // Maybe increase quality of simulation by doing smaller delta steps.
         self.asteroids.update(ctx, delta)?;
         self.player_ship.update(ctx, delta)?;
         self.bullets.update(ctx, delta)?;
+
+        self.bullets.play(ctx, &mut self.sfx)?;
+        self.player_ship.play(ctx, &mut self.sfx)?;
+        self.asteroids.play(ctx, &mut self.sfx)?;
 
         Ok(())
     }
@@ -180,6 +204,9 @@ impl EventHandler for SpaceRecyclerGame {
             Ordering::Equal => baseparam.dest(dest),
             Ordering::Greater => baseparam.dest(dest).color(Color::GREEN),
         };
+        if self.score != self.prev_score {
+            self.sfx.money(ctx, self.score - self.prev_score)?;
+        }
 
         graphics::draw(ctx, &t, drawparam)?;
 

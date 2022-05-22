@@ -1,6 +1,7 @@
 use std::time::{Duration, Instant};
 
 use crate::asteroid::{AsteroidField, AsteroidKind};
+use crate::sfx::Sfx;
 use crate::vector::{Position, Vector};
 use crate::HEIGHT;
 use crate::MARGIN_W;
@@ -13,7 +14,7 @@ use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ShipAction {
     None,
     GunFire,
@@ -49,6 +50,7 @@ pub struct Ship {
     pub last_life: Instant,
     pub action: ShipAction,
     pub collector: Collector,
+    pub play_life: Option<()>,
 }
 
 impl Default for Ship {
@@ -64,6 +66,7 @@ impl Default for Ship {
             last_life: Instant::now(),
             action: Default::default(),
             collector: Default::default(),
+            play_life: None,
         }
     }
 }
@@ -154,6 +157,7 @@ impl Ship {
             return;
         }
         self.last_life = Instant::now();
+        self.play_life = Some(());
         self.old_lifes = self.lifes;
         if self.lifes >= 1 {
             self.lifes -= 1;
@@ -234,6 +238,12 @@ impl Ship {
                 Color::BLACK,
             )?;
             graphics::draw(ctx, &r1, DrawParam::default())?;
+        }
+        Ok(())
+    }
+    pub fn play(&mut self, ctx: &mut Context, sfx: &mut Sfx) -> GameResult<()> {
+        if self.play_life.take().is_some() {
+            sfx.life_lost(ctx)?;
         }
         Ok(())
     }

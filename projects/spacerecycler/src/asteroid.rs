@@ -1,5 +1,6 @@
 use std::time::{Duration, Instant};
 
+use crate::sfx::Sfx;
 use crate::vector::{Position, Vector};
 use crate::HEIGHT;
 use crate::MARGIN_W;
@@ -139,6 +140,7 @@ impl Asteroid {
 
         Ok(())
     }
+
     pub fn pending_destroy(&self) -> bool {
         if self.life <= 0.0 {
             return true;
@@ -202,6 +204,7 @@ impl Asteroid {
 pub struct AsteroidField {
     pub asteroids: Vec<Asteroid>,
     pub last_asteroid_created: Instant,
+    pub play_asteroid: Option<f32>,
 }
 
 impl Default for AsteroidField {
@@ -209,14 +212,21 @@ impl Default for AsteroidField {
         Self {
             asteroids: vec![Asteroid::default()],
             last_asteroid_created: Instant::now(),
+            play_asteroid: None,
         }
     }
 }
 
 impl AsteroidField {
     const MAX_ASTEROIDS: usize = 50;
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(1500);
+    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(150);
 
+    pub fn play(&mut self, ctx: &mut Context, sfx: &mut Sfx) -> GameResult<()> {
+        if let Some(vol) = self.play_asteroid.take() {
+            sfx.asteroid_hit_vol(ctx, vol)?;
+        }
+        Ok(())
+    }
     pub fn update(&mut self, ctx: &mut Context, delta: Duration) -> GameResult<()> {
         let mut to_remove = vec![];
 
@@ -242,21 +252,31 @@ impl AsteroidField {
                     let a = &self.asteroids[i];
                     let b = &self.asteroids[j];
                     if let Some(col_v) = a.check_collision(b.pos, b.size) {
-                        let col_v = col_v.scale(1.0 / 10.0);
+                        let col_v = col_v.scale(1.0 / 2.0);
                         let size_f = a.size.powi(2) / b.size.powi(2);
+                        let unit_col = col_v.unit();
+                        // if a.pos.x < WIDTH
+                        //     && b.pos.x < WIDTH
+                        //     && a.speed.delta(&b.speed).distance() > 10.0
+                        // {
+                        //     // self.play_asteroid = Some(());
+                        // }
                         let a = self.asteroids.get_mut(i).unwrap();
                         a.pos.x += col_v.dx / size_f;
                         a.pos.y += col_v.dy / size_f;
                         if a.pos.x < WIDTH {
-                            a.speed.dx += col_v.dx / size_f * 10.0;
-                            a.speed.dy += col_v.dy / size_f * 10.0;
+                            a.speed.dx += col_v.dx / size_f * 5.0 + unit_col.dx;
+                            a.speed.dy += col_v.dy / size_f * 5.0 + unit_col.dy;
+                            if col_v.distance() > 0.03 {
+                                self.play_asteroid = Some(col_v.distance() / 10.0);
+                            }
                         }
                         let b = self.asteroids.get_mut(j).unwrap();
                         b.pos.x -= col_v.dx * size_f;
                         b.pos.y -= col_v.dy * size_f;
                         if b.pos.x < WIDTH {
-                            b.speed.dx -= col_v.dx * size_f * 10.0;
-                            b.speed.dy -= col_v.dy * size_f * 10.0;
+                            b.speed.dx -= col_v.dx * size_f * 5.0 + unit_col.dx;
+                            b.speed.dy -= col_v.dy * size_f * 5.0 + unit_col.dy;
                         }
                         collided = true;
                     }

@@ -24,7 +24,7 @@ impl Vector {
         self.dx.powi(2) + self.dy.powi(2)
     }
     pub fn distance(&self) -> f32 {
-        self.distance_2().sqrt()
+        self.distance_2().sqrt().max(0.0001)
     }
     pub fn scale(&self, s: f32) -> Vector {
         Vector {
@@ -34,5 +34,11 @@ impl Vector {
     }
     pub fn unit(&self) -> Vector {
         self.scale(1.0 / self.distance())
+    }
+    pub fn delta(&self, other: &Self) -> Vector {
+        Vector {
+            dx: self.dx - other.dx,
+            dy: self.dy - other.dy,
+        }
     }
 }

@@ -2,6 +2,7 @@ mod asteroid;
 mod bullet;
 mod game;
 mod player;
+mod sfx;
 mod vector;
 
 use ggez::conf::{NumSamples, WindowMode, WindowSetup};
@@ -41,7 +42,7 @@ fn main() {
     // Create an instance of your event handler.
     // Usually, you should provide it with the Context object to
     // use when setting your game up.
-    let space_recycler = SpaceRecyclerGame::new(&mut ctx);
+    let space_recycler = SpaceRecyclerGame::new(&mut ctx).expect("Error intializing game");
 
     // Run!
     event::run(ctx, event_loop, space_recycler);

@@ -2,6 +2,7 @@ use std::time::{Duration, Instant};
 
 use crate::asteroid::AsteroidField;
 use crate::player::Ship;
+use crate::sfx::Sfx;
 use crate::vector::{Position, Vector};
 use crate::HEIGHT;
 use crate::MARGIN_W;
@@ -160,6 +161,9 @@ pub struct MachineGun {
     pub bullets: Vec<Bullet>,
     pub last_shot: Instant,
     pub temp: f32,
+    pub play_bullet: Option<f32>,
+    pub play_asteroid: Option<()>,
+    pub play_overload: Option<()>,
 }
 
 impl Default for MachineGun {
@@ -168,6 +172,9 @@ impl Default for MachineGun {
             bullets: Default::default(),
             last_shot: Instant::now(),
             temp: 60.0,
+            play_bullet: None,
+            play_asteroid: None,
+            play_overload: None,
         }
     }
 }
@@ -178,6 +185,19 @@ impl MachineGun {
     pub const TEMP_SHOT: f32 = 5.5;
     pub const COOLING_RATE: f32 = 1.1;
     pub const BLINK_RATE_SECS: f32 = 0.2;
+
+    pub fn play(&mut self, ctx: &mut Context, sfx: &mut Sfx) -> GameResult<()> {
+        if let Some(vol) = self.play_bullet.take() {
+            sfx.bullet(ctx, vol)?;
+        }
+        if self.play_asteroid.take().is_some() {
+            sfx.asteroid_hit(ctx)?;
+        }
+        if self.play_overload.take().is_some() {
+            sfx.overload(ctx)?;
+        }
+        Ok(())
+    }
 
     pub fn shoot(&mut self, player: &Ship) {
         if self.overheated() {
@@ -197,10 +217,12 @@ impl MachineGun {
         self.last_shot = Instant::now();
         self.bullets
             .push(Bullet::new(player, self.temp / Self::MAX_TEMP));
+        self.play_bullet = Some((1.0 - temp_f * 0.80) * 0.2)
     }
     pub fn overheated(&mut self) -> bool {
         if self.temp >= Self::MAX_TEMP {
             // Gun too hot. Try later.
+            self.play_overload = Some(());
             self.last_shot = Instant::now() + Duration::from_secs(3);
         }
         // Rust might panic if we do self.last_shot.elapsed() and returns negative.
@@ -247,7 +269,7 @@ impl MachineGun {
                 let impact = asteroid.life.min(bullet.life);
                 asteroid.life -= impact;
                 points += impact * asteroid.kind.money_factor();
-
+                self.play_asteroid = Some(());
                 //                bullet.life -= asteroid.life;
                 asteroid.speed.dx += bullet.speed.dx / asteroid.size * 1.5;
                 asteroid.speed.dy += bullet.speed.dy / asteroid.size * 1.5;
