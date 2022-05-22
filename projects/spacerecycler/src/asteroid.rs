@@ -31,9 +31,14 @@ impl Default for AsteroidKind {
         // From 4 .. 24 - mid: 12
         let dices = dice1 + dice2 + dice3 + dice4;
         match dices {
+            10 => Self::Aluminium,
+            11 => Self::Aluminium,
             12 => Self::Aluminium,
-            14 => Self::Plastic,
-            16 => Self::Cardboard,
+            13 => Self::Aluminium,
+            18 => Self::Plastic,
+            19 => Self::Plastic,
+            22 => Self::Cardboard,
+            23 => Self::Cardboard,
             _ => Self::Rock,
         }
     }
@@ -90,10 +95,10 @@ impl AsteroidKind {
     }
     pub fn money_factor(&self) -> f32 {
         match self {
-            AsteroidKind::Rock => -0.1,
-            AsteroidKind::Plastic => 1.0,
-            AsteroidKind::Aluminium => 3.0,
-            AsteroidKind::Cardboard => 9.0,
+            AsteroidKind::Rock => -0.20,
+            AsteroidKind::Aluminium => 0.10,
+            AsteroidKind::Plastic => 2.0,
+            AsteroidKind::Cardboard => 20.0,
         }
     }
 }
@@ -219,7 +224,7 @@ impl Default for AsteroidField {
 
 impl AsteroidField {
     const MAX_ASTEROIDS: usize = 50;
-    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(150);
+    const ASTEROID_CREATION_MIN_TIME: Duration = Duration::from_millis(800);
 
     pub fn play(&mut self, ctx: &mut Context, sfx: &mut Sfx) -> GameResult<()> {
         if let Some(vol) = self.play_asteroid.take() {

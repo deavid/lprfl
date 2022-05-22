@@ -13,6 +13,7 @@ use ggez::graphics::DrawParam;
 use ggez::input::keyboard;
 use ggez::Context;
 use ggez::GameResult;
+use rand::Rng;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ShipAction {
@@ -78,7 +79,7 @@ impl Ship {
     const MAX_LIFES: u64 = 10;
     const IMMUNITY_SECS: f32 = 5.0;
     const BLINK_RATE_SECS: f32 = 0.2;
-    const X_SPEED: f32 = 1000.0;
+    const X_SPEED: f32 = 1500.0;
     const Y_SPEED: f32 = 1000.0;
     const FRICTION: f32 = 1000.0;
     const FRICTION_TURBO: f32 = 200.0;
@@ -302,13 +303,15 @@ impl Collector {
         if let Some(k) = self.mode {
             let tolerance = 10.0 / self.radius; // Max error for precise circles.
             let p = ggez::mint::Point2 { x: pos.x, y: pos.y };
+            let mut rng = rand::thread_rng();
+
             let mut color = k.color();
             color.a /= 5.0;
             let r1 = graphics::Mesh::new_circle(
                 ctx,
                 graphics::DrawMode::fill(),
                 p,
-                self.radius,
+                self.radius * rng.gen_range(0.98..1.0),
                 tolerance,
                 color,
             )?;
@@ -323,7 +326,7 @@ impl Collector {
                 ctx,
                 graphics::DrawMode::fill(),
                 p,
-                self.radius * 0.8,
+                self.radius * 0.8 * rng.gen_range(0.95..1.0),
                 tolerance / 0.8,
                 color,
             )?;
@@ -332,7 +335,7 @@ impl Collector {
                 ctx,
                 graphics::DrawMode::fill(),
                 p,
-                self.radius * 0.6,
+                self.radius * 0.6 * rng.gen_range(0.90..1.0),
                 tolerance / 0.6,
                 color,
             )?;
@@ -352,25 +355,27 @@ impl Collector {
         let mut collected = false;
         let collisions: Vec<_> = asteroids.check_collision_many(pos, self.radius);
         for (col_vec, n) in collisions {
-            let force = col_vec.distance();
+            let force = (col_vec.distance() - self.radius / 2.0).max(0.01);
             let asteroid = asteroids.asteroids.get_mut(n).unwrap();
             let p = 1.0 - (asteroid.life.min(force / 2.0) / asteroid.life);
             let col_vec = col_vec.unit();
-            asteroid.speed.dx -= col_vec.dx * delta * 70.0;
-            asteroid.speed.dy -= col_vec.dy * delta * 70.0;
+            asteroid.speed.dx -= col_vec.dx * delta * 170.0;
+            asteroid.speed.dy -= col_vec.dy * delta * 170.0;
             asteroid.speed.dx /= 1.5_f32.powf(delta);
             asteroid.speed.dy /= 1.5_f32.powf(delta);
             if asteroid.kind == AsteroidKind::Rock {
                 continue;
             } else {
-                asteroid.size *= p.sqrt().sqrt();
-                let impact = asteroid.life.min(force);
                 collected = true;
-                asteroid.life -= impact;
-                if asteroid.kind == mode {
-                    score += impact * asteroid.kind.money_factor();
-                } else {
-                    score += -impact * asteroid.kind.money_factor();
+                if force > 1.0 {
+                    asteroid.size *= p.sqrt().sqrt();
+                    let impact = asteroid.life.min(force);
+                    asteroid.life -= impact;
+                    if asteroid.kind == mode {
+                        score += impact * asteroid.kind.money_factor();
+                    } else {
+                        score += -impact * asteroid.kind.money_factor();
+                    }
                 }
             }
         }

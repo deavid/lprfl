@@ -102,17 +102,18 @@ impl EventHandler for SpaceRecyclerGame {
             delta,
         );
 
-        self.score -= self.bullets.check_asteroids(&mut self.asteroids);
+        self.score -= self.bullets.check_asteroids(&mut self.asteroids) / 10.0;
         if self.score < 0.0 {
             self.score = 0.0;
         }
 
         match collector_score {
             Some(score) => {
-                self.score += score;
                 if score > 0.0 {
+                    self.score += score;
                     self.sfx.collectorw1(ctx)?;
                 } else {
+                    self.score += score / 10.0;
                     self.sfx.collectorw2(ctx)?;
                 }
             }

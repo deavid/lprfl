@@ -183,7 +183,7 @@ impl MachineGun {
     pub const SHOT_DURATION: f32 = 0.2;
     pub const MAX_TEMP: f32 = 200.0;
     pub const TEMP_SHOT: f32 = 5.5;
-    pub const COOLING_RATE: f32 = 1.1;
+    pub const COOLING_RATE: f32 = 1.2;
     pub const BLINK_RATE_SECS: f32 = 0.2;
 
     pub fn play(&mut self, ctx: &mut Context, sfx: &mut Sfx) -> GameResult<()> {
