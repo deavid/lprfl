@@ -35,6 +35,7 @@ impl Vector {
     pub fn unit(&self) -> Vector {
         self.scale(1.0 / self.distance())
     }
+    #[allow(dead_code)]
     pub fn delta(&self, other: &Self) -> Vector {
         Vector {
             dx: self.dx - other.dx,
