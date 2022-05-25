@@ -12,6 +12,220 @@ For example, a type that could be either an integer or a string. But not both.
 The usefulness of this, as usual, is hard to see initially. But examples will
 follow soon!
 
+## A form with options
+
+Something that is easy to relate are real-world forms. Imagine you were trying
+to get the bank to lend money to you, and they lend you a form.
+
+In the form, the following appears:
+
+> What is your current status?
+>
+> - (_) Are you working?
+>   - Name of the company [_______]
+>   - Field / Type of company [______]
+>   - Type of contract?
+>     (_) Permanent full time
+>     (_) Permanent part-time
+>     (_) Contractor
+> - (_) Are you studying?
+>   - Field of study [______]
+>   - Years in school [__]
+> - (_) Other, not studying or working.
+>   - Please specify [________]
+
+Or this:
+
+> Marital Status:
+> - (_) Single
+> - (_) Married
+> - (_) Other
+
+These "single choice" options can be represented as Enums.
+
+For example:
+
+```rust
+enum MaritalStatus {
+    Single,
+    Married,
+    Other,
+}
+```
+
+Then in code, we can choose one of the three options:
+
+```rust
+let status1 = MaritalStatus::Single;
+let status2 = MaritalStatus::Married;
+let status3 = MaritalStatus::Other;
+```
+
+Of course, you can put as many options as you want!
+
+But, for "Other" we don't really know what happened here, so we want to have
+the user to specify what they meant by "Other":
+
+> Marital Status:
+> - (_) Single
+> - (_) Married
+> - (X) Other  [_________________]
+
+In Rust, we do:
+
+```rust
+enum MaritalStatus {
+    Single,
+    Married,
+    Other(String),
+}
+```
+
+Now, if we specify "Other" we need to put text with it:
+
+```rust
+let status3 = MaritalStatus::Other("divorced".to_string());
+```
+
+You can also have names and multiple values inside too:
+
+```rust
+enum MaritalStatus {
+    Single,
+    Married,
+    Other{ status: String, observations: String},
+}
+```
+
+```rust
+let status3 = MaritalStatus::Other {
+    status: "divorced".to_string(),
+    observations: "in 2004".to_string(),
+};
+```
+
+More complex enums are possible, as you can compose them with structs:
+
+```rust
+enum ContractType {
+    PermFullTime,
+    PermPartTime,
+    Contractor,
+}
+
+struct Work {
+    company_name: String,
+    field: String,
+    contract_type: ContractType,
+}
+
+struct Study {
+    field: String,
+    years: i64,
+}
+
+enum CurrentStatus {
+    Work,
+    Study,
+    Other { specify: String },
+}
+```
+
+This reflects the earlier form:
+
+> What is your current status?
+>
+> - (_) Are you working?
+>   - Name of the company [_______]
+>   - Field / Type of company [______]
+>   - Type of contract?
+>     (_) Permanent full time
+>     (_) Permanent part-time
+>     (_) Contractor
+> - (_) Are you studying?
+>   - Field of study [______]
+>   - Years in school [__]
+> - (_) Other, not studying or working.
+>   - Please specify [________]
+
+## Enums in other languages
+
+In C++, Java and most other languages, enums are much simpler and can't do
+most of what Rust can.
+
+In fact, they're just a fancy way of creating constant values associated to
+numbers.
+
+Imagine we're writing a library to open files, and we have a file mode:
+
+```rust
+enum FileMode {
+    Read,       // -> 0
+    Write,      // -> 1
+    ReadWrite,  // -> 2
+    Create,     // -> 3
+    Append,     // -> 4
+}
+```
+
+These are very similar to creating constants associated to numbers:
+
+```rust
+const READ: u16      = 0;
+const WRITE: u16     = 1;
+const READWRITE: u16 = 2;
+const CREATE: u16    = 3;
+const APPEND: u16    = 4;
+```
+
+Having an enum makes the creation simpler, and groups everything together nicely.
+
+It starts counting at zero, but we can assign a particular number if we want. It
+will continue counting from there:
+
+```rust
+enum FileMode {
+    Read = 12,  // -> 12
+    Write,      // -> 13
+    ReadWrite,  // -> 14
+    Create,     // -> 15
+    Append,     // -> 16
+}
+```
+
+If we have two numbers or more assigned, it works too:
+
+```rust
+enum FileMode {
+    Read = 12,  // -> 12
+    Write,      // -> 13
+    ReadWrite,  // -> 14
+    Create = 20,// -> 20
+    Append,     // -> 21
+}
+```
+
+In Rust, you can extract the actual number by casting to integer:
+
+```rust 
+dbg!(FileMode::ReadWrite as u16);
+```
+
+Another example:
+```rust 
+enum Numbers {
+    One = 1,        // ->  1
+    Two,            //     2
+    Three,          //     3
+    Four,           //     4
+
+    FourtyTwo = 42, // -> 42
+    FourtyThree,    //    43
+}
+```
+
+## Other examples
+
 Imagine a datatype called `When` that could take any of the following:
 
 * "Tomorrow": As in, the meeting will be tomorrow.
@@ -226,3 +440,209 @@ match result_num {
     }
 }
 ```
+
+## Understanding Rust Enums internals
+
+> WARN: Technical info ahead! This describes how things work in memory 
+> internally. This section is not required to understand, and feel free to skip.
+> But for some readers, this might give some insight and understanding on Enums.
+> Don't obsess into understanding everything; just a general overview here is fine.
+
+In C++ (and Rust) we have something called "unions". A union is a type where
+all contents will be stored in the same place in memory.
+
+```rust
+union MyData {
+    integer: i64,
+    float: f32,
+    text: [char; 20],
+}
+```
+
+These contents will be put one on top of the other, overlapping the same region
+in memory.
+
+If we did a struct like that:
+```rust
+struct MyData {
+    integer: i64,
+    float: f32,
+    text: [char; 20],
+}
+```
+
+In the memory we will have:
+
+```
+  integer float        text
+[________][____][____________________]
+```
+
+All variables will be packed one after another.
+
+However, if we were only going to use one of those at a time, we would be 
+wasting a lot of memory of the computer.
+
+Unions instead put everything in the same place:
+
+```          
+[________] integer
+[____] float
+[____________________] text
+```
+
+Or, more accurately:
+
+```          
+float integer text
+[____]___]___________]
+```
+
+There are bytes in memory that will be shared across the float, the integer, 
+and the text. Because of this, they use only the memory needed to hold the
+largest variable that they can contain.
+
+This makes unions very dangerous as if you write text and then read float you'll
+get back basically garbage.
+
+That's why, in Rust, reading unions is unsafe.
+
+But if we knew what field we wrote, then we could actually read it without risk 
+of getting back garbage.
+
+Imagine we had constants to specify which field it is:
+
+```rust
+const FIELD_FLOAT: u8 = 0;
+const FIELD_INTEGER: u8 = 1;
+const FIELD_TEXT: u8 = 2;
+```
+
+And then we store this along with the union, inside a struct:
+
+```rust
+union MyData {
+    integer: i64,
+    float: f32,
+    text: [char; 20],
+}
+
+struct MyDataSafe {
+    field_written: u8,
+    data: MyData,
+}
+```
+
+Now, as long as we always keep the `field_written` up to date, we know which one
+was used, so we can read confidently `data` without risk of getting back 
+corrupted values.
+
+We could write an implementation like this to ensure this is the case:
+
+```rust
+impl MyDataSafe {
+    pub fn write_integer(&mut self, i: i64) {
+        self.field_written = FIELD_INTEGER;
+        self.data.integer = i;
+    }
+    pub fn write_float(&mut self, f: f32) {
+        self.field_written = FIELD_FLOAT;
+        self.data.float = f;
+    }
+    pub fn write_text(&mut self, t: [char; 20]) {
+        self.field_written = FIELD_TEXT;
+        self.data.text = t;
+    }
+}
+```
+
+And we could read "safely":
+
+```rust
+impl MyDataSafe {
+    pub fn read_integer(&self) -> i64 {
+        if self.field_written != FIELD_INTEGER {
+            panic!("wrong field type");
+        }
+        unsafe {self.data.integer}
+    }
+    pub fn write_float(&self) -> f32 {
+        if self.field_written != FIELD_FLOAT {
+            panic!("wrong field type");
+        }
+        unsafe {self.data.float}
+    }
+    pub fn write_text(&self) -> [char; 20] {
+        if self.field_written != FIELD_TEXT {
+            panic!("wrong field type");
+        }
+        unsafe {self.data.text}
+    }
+}
+```
+
+Notice two things here. First, when we created the struct:
+
+```rust
+struct MyDataSafe {
+    field_written: u8,
+    data: MyData,
+}
+```
+
+The layout in memory is:
+
+```          
+   float integer text
+[_][____]___]___________]
+ ^    
+ --- field_written
+```
+
+Second, those constants:
+
+```rust
+const FIELD_FLOAT: u8 = 0;
+const FIELD_INTEGER: u8 = 1;
+const FIELD_TEXT: u8 = 2;
+```
+
+Are actually a regular C++ enum:
+
+```rust
+enum Field {
+    Float,
+    Integer,
+    Text,
+}
+```
+
+And the struct:
+```rust
+struct MyDataSafe {
+    field_written: u8,
+    data: MyData,
+}
+```
+
+Is actually an equivalent of a Rust Enum!
+
+```rust
+enum Field {
+    Float(f32),
+    Integer(i64),
+    Text([char; 20]),
+}
+```
+
+That's what it actually is! Rust enums are kind of "safe C++ style unions".
+
+They use only the memory needed for the biggest value possible of all options,
+and they're safe. Plus an extra byte or two to hold which variant are we talking
+about.
+
+> In some cases, Rust is "too smart" and it's able to omit the extra byte needed
+> to store the variant by using some tricks when compiling. But that is outside
+> what I want to cover here.
+
+
