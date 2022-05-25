@@ -48,6 +48,7 @@ const TCRUISE: (&str, i64) = ("Cruise", 1);
 const TFIRING: (&str, i64) = ("Firing", 2);
 const TCOLLECTING: (&str, i64) = ("Collecting", 3);
 
+#[allow(unused_variables, unused_assignments)]
 fn main() {
     // Mode::Cruise = 100; <--- this is impossible!
     let mut mode2 = CppMode::Cruise;
@@ -176,7 +177,7 @@ struct Ship2 {
         ( ) Cardboard
 
 */
-
+#[allow(unused_variables, unused_assignments)]
 fn test2() {
     let cruise = ShipMode::Cruise(Speed { x: 1.0, y: 0.0 });
     let speed = Speed { x: 1.0, y: 0.0 };
