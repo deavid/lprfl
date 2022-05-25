@@ -6,6 +6,15 @@ pub struct Time {
     pub hours: i64,
     pub minutes: i64,
     pub seconds: i64,
+    /* in C++ they go here:
+    pub fn new(hours: i64, minutes: i64, seconds: i64) -> Self {
+        Time {
+            hours,
+            minutes,
+            seconds,
+        }
+    }
+    */
 }
 
 // Variables vs Structs  --> wrong
@@ -59,8 +68,34 @@ impl Display for Time {
         )
     }
 }
+pub fn new_time(hours: i64, minutes: i64, seconds: i64) -> Time {
+    Time {
+        hours,
+        minutes,
+        seconds,
+    }
+}
+
+pub fn fix_time(time: &mut Time) {
+    if time.seconds > 60 {
+        time.minutes += time.seconds / 60;
+        time.seconds %= 60;
+    }
+    if time.minutes > 60 {
+        time.hours += time.minutes / 60;
+        time.minutes %= 60;
+    }
+}
 
 fn main() {
+    let mut n = Time::new(2, 1, 3);
+    let mut n2 = new_time(2, 1, 3);
+
+    n.fix();
+    Time::fix(&mut n); // <- identical as n.fix();
+
+    fix_time(&mut n2); // <- similar but without implementing
+
     // use chrono::prelude::*;
     // let utc: DateTime<Utc> = Utc::now();
     // dbg!(utc);

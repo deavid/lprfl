@@ -20,6 +20,7 @@ Once you're set, run the following command:
 
 ```console
 $ cargo new learnrust
+     Created binary (application) `learnrust` package
 ```
 
 This will create a folder called `learnrust`, you should be able to find it with 

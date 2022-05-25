@@ -32,6 +32,9 @@ name = "enums2"
 [[bin]]
 name = "hashmap"
 
+[[bin]]
+name = "conversor"
+
 
 [dependencies]
 turtle = { git = "https://github.com/sunjay/turtle.git", tag = "v1.0.0-rc.2" }

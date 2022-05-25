@@ -51,7 +51,7 @@
     - [Enums!](./L04adept/021A_enums.md)
     - [Match!](./L04adept/022A_match.md)
     - [Floating point gotchas](./L04adept/023A_float_gotchas.md)
-    - [Modules - splitting files]()
+    - [Modules - splitting files](./L04adept/024A_modules.md)
     - [Contracts in programming]()
     - [Data Structures]()
         - [Lists]()
