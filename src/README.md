@@ -98,3 +98,12 @@ code that you came to see.
 
 If you reach this level, better go and contribute to Rust itself!
 
+## Unfinished chapters
+
+This Book keeps growing. A lot of chapters are still a work in progress.
+
+I added some symbols on the titles to clarify:
+
+* ?: Pending review and completing a bit.
+* !?: Several paragraphs are still missing.
+* !!?: Still mostly empty, placeholder.

@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 // Java: trait -> interfaces
 // trait Unit {
 //     fn in_baseunits(&self) -> f64;
@@ -13,7 +15,6 @@
 
 use std::fmt::Display;
 
-#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum LengthUnit {
     Kilometer,

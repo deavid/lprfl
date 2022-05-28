@@ -5,7 +5,7 @@ Everyone wanted OOP, more OOP. OOP everywhere.
 
 Well, guess where are we now… everything is OOP.
 
-![OOP, OOP everywhere](./img/oop_everywhere.png)
+![OOP, OOP everywhere](../img/oop_everywhere.png)
 
 To the point that a "Hello World" program in Java requires prior OOP knowledge
 to understand it. It is a bit sad and funny at the same time.
