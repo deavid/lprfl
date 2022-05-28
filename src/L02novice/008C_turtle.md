@@ -198,7 +198,7 @@ $ cargo run --bin turtle_vars
 
 This should display a window like this:
 
-![Small arrow up](./img/turtle_vars_01.png)
+![Small arrow up](../img/turtle_vars_01.png)
 
 If this is what you see, congrats! It works for you!
 
@@ -221,7 +221,7 @@ in four steps, we should get a rectangle:
 
 And this gives us a nice animation. The end result is:
 
-![Square](./img/turtle_vars_02.png)
+![Square](../img/turtle_vars_02.png)
 
 But wait! What does `100.0` mean? And `90.0`?
 
@@ -271,7 +271,7 @@ But what happens if we change the angle? Let's try it out!
     let angle = 120.0;
 ```
 
-![Triangle](./img/turtle_vars_03.png)
+![Triangle](../img/turtle_vars_03.png)
 
 It draws a triangle! Wait, what?!
 
@@ -318,7 +318,7 @@ Now we can compute the angle by using the formula:
 
 And we get a new figure:
 
-![Pentagon](./img/turtle_vars_04.png)
+![Pentagon](../img/turtle_vars_04.png)
 
 Try playing yourself with the values and see what happens each time. 
 

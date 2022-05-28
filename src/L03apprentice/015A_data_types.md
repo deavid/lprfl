@@ -39,7 +39,5 @@ You might be inclined to always use floating point numbers for everything, as
 they can do much more than regular integers. If they're better, there's no point
 in using the puny integers, right?
 
-Well, no. Later on I will recommend you to avoid floats like the plague. 
-They have lots of problems that will make your life difficult. But for now if 
-you want to stick with them, it's totally fine. Just write 2.0 instead of 2 for 
-every number, and you're done.
+Well, no. Later on I will point out the different problems that floating points
+have. For now, just write 2.0 instead of 2 for every number, and you're done.

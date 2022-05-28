@@ -61,7 +61,7 @@ recommend this. It's hard to read and hard to write.
 Instead, we'll just use one `println!()` per line:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:header}}
+{{#include ../../learnrust/src/bin/print.rs:header}}
 ```
 
 > HINT: On the piece of code above there should appear a "play" button if your
@@ -77,7 +77,7 @@ with something we can replace later on.
 For example, consider this piece of code:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:sum}}
+{{#include ../../learnrust/src/bin/print.rs:sum}}
 ```
 
 The placeholder is `{}`. These two characters tell Rust that "here we want to
@@ -103,7 +103,7 @@ We can use more than one placeholder, just add more values at the end separated
 by commas:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:mult}}
+{{#include ../../learnrust/src/bin/print.rs:mult}}
 ```
 
 This prints: `And 4 * 3 is 12. Fantastic.`
@@ -116,7 +116,7 @@ If it's empty, without text or values, it will just print a new line. This can
 be useful to separate parts of the output:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:newline}}
+{{#include ../../learnrust/src/bin/print.rs:newline}}
 ```
 
 But be careful! We cannot put values without a placeholder. This **DOES NOT WORK**:
@@ -247,7 +247,7 @@ to read. Wouldn't it be nice if we could round to two decimals?
 Let's see a few samples:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:rounding}}
+{{#include ../../learnrust/src/bin/print.rs:rounding}}
 ```
 
 Click on the play button and see how they are rounded to different decimal 
@@ -279,7 +279,7 @@ That's it for now! Feel free to play around and try yourself.
 Here's the program completed:
 
 ```rust
-{{#include ../learnrust/src/bin/print.rs:all}}
+{{#include ../../learnrust/src/bin/print.rs:all}}
 ```
 
 Remember to write save it in `learnrust/src/bin/print.rs` and edit `Cargo.toml`

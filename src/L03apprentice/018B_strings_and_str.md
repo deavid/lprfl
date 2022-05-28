@@ -39,3 +39,27 @@ In Rust these two are very easy to convert from one to another:
 We'll go on more details later on, but for now we will basically use whatever 
 type Rust is happier with. Depending on what we're doing we will probably need 
 one or the other and convert accordingly.
+
+Note that there are lots of functions to create a `String` from a `&str`:
+
+```rust
+let s1 = "text".to_owned();
+let s2 = "text".to_string();
+let s3 = String::from("text");
+```
+
+They all do the same. In programming, we try to avoid having two things for
+the same, but in this case, Rust has to have three variants, because they can
+be used in different contexts.
+
+* `x.to_owned()` means to create an owned version of the variable; that is, to
+  remove the `&` character (borrow), which we will be learning soon.
+* `x.to_string()` means to convert something into a string. This is equivalent
+  to `format!("{}", x)`.
+* `String::from(x)` means to create a string from something else. It can only be
+  used with &str, String or other types that actually represent text or at least
+  a character.
+
+Is any of those faster? Maybe. Probably String::from(). But I bet it cannot be
+measured in 99.9% of real Rust programs. The difference is too small to actually
+matter.
