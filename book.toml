@@ -3,7 +3,7 @@ authors = ["David Martinez Marti"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Learn Programming with Rust as a first language"
+title = "Rust for Total Beginners"
 
 [rust]
 edition = "2021"

@@ -43,3 +43,12 @@ h5,
 h6 {
     font-weight: 800;
 }
+
+h1.menu-title {
+    line-height: normal;
+    margin-top: -10px;
+}
+
+h1.menu-title small {
+    font-size: 70%;
+}

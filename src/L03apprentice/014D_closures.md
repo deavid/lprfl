@@ -179,6 +179,7 @@ Or:
 || println!("Here's a text")
 ```
 
+
 These are all functions. But you need to store them into a variable or pass them
 into a function in order to use them. This syntax, by itself, does nothing.
 
