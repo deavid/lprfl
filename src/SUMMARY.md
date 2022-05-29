@@ -43,7 +43,7 @@
         - [? Introduction to Closures](./L03apprentice/014D_closures.md)
     - [!!? Project: A simple game with Macroquad](./L03apprentice/020A_proj_game_macroquad.md)
 - [Level: Adept](./L04_adept.md)
-    - [!!? const and static]()
+    - [? const and static](./L04adept/const_and_static.md)
     - [!!? functions that write to original vars; &mut and *]()
     - [Not everything are numbers and texts: Structs](./L04adept/020A_structs.md)
         - [Struct-specific functions, really?](./L04adept/020B_struct_impl.md)
