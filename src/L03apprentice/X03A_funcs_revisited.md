@@ -208,3 +208,53 @@ fn main() {
     let pi:i64 = calc_pi(); // Error! calc_pi returns f64 but the variable is i64.
 }
 ```
+
+## Returning multiple values
+
+We can return more than one values by using tuples. A tuple is basically several
+values packed together. We put in between parenthesis, and each value separated
+by comma.
+
+```rust
+fn default_position() -> (f64, f64) {
+    return (0, 0);
+}
+```
+
+To use this, we can just unpack the values upon receiving:
+
+```rust
+fn main() {
+    let (x, y) = default_position();
+}
+```
+
+If we need to specify types, we can do for each variable:
+
+```rust
+fn main() {
+    let (x: f64, y: f64) = default_position();
+}
+```
+
+But we can also receive the return value as a single tuple:
+
+```rust
+let z: (f64, f64) = default_position();
+```
+
+To use this tuple, we can access the data in order by doing `z.0` or `z.1`:
+
+```rust
+let z: (f64, f64) = default_position();
+let x = z.0;
+let y = z.1;
+```
+
+There's not much mystery to this. Tuples are good to have several values packed
+together. And they're used mainly for this use case, to get multiple return values
+in a function.
+
+
+
+
