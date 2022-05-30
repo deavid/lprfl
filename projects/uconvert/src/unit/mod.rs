@@ -39,7 +39,7 @@ impl Unit {
             Unit::Temperature(x) => x.names(),
         }
     }
-    pub fn default_for(dest_unit: &Self) -> Self {
+    pub fn _default_for(dest_unit: &Self) -> Self {
         match dest_unit {
             Unit::Length(_) => Unit::Length(LengthUnit::default()),
             Unit::Mass(_) => Unit::Mass(MassUnit::default()),
@@ -55,5 +55,24 @@ impl Display for Unit {
             Unit::Mass(x) => x.fmt(f),
             Unit::Temperature(x) => x.fmt(f),
         }
+    }
+}
+
+pub trait ISOUnit: Sized {
+    fn iso_units() -> Vec<Self>;
+}
+
+impl ISOUnit for Unit {
+    fn iso_units() -> Vec<Self> {
+        LengthUnit::iso_units()
+            .into_iter()
+            .map(Self::Length)
+            .chain(MassUnit::iso_units().into_iter().map(Self::Mass))
+            .chain(
+                TemperatureUnit::iso_units()
+                    .into_iter()
+                    .map(Self::Temperature),
+            )
+            .collect()
     }
 }

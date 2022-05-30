@@ -3,8 +3,11 @@ use anyhow::Result;
 use enum_iterator::Sequence;
 use std::fmt::Display;
 
+use super::ISOUnit;
+
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum LengthUnit {
+    MiliMeter,
     KiloMeter,
     Meter,
     Mile,
@@ -18,9 +21,16 @@ impl Default for LengthUnit {
     }
 }
 
+impl ISOUnit for LengthUnit {
+    fn iso_units() -> Vec<Self> {
+        vec![Self::KiloMeter, Self::Meter, Self::MiliMeter]
+    }
+}
+
 impl LengthUnit {
     pub fn meters(&self) -> f64 {
         match self {
+            LengthUnit::MiliMeter => 0.001,
             LengthUnit::KiloMeter => 1000.0,
             LengthUnit::Meter => 1.0,
             LengthUnit::Mile => 1609.344,
@@ -32,6 +42,7 @@ impl LengthUnit {
         match self {
             LengthUnit::KiloMeter => vec!["km", "kilometer", "kilometers"],
             LengthUnit::Meter => vec!["m", "meter", "meters", "mts"],
+            LengthUnit::MiliMeter => vec!["mm", "milimeter", "milimeters"],
             LengthUnit::Mile => vec!["mi", "mile", "miles"],
             LengthUnit::Foot => vec!["ft", "foot", "feet"],
             LengthUnit::Inch => vec!["in", "inch", "inches"],

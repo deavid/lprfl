@@ -1,6 +1,8 @@
 use enum_iterator::Sequence;
 use std::fmt::Display;
 
+use super::ISOUnit;
+
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum TemperatureUnit {
     Celsius,
@@ -12,6 +14,12 @@ pub enum TemperatureUnit {
 impl Default for TemperatureUnit {
     fn default() -> Self {
         Self::Celsius
+    }
+}
+
+impl ISOUnit for TemperatureUnit {
+    fn iso_units() -> Vec<Self> {
+        vec![Self::Celsius, Self::Kelvin]
     }
 }
 

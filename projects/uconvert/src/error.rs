@@ -10,4 +10,6 @@ pub enum AppError {
     UnitNotFound(String),
     #[error("Units are incompatible for conversion: {0} -> {1}")]
     IncompatibleUnits(String, String),
+    #[error("No suitable unit found for: {0}")]
+    NoSuitableUnitFound(String),
 }

@@ -62,10 +62,12 @@ impl ConvertRequest {
     }
 
     pub fn convert(&self) -> Result<Measure> {
-        let dest_unit = self
-            .to_unit
-            .unwrap_or_else(|| Unit::default_for(&self.input.unit));
-
-        self.input.to_unit(dest_unit)
+        match self.to_unit {
+            Some(dest_unit) => self.input.to_unit(dest_unit),
+            None => self
+                .input
+                .to_iso_unit()
+                .ok_or_else(|| AppError::NoSuitableUnitFound(self.input.unit.to_string()).into()),
+        }
     }
 }

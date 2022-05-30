@@ -3,6 +3,8 @@ use anyhow::Result;
 use enum_iterator::Sequence;
 use std::fmt::Display;
 
+use super::ISOUnit;
+
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum MassUnit {
     Gram,
@@ -16,6 +18,12 @@ pub enum MassUnit {
 impl Default for MassUnit {
     fn default() -> Self {
         Self::KiloGram
+    }
+}
+
+impl ISOUnit for MassUnit {
+    fn iso_units() -> Vec<Self> {
+        vec![Self::Gram, Self::KiloGram, Self::MetricTon]
     }
 }
 
