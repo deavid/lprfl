@@ -186,8 +186,11 @@ into a function in order to use them. This syntax, by itself, does nothing.
 ```rust
 // This makes sense: (gives it a name)
 let f1 = || println!("Here's a text");
-// This does not:
+// we call it as 'f1()'
+f1();
+// This does not make sense:
 || println!("Here's a text");
+// doesn't have a name, can't be called.
 ```
 
 Or a more advanced example could be:

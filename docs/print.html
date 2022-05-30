@@ -3502,8 +3502,11 @@ into a function in order to use them. This syntax, by itself, does nothing.</p>
 </span><span class="boring">fn main() {
 </span>// This makes sense: (gives it a name)
 let f1 = || println!(&quot;Here's a text&quot;);
-// This does not:
+// we call it as 'f1()'
+f1();
+// This does not make sense:
 || println!(&quot;Here's a text&quot;);
+// doesn't have a name, can't be called.
 <span class="boring">}
 </span></code></pre></pre>
 <p>Or a more advanced example could be:</p>
