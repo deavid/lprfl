@@ -17,12 +17,15 @@ That will be all we need to do. Congrats! You installed Rust in your machine!
 
 ## Choosing an editor for Rust
 
-I'm very opinionated here. Get Visual Studio Code. 
+I'm very opinionated here. Get Visual Studio Code by Microsoft. 
 (not to be confused with MS Visual Studio)
-<!--- TODO: Add the de-Microsoftified Port of VS Code to your Guide: https://vscodium.com/ -->
 
 People call it VS Code or just "Code". 
-It's open source, supports nearly all languages, and works really, really well.
+It supports nearly all languages, the source-code is open, and works really, really well.
+
+> By default, the binaries provided by Microsoft are proprietary and include telemetry.
+> 
+> If you wish to avoid this, you can get [VSCodium](https://vscodium.com/), a free/open fork that is built without any Microsoft customizations.
 
 From those that code with Rust, they mainly use VS Code or Vim. 
 And I'm not going to recommend Vim to anyone. 
