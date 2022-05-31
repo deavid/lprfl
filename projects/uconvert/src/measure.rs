@@ -1,5 +1,4 @@
-use crate::unit::temperature::TemperatureUnit;
-use crate::unit::{ISOUnit, Unit};
+use crate::unit::{Unit, UnitStandard};
 use crate::AppError;
 use anyhow::Result;
 use std::fmt::Display;
@@ -24,30 +23,32 @@ impl Measure {
         })
     }
 
-    pub fn to_iso_unit(&self) -> Option<Measure> {
-        let units = Unit::iso_units();
+    pub fn _to_iso_unit(&self) -> Option<Measure> {
+        let units = UnitStandard::Iso.units();
+        self.to_best_unit(units, Some(UnitStandard::Iso))
+    }
+
+    pub fn to_best_unit(
+        &self,
+        units: Vec<Unit>,
+        standard: Option<UnitStandard>,
+    ) -> Option<Measure> {
         let mut measures: Vec<(f64, Self)> = units
             .into_iter()
             .filter_map(|u| self.to_unit(u).ok())
-            .map(|m| (m.score(), m))
+            .map(|m| (m.score(standard), m))
             .collect();
         measures.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
         measures.pop().map(|x| x.1)
     }
 
-    pub fn score(&self) -> f64 {
+    pub fn score(&self, standard: Option<UnitStandard>) -> f64 {
         let mut points = self.quantity.abs();
-        if self.quantity < 0.0 {
-            points /= 2.0;
-        } else {
-            points /= 20.0;
-        }
-        points *= match self.unit {
-            Unit::Temperature(TemperatureUnit::Kelvin) => 5.0,
-            Unit::Temperature(TemperatureUnit::Rankine) => 5.0,
-            _ => 1.0,
-        };
+        points /= 100.0;
         points = points.log10();
+        if let Some(s) = standard {
+            points /= s.unit_score(self.unit)
+        }
         1.0 / points.abs().max(0.00001)
     }
 }

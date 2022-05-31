@@ -3,8 +3,6 @@ use anyhow::Result;
 use enum_iterator::Sequence;
 use std::fmt::Display;
 
-use super::ISOUnit;
-
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum LengthUnit {
     MiliMeter,
@@ -18,12 +16,6 @@ pub enum LengthUnit {
 impl Default for LengthUnit {
     fn default() -> Self {
         Self::Meter
-    }
-}
-
-impl ISOUnit for LengthUnit {
-    fn iso_units() -> Vec<Self> {
-        vec![Self::KiloMeter, Self::Meter, Self::MiliMeter]
     }
 }
 

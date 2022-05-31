@@ -1,7 +1,8 @@
 use crate::measure::Measure;
-use crate::unit::Unit;
+use crate::unit::{Unit, UnitStandard};
 use crate::AppError;
 use anyhow::Result;
+use enum_iterator::Sequence;
 
 pub fn ask_user(prompt: &str) -> String {
     use std::io::{stdin, stdout, Write};
@@ -27,10 +28,56 @@ pub fn parse_to(txt_unit: &str) -> (String, Option<String>) {
     }
 }
 
+#[derive(Debug, Sequence)]
+pub enum DestUnit {
+    Standard(UnitStandard),
+    Unit(Unit),
+}
+
+impl Default for DestUnit {
+    fn default() -> Self {
+        Self::Standard(UnitStandard::Iso)
+    }
+}
+
+impl DestUnit {
+    pub fn from_text(t: &str) -> Result<Self> {
+        let t = t.to_lowercase();
+        let t = t.trim();
+        for unit in enum_iterator::all::<Self>() {
+            let names = unit.names();
+            for name in names {
+                if name == t {
+                    return Ok(unit);
+                }
+            }
+        }
+        Err(AppError::UnitNotFound(t.into()).into())
+    }
+    pub fn names(&self) -> Vec<&str> {
+        match self {
+            DestUnit::Standard(s) => s.names(),
+            DestUnit::Unit(c) => c.names(),
+        }
+    }
+    pub fn units(&self) -> Vec<Unit> {
+        match self {
+            DestUnit::Standard(s) => s.units(),
+            DestUnit::Unit(c) => vec![*c],
+        }
+    }
+    pub fn standard(&self) -> Option<UnitStandard> {
+        match self {
+            DestUnit::Standard(s) => Some(*s),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Debug)]
 pub struct ConvertRequest {
     pub input: Measure,
-    pub to_unit: Option<Unit>,
+    pub to_unit: DestUnit,
 }
 
 impl ConvertRequest {
@@ -50,7 +97,10 @@ impl ConvertRequest {
         // Check if the unit contains ' to ', like "12kg to lb"
         let (from_unit, to_unit) = parse_to(txt_unit);
         let from_unit = Unit::from_text(&from_unit)?;
-        let to_unit = to_unit.map(|x| Unit::from_text(&x)).transpose()?;
+        let to_unit = to_unit
+            .map(|x| DestUnit::from_text(&x))
+            .transpose()?
+            .unwrap_or_default();
 
         Ok(Self {
             input: Measure {
@@ -62,12 +112,9 @@ impl ConvertRequest {
     }
 
     pub fn convert(&self) -> Result<Measure> {
-        match self.to_unit {
-            Some(dest_unit) => self.input.to_unit(dest_unit),
-            None => self
-                .input
-                .to_iso_unit()
-                .ok_or_else(|| AppError::NoSuitableUnitFound(self.input.unit.to_string()).into()),
-        }
+        let units = self.to_unit.units();
+        self.input
+            .to_best_unit(units, self.to_unit.standard())
+            .ok_or_else(|| AppError::NoSuitableUnitFound(self.input.unit.to_string()).into())
     }
 }
