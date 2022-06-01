@@ -5,12 +5,24 @@ use std::fmt::Display;
 
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum MassUnit {
+    // metric
     Gram,
     KiloGram,
+    MilliGram,
+    MicroGram,
+    // non-si metric
     MetricTon,
+    // Avoirdupois
+    LongTon,
+    ShortTon,
     Stone,
     Pound,
     Ounce,
+    Drachm,
+    Grain,
+    // Other
+    TroyOunce,
+    Carat,
 }
 
 impl Default for MassUnit {
@@ -28,6 +40,14 @@ impl MassUnit {
             MassUnit::Stone => 6.35029318,
             MassUnit::Pound => 0.45359237,
             MassUnit::Ounce => 0.02834952313,
+            MassUnit::MilliGram => todo!(),
+            MassUnit::MicroGram => todo!(),
+            MassUnit::LongTon => todo!(),
+            MassUnit::ShortTon => todo!(),
+            MassUnit::Drachm => todo!(),
+            MassUnit::Grain => todo!(),
+            MassUnit::TroyOunce => todo!(),
+            MassUnit::Carat => todo!(),
         }
     }
     pub fn names(&self) -> Vec<&str> {
@@ -38,6 +58,14 @@ impl MassUnit {
             MassUnit::Stone => vec!["st", "stone", "stones"],
             MassUnit::Pound => vec!["lb", "pound", "pounds"],
             MassUnit::Ounce => vec!["oz", "ounce", "ounces"],
+            MassUnit::MilliGram => todo!(),
+            MassUnit::MicroGram => todo!(),
+            MassUnit::LongTon => todo!(),
+            MassUnit::ShortTon => todo!(),
+            MassUnit::Drachm => todo!(),
+            MassUnit::Grain => todo!(),
+            MassUnit::TroyOunce => todo!(),
+            MassUnit::Carat => todo!(),
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

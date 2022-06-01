@@ -12,6 +12,7 @@ pub struct Measure {
 impl Measure {
     pub fn to_unit(&self, dest_unit: Unit) -> Result<Self> {
         let quantity = match (&self.unit, &dest_unit) {
+            (Unit::Area(s), Unit::Area(d)) => s.meters2() / d.meters2() * self.quantity,
             (Unit::Length(s), Unit::Length(d)) => s.meters() / d.meters() * self.quantity,
             (Unit::Mass(s), Unit::Mass(d)) => s.kilograms() / d.kilograms() * self.quantity,
             (Unit::Temperature(s), Unit::Temperature(d)) => s.convert_to(self.quantity, d),
