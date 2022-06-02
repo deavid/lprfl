@@ -26,24 +26,24 @@ impl Default for SpeedUnit {
 }
 
 impl SpeedUnit {
-    pub fn meters2(&self) -> f64 {
+    pub fn meterspersecond(&self) -> f64 {
         match self {
-            SpeedUnit::MeterPerSecond => todo!(),
-            SpeedUnit::KilometerPerHour => todo!(),
-            SpeedUnit::MilePerHour => todo!(),
-            SpeedUnit::FootPerSecond => todo!(),
-            SpeedUnit::Knot => todo!(),
-            SpeedUnit::C => todo!(),
+            SpeedUnit::MeterPerSecond => 1.0,
+            SpeedUnit::KilometerPerHour => 0.27777777,
+            SpeedUnit::MilePerHour => 0.44704,
+            SpeedUnit::FootPerSecond => 0.3048,
+            SpeedUnit::Knot => 0.51444444,
+            SpeedUnit::C => 299792458.0,
         }
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
-            SpeedUnit::MeterPerSecond => todo!(),
-            SpeedUnit::KilometerPerHour => todo!(),
-            SpeedUnit::MilePerHour => todo!(),
-            SpeedUnit::FootPerSecond => todo!(),
-            SpeedUnit::Knot => todo!(),
-            SpeedUnit::C => todo!(),
+            SpeedUnit::MeterPerSecond => vec!["m/s"],
+            SpeedUnit::KilometerPerHour => vec!["km/h", "kph"],
+            SpeedUnit::MilePerHour => vec!["mi/h", "mph"],
+            SpeedUnit::FootPerSecond => vec!["ft/s"],
+            SpeedUnit::Knot => vec!["kn", "knot", "knots"],
+            SpeedUnit::C => vec!["c", "lightspeed"],
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

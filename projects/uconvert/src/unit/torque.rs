@@ -21,18 +21,18 @@ impl Default for TorqueUnit {
 }
 
 impl TorqueUnit {
-    pub fn meters2(&self) -> f64 {
+    pub fn newtonsmeter(&self) -> f64 {
         match self {
-            TorqueUnit::NewtonMeter => todo!(),
-            TorqueUnit::KiloGramMeter => todo!(),
-            TorqueUnit::PoundForceFoot => todo!(),
+            TorqueUnit::NewtonMeter => 1.0,
+            TorqueUnit::KiloGramMeter => 9.8,
+            TorqueUnit::PoundForceFoot => 1.4,
         }
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
-            TorqueUnit::NewtonMeter => todo!(),
-            TorqueUnit::KiloGramMeter => todo!(),
-            TorqueUnit::PoundForceFoot => todo!(),
+            TorqueUnit::NewtonMeter => vec!["Nm", "newtonmeter"],
+            TorqueUnit::KiloGramMeter => vec!["kgm", "kilogrammeter"],
+            TorqueUnit::PoundForceFoot => vec!["lbft", "poundforcefoot"],
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

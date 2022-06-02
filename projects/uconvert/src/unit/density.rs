@@ -7,8 +7,8 @@ use std::fmt::Display;
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum DensityUnit {
     // metric
-    KiloGramPerCubicCentimeter,
-    GramPerCubicCentimeter,
+    KiloGramPerCubicMeter,
+    GramPerCubicMeter,
     // US
     PoundPerCubicFoot,
     PoundPerCubicYard,
@@ -16,25 +16,45 @@ pub enum DensityUnit {
 
 impl Default for DensityUnit {
     fn default() -> Self {
-        Self::KiloGramPerCubicCentimeter
+        Self::KiloGramPerCubicMeter
     }
 }
 
 impl DensityUnit {
-    pub fn meters2(&self) -> f64 {
+    pub fn kgm3(&self) -> f64 {
         match self {
-            DensityUnit::KiloGramPerCubicCentimeter => todo!(),
-            DensityUnit::GramPerCubicCentimeter => todo!(),
-            DensityUnit::PoundPerCubicFoot => todo!(),
-            DensityUnit::PoundPerCubicYard => todo!(),
+            DensityUnit::KiloGramPerCubicMeter => 1.0,
+            DensityUnit::GramPerCubicMeter => 0.001,
+            DensityUnit::PoundPerCubicFoot => 16.01846337,
+            DensityUnit::PoundPerCubicYard => 0.5932764213,
         }
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
-            DensityUnit::KiloGramPerCubicCentimeter => todo!(),
-            DensityUnit::GramPerCubicCentimeter => todo!(),
-            DensityUnit::PoundPerCubicFoot => todo!(),
-            DensityUnit::PoundPerCubicYard => todo!(),
+            DensityUnit::KiloGramPerCubicMeter => vec![
+                "kg/m^3",
+                "kg/m³",
+                "kilogram per cubic meter",
+                "kilograms per cubic meter",
+            ],
+            DensityUnit::GramPerCubicMeter => vec![
+                "g/m^3",
+                "g/m³",
+                "gram per cubic meter",
+                "grams per cubic meter",
+            ],
+            DensityUnit::PoundPerCubicFoot => vec![
+                "lb/ft^3",
+                "lb/ft³",
+                "pound per cubic foot",
+                "pounds per cubic foot",
+            ],
+            DensityUnit::PoundPerCubicYard => vec![
+                "lb/yd^3",
+                "lb/yd³",
+                "pound per cubic yard",
+                "pounds per cubic yard",
+            ],
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

@@ -22,7 +22,10 @@ impl Default for FuelEfficiencyUnit {
 }
 
 impl FuelEfficiencyUnit {
-    pub fn meters2(&self) -> f64 {
+    pub fn convert_to(&self, value: f64, dest: &Self) -> f64 {
+        todo!()
+    }
+    pub fn litersperkm(&self, value: f64) -> f64 {
         match self {
             FuelEfficiencyUnit::KiloMetersPerLiter => todo!(),
             FuelEfficiencyUnit::LitersPer100KiloMeters => todo!(),
@@ -35,13 +38,13 @@ impl FuelEfficiencyUnit {
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
-            FuelEfficiencyUnit::KiloMetersPerLiter => todo!(),
-            FuelEfficiencyUnit::LitersPer100KiloMeters => todo!(),
-            FuelEfficiencyUnit::LitersPerKiloMeter => todo!(),
-            FuelEfficiencyUnit::MilesPerImperialGallon => todo!(),
-            FuelEfficiencyUnit::MilesPerUSGallon => todo!(),
-            FuelEfficiencyUnit::ImperialGallonsPerMile => todo!(),
-            FuelEfficiencyUnit::USGallonsPerMile => todo!(),
+            FuelEfficiencyUnit::KiloMetersPerLiter => vec!["km/L"],
+            FuelEfficiencyUnit::LitersPer100KiloMeters => vec!["L/100km"],
+            FuelEfficiencyUnit::LitersPerKiloMeter => vec!["L/km"],
+            FuelEfficiencyUnit::MilesPerImperialGallon => vec!["mpgimp"],
+            FuelEfficiencyUnit::MilesPerUSGallon => vec!["mpgus"],
+            FuelEfficiencyUnit::ImperialGallonsPerMile => vec!["impgal/mi"],
+            FuelEfficiencyUnit::USGallonsPerMile => vec!["usgal/mi"],
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

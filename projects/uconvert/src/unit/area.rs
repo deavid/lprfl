@@ -41,12 +41,12 @@ impl AreaUnit {
             AreaUnit::SquareMile => 1609.344_f64.powi(2),
             AreaUnit::SquareFoot => 0.3048_f64.powi(2),
             AreaUnit::SquareInch => 0.0254_f64.powi(2),
-            AreaUnit::Hectare => todo!(),
-            AreaUnit::Acre => todo!(),
-            AreaUnit::SquareYard => todo!(),
-            AreaUnit::SquareNauticalMile => todo!(),
-            AreaUnit::Dunam => todo!(),
-            AreaUnit::Tsubo => todo!(),
+            AreaUnit::Hectare => 10000.0,
+            AreaUnit::Acre => 4046.856422,
+            AreaUnit::SquareYard => 0.9144_f64.powi(2),
+            AreaUnit::SquareNauticalMile => 1852_f64.powi(2),
+            AreaUnit::Dunam => 1000.0,
+            AreaUnit::Tsubo => 3.3,
         }
     }
     pub fn names(&self) -> Vec<&str> {
@@ -64,12 +64,18 @@ impl AreaUnit {
             AreaUnit::SquareMile => vec!["mi²", "mi^2", "square mile", "square miles"],
             AreaUnit::SquareFoot => vec!["ft²", "ft^2", "square foot", "square feet"],
             AreaUnit::SquareInch => vec!["in²", "in^2", "square inch", "square inches"],
-            AreaUnit::Hectare => todo!(),
-            AreaUnit::Acre => todo!(),
-            AreaUnit::SquareYard => todo!(),
-            AreaUnit::SquareNauticalMile => todo!(),
-            AreaUnit::Dunam => todo!(),
-            AreaUnit::Tsubo => todo!(),
+            AreaUnit::Hectare => vec!["ha", "hectare", "hectares"],
+            AreaUnit::Acre => vec!["acre", "acres"],
+            AreaUnit::SquareYard => vec!["sqyd", "yd^2", "yd²", "square yard", "square yards"],
+            AreaUnit::SquareNauticalMile => vec![
+                "sqnmi",
+                "nmi^2",
+                "nmi²",
+                "square nautical mile",
+                "square nautical miles",
+            ],
+            AreaUnit::Dunam => vec!["dunam", "dunams"],
+            AreaUnit::Tsubo => vec!["tsubo", "tsubos"],
         }
     }
     pub fn _from_text(t: &str) -> Result<Self> {

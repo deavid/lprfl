@@ -42,7 +42,6 @@ impl Default for DestUnit {
 
 impl DestUnit {
     pub fn from_text(t: &str) -> Result<Self> {
-        let t = t.to_lowercase();
         let t = t.trim();
         for unit in enum_iterator::all::<Self>() {
             let names = unit.names();
@@ -52,7 +51,16 @@ impl DestUnit {
                 }
             }
         }
-        Err(AppError::UnitNotFound(t.into()).into())
+        let t = t.to_lowercase();
+        for unit in enum_iterator::all::<Self>() {
+            let names = unit.names();
+            for name in names {
+                if name == t {
+                    return Ok(unit);
+                }
+            }
+        }
+        Err(AppError::UnitNotFound(t).into())
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
@@ -115,6 +123,6 @@ impl ConvertRequest {
         let units = self.to_unit.units();
         self.input
             .to_best_unit(units, self.to_unit.standard())
-            .ok_or_else(|| AppError::NoSuitableUnitFound(self.input.unit.to_string()).into())
+            .ok_or_else(|| AppError::NoSuitableUnitFound(format!("{:?}", self.input.unit)).into())
     }
 }

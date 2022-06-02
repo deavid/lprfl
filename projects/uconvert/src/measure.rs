@@ -16,6 +16,18 @@ impl Measure {
             (Unit::Length(s), Unit::Length(d)) => s.meters() / d.meters() * self.quantity,
             (Unit::Mass(s), Unit::Mass(d)) => s.kilograms() / d.kilograms() * self.quantity,
             (Unit::Temperature(s), Unit::Temperature(d)) => s.convert_to(self.quantity, d),
+            (Unit::Density(s), Unit::Density(d)) => s.kgm3() / d.kgm3() * self.quantity,
+            (Unit::Energy(s), Unit::Energy(d)) => s.joules() / d.joules() * self.quantity,
+            (Unit::Force(s), Unit::Force(d)) => s.newtons() / d.newtons() * self.quantity,
+            (Unit::FuelEfficiency(s), Unit::FuelEfficiency(d)) => s.convert_to(self.quantity, d),
+            (Unit::Pressure(s), Unit::Pressure(d)) => s.pascals() / d.pascals() * self.quantity,
+            (Unit::Speed(s), Unit::Speed(d)) => {
+                s.meterspersecond() / d.meterspersecond() * self.quantity
+            }
+            (Unit::Torque(s), Unit::Torque(d)) => {
+                s.newtonsmeter() / d.newtonsmeter() * self.quantity
+            }
+            (Unit::Volume(s), Unit::Volume(d)) => s.meters3() / d.meters3() * self.quantity,
             (f, t) => Err(AppError::IncompatibleUnits(f.to_string(), t.to_string()))?,
         };
         Ok(Self {
@@ -45,12 +57,13 @@ impl Measure {
 
     pub fn score(&self, standard: Option<UnitStandard>) -> f64 {
         let mut points = self.quantity.abs();
-        points /= 100.0;
-        points = points.log10();
-        if let Some(s) = standard {
-            points /= s.unit_score(self.unit)
-        }
-        1.0 / points.abs().max(0.00001)
+        points /= 20.0;
+        points = points.log10().abs();
+        let base = match standard {
+            Some(s) => s.unit_score(self.unit),
+            None => 1.0,
+        };
+        base / points.max(0.00001)
     }
 }
 

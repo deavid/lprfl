@@ -13,12 +13,21 @@ pub mod volume;
 
 use crate::AppError;
 use anyhow::Result;
+use area::AreaUnit;
+use density::DensityUnit;
+use energy::EnergyUnit;
 use enum_iterator::Sequence;
+use force::ForceUnit;
+use fuelefficiency::FuelEfficiencyUnit;
 use length::LengthUnit;
 use mass::MassUnit;
+use pressure::PressureUnit;
 use std::fmt::Display;
+use temperature::TemperatureUnit;
+use torque::TorqueUnit;
+use volume::VolumeUnit;
 
-use self::{area::AreaUnit, temperature::TemperatureUnit};
+use self::speed::SpeedUnit;
 
 #[derive(Debug, Sequence, Clone, Copy)]
 pub enum UnitStandard {
@@ -52,6 +61,54 @@ impl UnitStandard {
             self.temperature_units()
                 .into_iter()
                 .map(Unit::Temperature)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.density_units()
+                .into_iter()
+                .map(Unit::Density)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.energy_units()
+                .into_iter()
+                .map(Unit::Energy)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.force_units()
+                .into_iter()
+                .map(Unit::Force)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.fuel_units()
+                .into_iter()
+                .map(Unit::FuelEfficiency)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.pressure_units()
+                .into_iter()
+                .map(Unit::Pressure)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.speed_units()
+                .into_iter()
+                .map(Unit::Speed)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.torque_units()
+                .into_iter()
+                .map(Unit::Torque)
+                .collect::<Vec<Unit>>(),
+        );
+        units.extend(
+            self.volume_units()
+                .into_iter()
+                .map(Unit::Volume)
                 .collect::<Vec<Unit>>(),
         );
         units
@@ -106,6 +163,62 @@ impl UnitStandard {
             UnitStandard::EU => vec![TemperatureUnit::Celsius, TemperatureUnit::Kelvin],
         }
     }
+    pub fn density_units(&self) -> Vec<DensityUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn energy_units(&self) -> Vec<EnergyUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn force_units(&self) -> Vec<ForceUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn fuel_units(&self) -> Vec<FuelEfficiencyUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn pressure_units(&self) -> Vec<PressureUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn speed_units(&self) -> Vec<SpeedUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn torque_units(&self) -> Vec<TorqueUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
+    pub fn volume_units(&self) -> Vec<VolumeUnit> {
+        match self {
+            UnitStandard::Iso => vec![],
+            UnitStandard::US => vec![],
+            UnitStandard::EU => vec![],
+        }
+    }
     pub fn unit_score(&self, unit: Unit) -> f64 {
         match self {
             UnitStandard::Iso => match unit {
@@ -121,7 +234,7 @@ impl UnitStandard {
             },
             UnitStandard::EU => match unit {
                 Unit::Area(AreaUnit::SquareCentiMeter) => 1.5,
-                Unit::Length(LengthUnit::CentiMeter) => 1.5,
+                Unit::Length(LengthUnit::CentiMeter) => 5.0,
                 Unit::Temperature(TemperatureUnit::Celsius) => 2.0,
                 _ => 1.0,
             },
@@ -135,11 +248,18 @@ pub enum Unit {
     Length(LengthUnit),
     Mass(MassUnit),
     Temperature(TemperatureUnit),
+    Density(DensityUnit),
+    Energy(EnergyUnit),
+    Force(ForceUnit),
+    FuelEfficiency(FuelEfficiencyUnit),
+    Pressure(PressureUnit),
+    Speed(SpeedUnit),
+    Torque(TorqueUnit),
+    Volume(VolumeUnit),
 }
 
 impl Unit {
     pub fn from_text(t: &str) -> Result<Self> {
-        let t = t.to_lowercase();
         let t = t.trim();
         for unit in enum_iterator::all::<Self>() {
             let names = unit.names();
@@ -149,7 +269,16 @@ impl Unit {
                 }
             }
         }
-        Err(AppError::UnitNotFound(t.into()).into())
+        let t = t.to_lowercase();
+        for unit in enum_iterator::all::<Self>() {
+            let names = unit.names();
+            for name in names {
+                if name == t {
+                    return Ok(unit);
+                }
+            }
+        }
+        Err(AppError::UnitNotFound(t).into())
     }
     pub fn names(&self) -> Vec<&str> {
         match self {
@@ -157,14 +286,14 @@ impl Unit {
             Unit::Length(x) => x.names(),
             Unit::Mass(x) => x.names(),
             Unit::Temperature(x) => x.names(),
-        }
-    }
-    pub fn _default_for(dest_unit: &Self) -> Self {
-        match dest_unit {
-            Unit::Area(_) => Unit::Area(AreaUnit::default()),
-            Unit::Length(_) => Unit::Length(LengthUnit::default()),
-            Unit::Mass(_) => Unit::Mass(MassUnit::default()),
-            Unit::Temperature(_) => Unit::Temperature(TemperatureUnit::default()),
+            Unit::Density(x) => x.names(),
+            Unit::Energy(x) => x.names(),
+            Unit::Force(x) => x.names(),
+            Unit::FuelEfficiency(x) => x.names(),
+            Unit::Pressure(x) => x.names(),
+            Unit::Speed(x) => x.names(),
+            Unit::Torque(x) => x.names(),
+            Unit::Volume(x) => x.names(),
         }
     }
 }
@@ -176,6 +305,14 @@ impl Display for Unit {
             Unit::Length(x) => x.fmt(f),
             Unit::Mass(x) => x.fmt(f),
             Unit::Temperature(x) => x.fmt(f),
+            Unit::Density(x) => x.fmt(f),
+            Unit::Energy(x) => x.fmt(f),
+            Unit::Force(x) => x.fmt(f),
+            Unit::FuelEfficiency(x) => x.fmt(f),
+            Unit::Pressure(x) => x.fmt(f),
+            Unit::Speed(x) => x.fmt(f),
+            Unit::Torque(x) => x.fmt(f),
+            Unit::Volume(x) => x.fmt(f),
         }
     }
 }
